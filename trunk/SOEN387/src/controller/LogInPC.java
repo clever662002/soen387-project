@@ -26,22 +26,24 @@ public class LogInPC extends BaseHttpServlet {
 		
 		// do some basic validation on username and password
 		if(username == null || username.isEmpty() || password == null || password.isEmpty()){
-			request.setAttribute("errors", "Invalid username or password");
+			//request.setAttribute("errors", "Invalid username or password");
 			request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 		}
 		else{
 			
+			//TODO check the identity map for the user
 			User user = UserMapper.find(username);
 			
 			if(user == null){
 				//Redirect to login page (user does not exist)
 				System.out.println("Did not find a user with username: " + username);
-				request.setAttribute("errors", "Invalid username or password.");
+				request.setAttribute("error", "invalid username or password.");
 				request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 			}
 			else{
 				System.out.println("found user [" + user.toString() + "]");
-				request.getSession().setAttribute("username",username);
+				request.getSession().setAttribute("username",user.getUsername());
+				request.getSession().setAttribute("user_id",user.getId()+"");
 				request.getRequestDispatcher("/jsp/Index.jsp").forward(request, response); //somewhere else!
 			}
 		}
