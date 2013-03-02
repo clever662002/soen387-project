@@ -3,6 +3,7 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -18,6 +19,7 @@ public class GroupTDG {
 	private static String SELECT = "SELECT * FROM " + DB_NAME + " WHERE username=?";
 	private static String SELECT_ALL = "SELECT * FROM " + DB_NAME;
 	private static String FIND = "SELECT * FROM "+DB_NAME+","+DB_PREFIX+"user_group WHERE groups.group_id=user_group.group_id AND user_group.user_id =?";
+	
 	
 	public static ResultSet find(String username) throws SQLException {
 	/*	
