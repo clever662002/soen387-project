@@ -35,6 +35,18 @@
     <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
   
+  <!-- ADD USERS -->
+  <servlet>
+    <description></description>
+    <display-name>AddUsersPC</display-name>
+    <servlet-name>AddUsersPC</servlet-name>
+    <servlet-class>controller.AddUsersPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddUsersPC</servlet-name>
+    <url-pattern>/AddUsers</url-pattern>
+  </servlet-mapping>
+  
   <!-- VIEW GROUP -->
   <servlet>
     <description></description>
@@ -47,7 +59,7 @@
     <url-pattern>/Group</url-pattern>
   </servlet-mapping>
   
-  <!-- VIEW INVITE -->
+  <!-- VIEW INVITES -->
   <servlet>
     <description></description>
     <display-name>ViewInvitePC</display-name>
