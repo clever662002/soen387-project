@@ -1,6 +1,6 @@
 <%@include file="../include/header.jsp" %>
 
-	<h1> VIEW INVITE </h1>
+	<h1> INVITES </h1>
 	
 	<p> Here will be a list of your invites </p>
 	
