@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>GroupFormation</display-name>
+  <welcome-file-list>
+    <welcome-file>LogInTV</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- LOG IN -->
+  <servlet>
+    <description></description>
+    <display-name>LogInPC</display-name>
+    <servlet-name>LogInPC</servlet-name>
+    <servlet-class>controller.LogInPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogInPC</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
+  <!-- LOG OUT -->
+  <servlet>
+    <description></description>
+    <display-name>LogOutPC</display-name>
+    <servlet-name>LogOutPC</servlet-name>
+    <servlet-class>controller.LogOutPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOutPC</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  
+  <!-- VIEW GROUP -->
+  <servlet>
+    <description></description>
+    <display-name>ViewGroupPC</display-name>
+    <servlet-name>ViewGroupPC</servlet-name>
+    <servlet-class>controller.ViewGroupPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewGroupPC</servlet-name>
+    <url-pattern>/Group</url-pattern>
+  </servlet-mapping>
+  
+  <!-- VIEW INVITE -->
+  <servlet>
+    <description></description>
+    <display-name>ViewInvitePC</display-name>
+    <servlet-name>ViewInvitePC</servlet-name>
+    <servlet-class>controller.ViewInvitePC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewInvitePC</servlet-name>
+    <url-pattern>/Invite</url-pattern>
+  </servlet-mapping>
+</web-app>
