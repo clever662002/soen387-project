@@ -10,9 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mapper.UserMapper;
-import model.Invite;
-import model.User;
+import mapper.GroupMapper;
+import model.Group;
+
 
 public class ViewGroupPC extends BaseHttpServlet {
 
@@ -23,17 +23,21 @@ public class ViewGroupPC extends BaseHttpServlet {
 	
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String id = (String) request.getSession().getAttribute("user_id");
-		
-		if(id == null){
-			request.setAttribute("error", "You need to login");
-			request.getRequestDispatcher(VIEW_NAME_LOGIN).forward(request, response);
-		}
-		else{
+		try
+		{
+			String sGroupID = request.getParameter("group_id");
+			
+			if(sGroupID != null)
+			{
+				request.setAttribute("group", GroupMapper.find(Integer.parseInt(sGroupID)));
+			}
+			
 			request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 		}
-		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 }
