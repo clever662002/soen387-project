@@ -1,10 +1,8 @@
 package model;
 
-import java.util.List;
-
 /**
  * Domain model representing a Group
- * @author Alex Perkins
+ * @author Alex Perkins, Dan Wang
  */
 public class Group {
 
@@ -16,7 +14,6 @@ public class Group {
 	
 	
 	public Group(int id, String name, String description, int version) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -26,9 +23,7 @@ public class Group {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getName() {
 		return name;
 	}
