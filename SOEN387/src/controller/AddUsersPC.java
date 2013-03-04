@@ -36,11 +36,20 @@ public class AddUsersPC extends BaseHttpServlet {
 	private static final String DELIMITER = ",";
 	
 	private static final String VIEW_NAME = "/jsp/AddUsersTV.jsp";
+	private static final String VIEW_NAME_LOGIN =  "jsp/LogInTV.jsp";
 	
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try{
+			
+			String id = (String) request.getSession().getAttribute("user_id");
+			
+			if(id == null){
+				request.setAttribute("error", "You need to login");
+				request.getRequestDispatcher(VIEW_NAME_LOGIN).forward(request, response);
+				return;
+			}
 			
 			if(ServletFileUpload.isMultipartContent(request)){
 				ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());

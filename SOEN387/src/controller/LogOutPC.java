@@ -20,6 +20,4 @@ public class LogOutPC extends BaseHttpServlet {
 		request.getRequestDispatcher("/jsp/LogInTV.jsp").forward(request,response);
 	}
        
-    
-
 }

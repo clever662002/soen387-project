@@ -18,6 +18,7 @@ public class UserTDG {
 	private static final String DB_NAME_USER = DB_PREFIX+"user";
 	private static final String DB_NAME_INVITE = DB_PREFIX+"invite";
 	private static final String DB_NAME_GROUP = DB_PREFIX+"group";
+	private static final String DB_NAME_USER_GROUP = DB_PREFIX+"user_group";
 	////COLUMN NAMES
 	//USER
 	private static String USER_ID = "user_id";
@@ -28,15 +29,16 @@ public class UserTDG {
 	private static String VERSION = "version";
 	//INVITE
 	private static String GROUP_ID = "group_id";
-	private static String INVITE_ID = "invite_id";
 	//// SQL STATEMENTS
 	//USER
-	private static String SELECT = "SELECT * FROM " + DB_NAME_USER + " WHERE "+USERNAME+"=?";
+	private static String SELECT = "SELECT * FROM " + DB_NAME_USER + ", "+DB_NAME_GROUP + ", "+DB_NAME_USER_GROUP+ " WHERE "+DB_NAME_USER+"."+GROUP_ID+"="+DB_NAME_USER+"."+GROUP_ID+" AND "+USER_ID+"=?";
 	private static String SELECT_ALL = "SELECT * FROM " + DB_NAME_USER;
-	private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + " WHERE "+USERNAME+"=?";
+	private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ USERNAME+"=?";
+	//private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + ","+DB_NAME_GROUP+ " WHERE "+DB_NAME_USER+"."+USER_ID+"="+DB_NAME_GROUP+"."+USER_ID+" AND "+USERNAME+"=?";
 	private static String INSERT = "INSERT INTO " +DB_NAME_USER+ " ("+USERNAME+","+FIRST_NAME+","+LAST_NAME+","+PASSWORD+") VALUES (?,?,?,?)";
 	//TODO finish update query
 	private static String UPDATE = "UPDATE " +DB_NAME_USER+ "SET ";
+	private static String DELETE_INVITES = "DELETE FROM  " +DB_NAME_INVITE+ " WHERE "+USER_ID+ "=?";
 	//INVITE
 	private static String FIND_INVITES = "SELECT * FROM "+DB_NAME_INVITE+", "+
 		DB_NAME_GROUP+" WHERE "+
@@ -47,9 +49,10 @@ public class UserTDG {
 	
 	
 	public static ResultSet find(String username) throws SQLException {
-		User result = null;		
+		User result = null;	
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(FIND_BY_USERNAME);
 		ps.setString(1, username);
+		System.out.println(FIND_BY_USERNAME);
 		ResultSet rs = ps.executeQuery();
 		return rs;
 	}
@@ -84,7 +87,7 @@ public class UserTDG {
 		ps.close();
 	}
 	
-	public static void update(HashMap<String,String> params) throws SQLException {
+	public static int update(HashMap<String,String> params) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(INSERT);
 		ps.setString(1, params.get(USERNAME));
 		ps.setString(2, params.get(FIRST_NAME));
@@ -95,6 +98,7 @@ public class UserTDG {
 		ps.setString(4, encryptedPassword);
 		int rs = ps.executeUpdate();
 		ps.close();
+		return rs;
 	}
 	
 	public static ResultSet findInvitesByUserId(int id) throws SQLException {
@@ -102,8 +106,15 @@ public class UserTDG {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(FIND_INVITES);
 		ps.setInt(1, id);
 		ResultSet result = ps.executeQuery();
-		ps.close();
+		//ps.close();
 		return result;
+	}
+	
+	public static int deleteInvites(int id) throws SQLException {
+		System.out.println(DELETE_INVITES);
+		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(DELETE_INVITES);
+		ps.setInt(1, id);
+		return ps.executeUpdate();
 	}
 	
 }

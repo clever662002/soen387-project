@@ -31,6 +31,7 @@ public class GroupMapper {
 		Group result = null;
 		try
 		{
+			
 			ResultSet rs = GroupTDG.find(id);
 			if(rs.next())
 			{
@@ -39,11 +40,13 @@ public class GroupMapper {
 								   rs.getString(DESC),
 								   rs.getInt(VERSION));
 			}
+			
 		}
 		catch(SQLException ex)
 		{
 			System.err.print("SQLException : " + ex.getMessage());
 		}
+		
 		return result;
 	}
 	
