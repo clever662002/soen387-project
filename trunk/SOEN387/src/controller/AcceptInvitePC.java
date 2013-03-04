@@ -10,13 +10,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utils.SecurityUtil;
+import data.InviteTDG;
 
+import mapper.InviteMapper;
 import mapper.UserMapper;
 import model.Invite;
 import model.User;
 
-public class ViewInvitePC extends BaseHttpServlet {
+public class AcceptInvitePC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,19 +27,31 @@ public class ViewInvitePC extends BaseHttpServlet {
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//String username = request.getParameter("username");
-		//String password = request.getParameter("password");
-
 		String id = (String) request.getSession().getAttribute("user_id");
 		
-		if(!SecurityUtil.isAuthenticated(request)){
+		if(id == null){
 			request.setAttribute("error", "You need to login");
 			request.getRequestDispatcher(VIEW_NAME_LOGIN).forward(request, response);
 		}
 		else{
+			//TODO implement accept invite
 			
-			List<Invite> invites = UserMapper.findInvites(Integer.parseInt(id));
-			request.setAttribute("invites", invites);
+			request.setAttribute("info", "Invite Accepted");
+			
+			int userId = Integer.parseInt(request.getSession().getAttribute("user_id")+"");
+			int groupId = Integer.parseInt(request.getParameter("group_id")+"");
+			
+			User user = UserMapper.find(userId);
+			
+			if(user.getGroup() != null){
+				//The user is already in a group.
+			}
+			
+			//DELETE ALL THE INVITES
+			UserMapper.deleteInvites(userId);
+			
+			//TODO dont reload everything again
+			request.setAttribute("invites",UserMapper.findInvites(userId));
 			request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 		}
 	}

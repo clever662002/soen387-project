@@ -1,11 +1,12 @@
+<%@page import="utils.SecurityUtil"%>
 <%@include file="../include/header.jsp" %>
 
 <h1>INDEX</h1>
 
-<% if(request.getParameter("username") == null){
+<% if(SecurityUtil.isAuthenticated(request)){
 	%>
 	<p> YOU SHOULD PROBABLY LOG IN </p>
-	<a href="LogInPC" > CLICK HERE TO LOGIN </a>
+	<a href="Login" > CLICK HERE TO LOGIN </a>
 	<%
 	} else{
 	%>

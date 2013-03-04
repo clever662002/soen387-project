@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import utils.SecurityUtil;
 
+import mapper.InviteMapper;
 import mapper.UserMapper;
 import model.Invite;
 import model.User;
 
-public class ViewInvitePC extends BaseHttpServlet {
+public class DeclineInvitePC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,20 +26,21 @@ public class ViewInvitePC extends BaseHttpServlet {
 	
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//String username = request.getParameter("username");
-		//String password = request.getParameter("password");
-
-		String id = (String) request.getSession().getAttribute("user_id");
-		
+	
 		if(!SecurityUtil.isAuthenticated(request)){
 			request.setAttribute("error", "You need to login");
 			request.getRequestDispatcher(VIEW_NAME_LOGIN).forward(request, response);
 		}
 		else{
+			//TODO implement decline invite
+			//int inviteId = Integer.parseInt(request.getAttribute("invite_id")+"");
+			int userId = Integer.parseInt(request.getSession().getAttribute("user_id")+"");
+			int groupId = Integer.parseInt(request.getParameter("group_id")+"");
 			
-			List<Invite> invites = UserMapper.findInvites(Integer.parseInt(id));
-			request.setAttribute("invites", invites);
+			InviteMapper.delete(userId,groupId);
+			
+			request.setAttribute("info", "invite declined.");
+			request.setAttribute("invites",UserMapper.findInvites(userId));
 			request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 		}
 	}

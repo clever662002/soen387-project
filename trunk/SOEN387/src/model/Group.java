@@ -1,17 +1,18 @@
 package model;
 
+import java.util.List;
+
 /**
  * Domain model representing a Group
  * @author Alex Perkins, Dan Wang
  */
-public class Group {
+public class Group implements IGroup{
 
 	private int id;
 	private String name;
 	private String description;
-	//private List<User> users;
+	private List<IUser> users;
 	private int version;
-	
 	
 	public Group(int id, String name, String description, int version) {
 		this.id = id;
@@ -19,11 +20,7 @@ public class Group {
 		this.description = description;
 		this.version = version;
 	}
-		
-	public int getId() {
-		return id;
-	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -36,6 +33,13 @@ public class Group {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getVersion() {
 		return version;
@@ -44,4 +48,13 @@ public class Group {
 	public void setVersion(int version) {
 		this.version = version;
 	}
+	
+	public void addUser(IUser user){
+		users.add(user);
+	}
+	
+	public List<IUser> getUsers(){
+		return users;
+	}
+
 }

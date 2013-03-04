@@ -7,23 +7,26 @@ import java.util.List;
  * Domain model representing a user
  * @author Alex
  */
-public class User {
+public class User implements IUser{
 
-	private long id;
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String username;
 	private String password; //Should we keep the password in the object??
 	private int version;
 	private List<Invite> invites;
+	private IGroup group;
+	private boolean isAdmin;
 	
-	public User(long id, String firstName, String lastName, String username, int version){
-		this.id=id;
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.username=username;
-		this.version=version;
+	public User(int id, String firstName, String lastName, String username, int version){
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.version = version;
 		this.invites = new ArrayList<Invite>();
+		isAdmin = false;
 	}
 	
 	public User(String username, String firstName, String lastName, String password){
@@ -32,6 +35,7 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.invites = new ArrayList<Invite>();
+		isAdmin = false;
 	}
 	
 	public String toString(){
@@ -70,7 +74,7 @@ public class User {
 		this.password = password;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -84,6 +88,18 @@ public class User {
 	
 	public List<Invite> getInvites(){
 		return invites;
+	}
+	
+	public IGroup getGroup(){
+		return group;
+	}
+	
+	public void setGroup(IGroup group){
+		this.group = group;
+	}
+	
+	public boolean hasGroup(){
+		return (group != null && group.getId() > 0);
 	}
 	
 }

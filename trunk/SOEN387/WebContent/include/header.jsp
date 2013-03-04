@@ -13,7 +13,7 @@
 
 <div id="navBarContainer">
 	<ul id="navBar">
-		<% if(request.getSession().getAttribute("username") != null){
+		<% if(request.getSession().getAttribute("user_id") != null){
 		  %><li><a href="Group">GROUP</a></li>
 			<li><a href="Invite">INVITES</a></li>
 			<li><a href="Logout">LOGOUT</a></li>

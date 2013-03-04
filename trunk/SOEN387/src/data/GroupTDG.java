@@ -43,6 +43,7 @@ public class GroupTDG {
 	}
 	
 	public static ResultSet find(int id) throws SQLException {
+		System.out.println(SELECT_BY_ID);
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT_BY_ID);
 		ps.setString(1, id+"");
 		ResultSet rs = ps.executeQuery();

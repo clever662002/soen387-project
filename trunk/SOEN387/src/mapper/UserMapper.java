@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.Vector;
 
 import model.Group;
+import model.GroupProxy;
+import model.IGroup;
 import model.Invite;
 import model.User;
+import data.GroupTDG;
 import data.UserTDG;
 
 /**
@@ -28,7 +31,6 @@ public class UserMapper {
 	private static String VERSION = "version";
 	//INVITE
 	private static String GROUP_ID = "group_id";
-	private static String INVITE_ID = "invite_id";
 	//GROUP
 	private static String DESCRIPTION = "description";
 	private static String NAME = "name";
@@ -38,16 +40,28 @@ public class UserMapper {
 		try{
 			ResultSet rs = UserTDG.find(username);
 			if(rs.next()) {
-				result = new User(rs.getLong(USER_ID), 
+				//TODO fix the fact that the version is the same name
+				//Group group = new Group(rs.getInt(GROUP_ID),rs.getString(NAME),rs.getString(DESCRIPTION),rs.getInt(VERSION));
+				result = new User(rs.getInt(USER_ID), 
 						rs.getString(FIRST_NAME),
 						rs.getString(LAST_NAME), 
 						rs.getString(USERNAME),
 						rs.getInt(VERSION));
+				
+				//Group group = GroupTDG.find(1);
+				GroupProxy gp = null;
+				int groupID = rs.getInt(GROUP_ID);
+				if(groupID > 0){
+					gp = new GroupProxy(rs.getInt(GROUP_ID));
+				}
+				result.setGroup(gp);
+			
 			}
 		}
 		catch(SQLException ex){
 			System.err.print("SQLException : " + ex.getMessage());
 		}
+		
 		return result;
 	}
 	
@@ -114,6 +128,10 @@ public class UserMapper {
 		}
 	}
 	
+	/**
+	 * Udates a user
+	 * @param user
+	 */
 	public static void update(User user){
 		try{
 			HashMap<String,String> params = new HashMap<String,String>();
@@ -128,25 +146,38 @@ public class UserMapper {
 		}
 	}
 	
-	
-	public static List<Invite> findInvites(int id){
+	/**
+	 * Find all invites associated to a users
+	 * @param id the id of the user
+	 * @return list of invites associated to the user id
+	 */
+	public static List<Invite> findInvites(int userId){
 		List<Invite> invites = new ArrayList<Invite>();
 		try{
-			ResultSet rs = UserTDG.findInvitesByUserId(id);
+			ResultSet rs = UserTDG.findInvitesByUserId(userId);
 			while(rs.next()) {
-			//TODO add group
-				/*
-				Group group = new Group();
-				group.description = rs.getString(DESCRIPTION);
-				group.name = rs.getString(NAME);
-				*/
-				invites.add(new Invite(rs.getInt(INVITE_ID),null,rs.getLong(VERSION)));
+				//TODO fix version
+				Group group = new Group(rs.getInt(GROUP_ID),rs.getString(NAME),rs.getString(DESCRIPTION),rs.getInt(VERSION));
+				invites.add(new Invite(rs.getInt(USER_ID),group,rs.getInt(VERSION)));
 			}
 		}
 		catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return invites;
+	}
+	
+	public static void deleteInvite(int id){
+		//TODO implement delete invite
+	}
+	
+	public static void deleteInvites(int userId){
+		try{
+			int affected = UserTDG.deleteInvites(userId);
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
 	}
 	
 }
