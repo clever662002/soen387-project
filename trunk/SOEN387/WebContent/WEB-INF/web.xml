@@ -60,6 +60,32 @@
     <servlet-name>ViewInvitePC</servlet-name>
     <url-pattern>/Invite</url-pattern>
   </servlet-mapping>
+  
+  <!-- ACCEPT INVITE -->
+  <servlet>
+    <description></description>
+    <display-name>AcceptInvitePC</display-name>
+    <servlet-name>AcceptInvitePC</servlet-name>
+    <servlet-class>controller.AcceptInvitePC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AcceptInvitePC</servlet-name>
+    <url-pattern>/AcceptInvite</url-pattern>
+  </servlet-mapping>
+  
+  <!-- DECLINE INVITE -->
+  <servlet>
+    <description></description>
+    <display-name>DeclineInvitePC</display-name>
+    <servlet-name>DeclineInvitePC</servlet-name>
+    <servlet-class>controller.DeclineInvitePC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeclineInvitePC</servlet-name>
+    <url-pattern>/DeclineInvite</url-pattern>
+  </servlet-mapping>
+
+	<!-- BROWSE GROUP -->
   <servlet>
     <description></description>
     <display-name>BrowseGroup</display-name>
@@ -70,4 +96,5 @@
     <servlet-name>BrowseGroup</servlet-name>
     <url-pattern>/BrowseGroup</url-pattern>
   </servlet-mapping>
+
 </web-app>
