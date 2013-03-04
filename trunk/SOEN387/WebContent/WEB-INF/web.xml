@@ -10,26 +10,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-   <servlet>
-    <description></description>
-    <display-name>LogInPC</display-name>
-    <servlet-name>LogInPC</servlet-name>
-    <servlet-class>controller.LogInPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogInPC</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>LogInPC</display-name>
-    <servlet-name>LogInPC</servlet-name>
-    <servlet-class>controller.LogInPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogInPC</servlet-name>
-    <url-pattern>/Login</url-pattern>
-  </servlet-mapping>
+ 
   <servlet>
     <description></description>
     <display-name>LogOutPC</display-name>
@@ -58,8 +39,36 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ViewGroupPC</servlet-name>
-    <url-pattern>/Group</url-pattern>
+    <url-pattern>/ViewGroup</url-pattern>
   </servlet-mapping>
+
+  
+  <!-- EDIT GROUP -->
+  <servlet>
+    <description></description>
+    <display-name>EditGroupPC</display-name>
+    <servlet-name>EditGroupPC</servlet-name>
+    <servlet-class>controller.EditGroupPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditGroupPC</servlet-name>
+    <url-pattern>/EditGroup</url-pattern>
+  </servlet-mapping>
+  
+  <!-- CREATE GROUP -->
+  <servlet>
+    <description></description>
+    <display-name>CreateGroupPC</display-name>
+    <servlet-name>CreateGroupPC</servlet-name>
+    <servlet-class>controller.CreateGroupPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateGroupPC</servlet-name>
+    <url-pattern>/CreateGroup</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- VIEW INVITES -->
   <servlet>
     <description></description>
     <display-name>ViewInvitePC</display-name>
