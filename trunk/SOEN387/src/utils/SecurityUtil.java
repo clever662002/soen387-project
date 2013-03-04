@@ -17,4 +17,13 @@ public class SecurityUtil {
 		return (request.getSession().getAttribute("user_id") != null);
 	}
 	
+	/**
+	 *  
+	 * @param request
+	 * @return whether the user is authenticated
+	 */
+	public static boolean isAdmin(HttpServletRequest request){
+		return (isAuthenticated(request) && (request.getSession().getAttribute("admin") != null));
+	}
+	
 }

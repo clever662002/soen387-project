@@ -2,7 +2,11 @@
 <%@page import="model.Invite"%>
 <%@include file="../include/header.jsp" %>
 
-	<h1> INVITES </h1>
+	<h2> INVITES </h2>
+	
+	<ul>	
+		<li><a href="SendInvite">Send Invite</a></li>
+	</ul>	
 		
 	<%
 	if(request.getAttribute("info") != null){
@@ -14,15 +18,13 @@
 	
 	List<Invite> invites = (List<Invite>)request.getAttribute("invites");
 	if(invites != null && invites.size() > 0){
-		out.print("<table><tr><td>Id</td><td>Group</td><td>Description</td><td>Accept</td><td>Decline</td></tr>");
+		out.print("<table><tr><td>Id</td><td>Group</td><td>Description</td><td></td><td></td></tr>");
 		for(Invite invite : invites){
 			out.print("<tr>");
 			out.print("<td>"+invite.getId()+"</td>");
 			out.print("<td>"+invite.getGroup().getName()+"</td>");
 			out.print("<td>"+invite.getGroup().getDescription()+"</td>");
-			//out.print("<td>"+"GROUP NAME"+"</td>");
 			out.print("<td><a href=\"AcceptInvite?group_id="+invite.getGroup().getId()+"\">Accept</a></td>");
-			//out.print("<tr>"+invite.getGroup().getName()+"</tr>");
 			out.print("<td><a href=\"DeclineInvite?group_id="+invite.getGroup().getId()+"\">Decline</a></td>");
 			out.print("</tr>");
 		}

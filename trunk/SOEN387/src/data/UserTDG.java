@@ -19,6 +19,7 @@ public class UserTDG {
 	private static final String DB_NAME_INVITE = DB_PREFIX+"invite";
 	private static final String DB_NAME_GROUP = DB_PREFIX+"group";
 	private static final String DB_NAME_USER_GROUP = DB_PREFIX+"user_group";
+	private static final String DB_NAME_ADMIN = DB_PREFIX+"admin";
 	////COLUMN NAMES
 	//USER
 	private static String USER_ID = "user_id";
@@ -31,7 +32,7 @@ public class UserTDG {
 	private static String GROUP_ID = "group_id";
 	//// SQL STATEMENTS
 	//USER
-	private static String SELECT = "SELECT * FROM " + DB_NAME_USER + ", "+DB_NAME_GROUP + ", "+DB_NAME_USER_GROUP+ " WHERE "+DB_NAME_USER+"."+GROUP_ID+"="+DB_NAME_USER+"."+GROUP_ID+" AND "+USER_ID+"=?";
+	private static String SELECT = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ DB_NAME_USER+"."+USER_ID+"=?";
 	private static String SELECT_ALL = "SELECT * FROM " + DB_NAME_USER;
 	private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ USERNAME+"=?";
 	//private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + ","+DB_NAME_GROUP+ " WHERE "+DB_NAME_USER+"."+USER_ID+"="+DB_NAME_GROUP+"."+USER_ID+" AND "+USERNAME+"=?";
@@ -45,7 +46,7 @@ public class UserTDG {
 		DB_NAME_GROUP+"."+
 		GROUP_ID+"="+
 		DB_NAME_INVITE+"."+GROUP_ID+" AND "+DB_NAME_INVITE+"."+USER_ID+"=?";
-	
+	private static String IS_ADMIN = "SELECT * FROM "+DB_NAME_ADMIN+" WHERE "+USER_ID+ "=?";
 	
 	
 	public static ResultSet find(String username) throws SQLException {
@@ -59,9 +60,10 @@ public class UserTDG {
 	
 	public static ResultSet find(int id) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT);
+		System.out.println(SELECT);
 		ps.setString(1, id+"");
 		ResultSet rs = ps.executeQuery();
-		ps.close();
+		//ps.close();
 		return rs;
 	}
 	
@@ -115,6 +117,13 @@ public class UserTDG {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(DELETE_INVITES);
 		ps.setInt(1, id);
 		return ps.executeUpdate();
+	}
+	
+	public static ResultSet isAdmin(int userId) throws SQLException {
+		System.out.println(IS_ADMIN);
+		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(IS_ADMIN);
+		ps.setInt(1, userId);
+		return ps.executeQuery();
 	}
 	
 }

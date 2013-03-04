@@ -45,9 +45,8 @@ public class LogInPC extends BaseHttpServlet {
 			//TODO check the identity map for the user
 			User user = UserMapper.find(username);
 			
-			if(user == null){
+			if(user == null || !password.equals(user.getPassword())){
 				//Redirect to login page (user does not exist)
-				System.out.println("Did not find a user with username: " + username);
 				request.setAttribute("error", "invalid username or password.");
 				request.getRequestDispatcher(VIEW_NAME_LOGIN).forward(request, response);
 			}
@@ -60,6 +59,11 @@ public class LogInPC extends BaseHttpServlet {
 				
 				request.getSession().setAttribute("username",user.getUsername());
 				request.getSession().setAttribute("user_id",user.getId()+"");
+				
+				if(UserMapper.isAdmin(user.getId())){
+					request.getSession().setAttribute("admin", "true");
+				}
+				
 				request.getRequestDispatcher("/jsp/Index.jsp").forward(request, response); //somewhere else!
 			}
 		}
