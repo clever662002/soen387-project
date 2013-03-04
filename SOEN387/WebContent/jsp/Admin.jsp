@@ -1,7 +1,11 @@
 <%@page import="utils.SecurityUtil"%>
 <%@include file="../include/header.jsp" %>
 
-<h2>INDEX</h2>
+<h2>ADMIN</h2>
+
+<ul>
+	<li><a href="AddUsers">ADD USERS</a></li>
+</ul>
 
 <% if(!SecurityUtil.isAuthenticated(request)){
 	%>
@@ -10,7 +14,7 @@
 	<%
 	} else{
 	%>
-	<p> HEY <% out.print(request.getSession().getAttribute("username")); %> </p>
+	<p> HEY <% out.print(request.getSession().getAttribute("username").toString().toUpperCase()); %> </p>
 	<%
 	}
 	%>

@@ -19,6 +19,17 @@ public class User implements IUser{
 	private IGroup group;
 	private boolean isAdmin;
 	
+	public User(int id, String firstName, String lastName, String username,String password, int version){
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.version = version;
+		this.password = password;
+		this.invites = new ArrayList<Invite>();
+		isAdmin = false;
+	}
+	
 	public User(int id, String firstName, String lastName, String username, int version){
 		this.id = id;
 		this.firstName = firstName;

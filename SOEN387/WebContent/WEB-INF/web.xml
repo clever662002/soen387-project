@@ -10,6 +10,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+   <servlet>
+    <description></description>
+    <display-name>LogInPC</display-name>
+    <servlet-name>LogInPC</servlet-name>
+    <servlet-class>controller.LogInPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogInPC</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>LogInPC</display-name>
@@ -95,6 +105,30 @@
   <servlet-mapping>
     <servlet-name>BrowseGroup</servlet-name>
     <url-pattern>/BrowseGroup</url-pattern>
+  </servlet-mapping>
+  
+  <!-- SEND INVITE -->
+  <servlet>
+    <description></description>
+    <display-name>SendInvitePC</display-name>
+    <servlet-name>SendInvitePC</servlet-name>
+    <servlet-class>controller.SendInvitePC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendInvitePC</servlet-name>
+    <url-pattern>/SendInvite</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ADMIN PAGE -->
+  <servlet>
+    <description></description>
+    <display-name>AdminPC</display-name>
+    <servlet-name>AdminPC</servlet-name>
+    <servlet-class>controller.AdminPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminPC</servlet-name>
+    <url-pattern>/Admin</url-pattern>
   </servlet-mapping>
 
 </web-app>

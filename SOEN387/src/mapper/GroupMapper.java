@@ -16,7 +16,7 @@ public class GroupMapper {
 	private static final String    DESC    = "description";
 	private static final String    VERSION = "version";
 	
-	public static List<Group> findAll()throws SQLException{
+	public static List<Group> findAll() throws SQLException{
 	
 		List<Group> group = new Vector<Group>();
 		ResultSet rs = GroupTDG.findAll();

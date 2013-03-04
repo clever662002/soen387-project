@@ -1,21 +1,36 @@
 
 body{
-	background-color:green;
+	background-color:white;
 }
 
-div{
-	background-color:yellow;
-	border-style: solid;
-	border-color:black;	
-
+li a:visited {
+	text-decoration:none;
 }
 
-#navBar {
+#navBarContainer {
 	list-style-type:none;
-	
+	margin: 0;
+	padding: 0;
+}
+
+#navBarContainer ul li { 
+	display: inline; 
 }
 
 #error {
 	color: red;
-	font-size: 14pt;
+}
+
+#info {
+	color:green;
+}
+
+table {
+	border-color:black;
+	border-width:1px;
+	border-style:solid;
+}
+
+td {
+	padding:10px;
 }

@@ -46,9 +46,11 @@ public class UserMapper {
 						rs.getString(FIRST_NAME),
 						rs.getString(LAST_NAME), 
 						rs.getString(USERNAME),
+						rs.getString(PASSWORD),
 						rs.getInt(VERSION));
 				
 				//Group group = GroupTDG.find(1);
+				
 				GroupProxy gp = null;
 				int groupID = rs.getInt(GROUP_ID);
 				if(groupID > 0){
@@ -97,11 +99,19 @@ public class UserMapper {
 		try{
 			ResultSet rs = UserTDG.find(id);
 			if(rs.next()){
-				result= new User(rs.getInt(USER_ID), 
+				result = new User(rs.getInt(USER_ID), 
 						rs.getString(FIRST_NAME),
 						rs.getString(LAST_NAME), 
 						rs.getString(USERNAME),
 						rs.getInt(VERSION));
+				
+				//Group group = GroupTDG.find(1);
+				GroupProxy gp = null;
+				int groupID = rs.getInt(GROUP_ID);
+				if(groupID > 0){
+					gp = new GroupProxy(rs.getInt(GROUP_ID));
+				}
+				result.setGroup(gp);
 			}
 		}
 		catch(SQLException ex){
@@ -178,6 +188,20 @@ public class UserMapper {
 		catch(SQLException ex){
 			ex.printStackTrace();
 		}
+	}
+	
+	public static boolean isAdmin(int userId){
+		boolean isAdmin = false;
+		try{
+			ResultSet rs = UserTDG.isAdmin(userId);
+			if(rs.next()){
+				isAdmin = true;
+			}
+		}
+		catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		return isAdmin;
 	}
 	
 }

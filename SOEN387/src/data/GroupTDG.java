@@ -20,7 +20,7 @@ public class GroupTDG {
 	
 	private static String SELECT_BY_ID = "SELECT * FROM " + TABLE + " WHERE group_id = ?";
 	private static String SELECT_BY_NAME = "SELECT * FROM " + TABLE + " WHERE name = ?";
-	private static String SELECT_ALL = "SELECT g.group_id, g.name, g.description, g.version FROM " + TABLE + "AS g;";
+	private static String SELECT_ALL = "SELECT g.group_id, g.name, g.description, g.version FROM " + TABLE + " AS g;";
 	private static String INSERT = "INSERT INTO " + TABLE + " (name,description,version) " + " VALUES((select max(group_id)+1 FROM " + TABLE + ")," +
 			                           		    " name,description,1)";
 	private static String UPDATE = "UPDATE " + TABLE + " SET group_id = ?, name = ?, description = ?, version = ? WHERE group_id = ?";
@@ -43,11 +43,11 @@ public class GroupTDG {
 	}
 	
 	public static ResultSet find(int id) throws SQLException {
-		System.out.println(SELECT_BY_ID);
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT_BY_ID);
 		ps.setString(1, id+"");
+		System.out.println(ps.toString());
 		ResultSet rs = ps.executeQuery();
-		ps.close();
+		//ps.close();
 		return rs;
 	}
 

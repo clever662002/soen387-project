@@ -1,8 +1,7 @@
 <%@include file="../include/header.jsp" %>
 
-	<h1> LOG IN </h1>
+	<h2> LOGIN </h2>
 	<div id="container">
-		<p id="error"></p>
 		<form action="Login" method="POST" target="_self">
 			<% if(request.getAttribute("error") != null){
 				out.print("<p id=\"error\">"+request.getAttribute("error")+"</p>");

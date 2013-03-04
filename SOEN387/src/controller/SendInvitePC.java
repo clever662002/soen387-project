@@ -25,7 +25,7 @@ public class SendInvitePC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_NAME = "/jsp/ViewInviteTV.jsp";
+	private static final String VIEW_NAME = "/jsp/SendInviteTV.jsp";
 	private static final String VIEW_NAME_LOGIN = "/jsp/LogInTV.jsp";
 	
 	@Override
@@ -33,21 +33,27 @@ public class SendInvitePC extends BaseHttpServlet {
 		
 		if(SecurityUtil.isAuthenticated(request)){
 			try{
+				if(request.getParameter("user_id") == null || request.getParameter("user_id") == "" || request.getParameter("group_id") == null || request.getParameter("group_id") == ""){
+					request.getRequestDispatcher(VIEW_NAME).forward(request, response);
+					return;
+				}
+				
 				int userId = Integer.parseInt(request.getParameter("user_id"));
 				int groupId = Integer.parseInt(request.getParameter("group_id"));
-				
+			
 				//Should I not use the user_id directly from the session?
 				int id = Integer.parseInt(request.getSession().getAttribute("user_id")+"");
 				//Get the user who is sending the invite
 				User loggedUser = UserMapper.find(id); 
-				//Get the user who is sending the invite
-				User userToInvite = UserMapper.find(userId); 
 				
 				if(loggedUser == null){
 					request.setAttribute("error", "You don't exist. Weird.");
 					request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 					return;
 				}
+				
+				//Get the user who is sending the invite
+				User userToInvite = UserMapper.find(userId); 
 				
 				if(userToInvite == null){
 					request.setAttribute("error", "The user you are trying to invite does not exist.");
@@ -69,12 +75,12 @@ public class SendInvitePC extends BaseHttpServlet {
 					request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 					return;
 				}
-				
-				Invite invite = new Invite();
 			
 				//ADD user to group
-				InviteMapper.insert(1,2);
+				InviteMapper.insert(userId,groupId);
 				
+				request.setAttribute("info", "invite sent");
+				request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 			}
 			catch(Exception ex){
 				request.setAttribute("error", "There was a problem sending an invite");
