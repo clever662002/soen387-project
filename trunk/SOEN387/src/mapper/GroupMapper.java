@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
-
 import data.GroupTDG;
 import data.UserTDG;
 import model.Group;
@@ -17,6 +16,16 @@ public class GroupMapper {
 	private static final String    DESC    = "description";
 	private static final String    VERSION = "version";
 	
+	public static List<Group> findAll()throws SQLException{
+	
+		List<Group> group = new Vector<Group>();
+		ResultSet rs = GroupTDG.findAll();
+		while(rs.next()) {
+			group.add(getGroup(rs));
+		}
+		return group;
+
+	}
 	public static Group find(int id)
 	{
 		Group result = null;
@@ -59,24 +68,9 @@ public class GroupMapper {
 		return result;
 	}
 	
-	public static List<Group> findAll()
-	{
-		List<Group> result = new Vector<Group>();
-		try
-		{
-			ResultSet rs = UserTDG.findAll();
-			if(rs.next())
-			{
-				result.add(new Group(rs.getInt(ID),
-									 rs.getString(NAME),
-									 rs.getString(DESC),
-									 rs.getInt(VERSION)));
-			}
-		}
-		catch(SQLException ex)
-		{
-			System.err.print("SQLException : " + ex.getMessage());
-		}
+
+	private static Group getGroup(ResultSet rs) throws SQLException {
+		Group result = new Group(rs.getInt("g.group_id"), rs.getString("g.name"),rs.getString("g.description"),rs.getInt("g.version"));
 		return result;
 	}
 	

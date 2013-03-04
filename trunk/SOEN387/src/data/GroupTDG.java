@@ -12,17 +12,26 @@ import org.dsrg.soenea.service.threadLocal.DbRegistry;
 
 public class GroupTDG {
 
-	private static final String DB_PREFIX = "groupformation_";
-	private static final String DB_NAME = DB_PREFIX+"group";
+//	private static final String DB_PREFIX = "groupformation_";
+//	private static final String DB_NAME = DB_PREFIX+"group";
 	
-	private static String SELECT_BY_ID = "SELECT * FROM " + DB_NAME + " WHERE group_id = ?";
-	private static String SELECT_BY_NAME = "SELECT * FROM " + DB_NAME + " WHERE name = ?";
-	private static String SELECT_ALL = "SELECT * FROM " + DB_NAME;
-	private static String INSERT = "INSERT INTO " + DB_NAME + " (name,description,version) " +
-			                           " VALUES((select max(group_id)+1 FROM " + DB_NAME + ")," +
+	public static final String BASE_NAME = "group";
+	public static final String TABLE = DbRegistry.getTablePrefix()+BASE_NAME;
+	
+	private static String SELECT_BY_ID = "SELECT * FROM " + TABLE + " WHERE group_id = ?";
+	private static String SELECT_BY_NAME = "SELECT * FROM " + TABLE + " WHERE name = ?";
+	private static String SELECT_ALL = "SELECT g.group_id, g.name, g.description, g.version FROM " + TABLE + "AS g;";
+	private static String INSERT = "INSERT INTO " + TABLE + " (name,description,version) " + " VALUES((select max(group_id)+1 FROM " + TABLE + ")," +
 			                           		    " name,description,1)";
-	private static String UPDATE = "UPDATE " + DB_NAME + " SET group_id = ?, name = ?, description = ?, version = ? WHERE group_id = ?";
-	private static String DELETE = "DELETE FROM " + DB_NAME + "WHERE group_id = ?";
+	private static String UPDATE = "UPDATE " + TABLE + " SET group_id = ?, name = ?, description = ?, version = ? WHERE group_id = ?";
+	private static String DELETE = "DELETE FROM " + TABLE + "WHERE group_id = ?";
+	
+	
+	public static ResultSet findAll() throws SQLException {
+		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT_ALL);
+		ResultSet rs = ps.executeQuery();
+		return rs;
+	}
 	
 	public static ResultSet find(String group_name) throws SQLException 
 	{
@@ -40,14 +49,7 @@ public class GroupTDG {
 		ps.close();
 		return rs;
 	}
-	
-	public static ResultSet findAll() throws SQLException {
-		List<User> result = new Vector<User>();
-		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT_ALL);
-		ResultSet rs = ps.executeQuery();
-		ps.close();
-		return rs;
-	}
+
 	
 	public static void insert(String name, String description) 
 	throws SQLException
