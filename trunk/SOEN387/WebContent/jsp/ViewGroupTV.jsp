@@ -10,7 +10,7 @@
 <title>View Person</title>
 </head>
 <body>
-<h2>View Person</h2>
+<h2>View Group</h2>
 
 <%
 Group group = (Group)request.getAttribute("group");
