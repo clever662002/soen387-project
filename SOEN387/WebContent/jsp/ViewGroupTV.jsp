@@ -1,8 +1,8 @@
 <%@include file="../include/header.jsp" %>
 	
-<%@page import="model.Group""%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@page import="model.Group"%>
+<%@ page language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,14 +15,14 @@
 <%
 Group group = (Group)request.getAttribute("group");
 %>
-Group ID: 			<%= group.getID()%> <br /> 
+Group ID: 			<%= group.getId()%> <br /> 
 Group Name: 		<%= group.getName()%><br/>
 Group Description: 	<%= group.getDescription()%> <br />
-Group Version: 		<%= group.getVersion()%>
+Group Version: 		<%= group.getVersion()%> <br />
 
-<a href="EditGroupPC?id=<%= group.getId() %>&version=<%= group.getVersion() %>"> Edit Group</a><br/><br/>
-<a href="DeleteGroupPC?id=<%= group.getId()%>">Delete Group</a><br/><br/>
-<a href="BrowsePeoplePC">Browse More People</a><br/>
+<a href="EditGroup?group_id=<%= group.getId() %>&version=<%= group.getVersion() %>"> Edit Group</a><br/><br/>
+<a href="RemoveGroup?group_id=<%= group.getId()%>">Remove Group</a><br/><br/>
+<a href="BrowseGroup">Browse All Groups</a><br/>
 </body>	
 
 <%@include file="../include/footer.jsp" %>
