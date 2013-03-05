@@ -13,6 +13,7 @@ public class Group implements IGroup{
 	private String description;
 	private List<IUser> users;
 	private int version;
+
 	
 	public Group(int id, String name, String description, int version) {
 		this.id = id;
