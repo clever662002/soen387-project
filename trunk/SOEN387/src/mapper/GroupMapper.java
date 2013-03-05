@@ -86,8 +86,10 @@ public class GroupMapper {
 	}
 	
 	public static Group insert(String name, String description) throws SQLException
-	{		
+	//public static Group insert(int group_id,String name, String description) throws SQLException
+	{	
 		GroupTDG.insert(name, description);
+		//GroupTDG.insert(group_id, name, description);
 		return GroupMapper.find(name);		
 	}
 	
