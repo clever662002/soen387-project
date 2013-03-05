@@ -21,14 +21,15 @@ public class LogInPC extends BaseHttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String VIEW_NAME_LOGIN = "/jsp/LogInTV.jsp";
-	private static final String VIEW_NAME_GROUP = "/jsp/ViewGroupTV.jsp";
+	//private static final String VIEW_NAME_GROUP = "/jsp/ViewGroupTV.jsp";
+	private static final String VIEW_NAME_INDEX = "/jsp/Index.jsp";
 	
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Check the see if the user is already authenticated
 		if(SecurityUtil.isAuthenticated(request)){
-			request.getRequestDispatcher(VIEW_NAME_GROUP).forward(request, response);
+			request.getRequestDispatcher(VIEW_NAME_INDEX).forward(request, response);
 			return;
 		}
 		
