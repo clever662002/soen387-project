@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import data.GroupTDG;
 import data.UserTDG;
@@ -16,22 +18,29 @@ public class GroupMapper {
 	private static final String    DESC    = "description";
 	private static final String    VERSION = "version";
 	
-	public static List<Group> findAll() throws SQLException{
-	
+	public static List<Group> findAll() 
+	{		
 		List<Group> group = new Vector<Group>();
-		ResultSet rs = GroupTDG.findAll();
-		while(rs.next()) {
-			group.add(getGroup(rs));
+		try
+		{				
+			ResultSet rs = GroupTDG.findAll();
+			while(rs.next()) 
+			{
+				group.add(getGroup(rs));
+			}		
 		}
-		return group;
-
+		catch(Exception e)
+		{
+			e.getStackTrace();
+		}
+		return group;		
 	}
+	
 	public static Group find(int id)
-	{
+	{		
 		Group result = null;
 		try
-		{
-			
+		{			
 			ResultSet rs = GroupTDG.find(id);
 			if(rs.next())
 			{
@@ -39,10 +48,9 @@ public class GroupMapper {
 								   rs.getString(NAME),
 								   rs.getString(DESC),
 								   rs.getInt(VERSION));
-			}
-			
+			}						
 		}
-		catch(SQLException ex)
+		catch(SQLException ex)		
 		{
 			System.err.print("SQLException : " + ex.getMessage());
 		}
@@ -78,28 +86,30 @@ public class GroupMapper {
 	}
 	
 	public static Group insert(String name, String description) throws SQLException
-	{
+	{		
 		GroupTDG.insert(name, description);
 		return GroupMapper.find(name);		
 	}
 	
 	public static Group update(Group g) throws SQLException
-	{
+	{		
 		int count = GroupTDG.update(g.getId(), g.getName(), g.getDescription(), g.getVersion());
 		if(count == 0)
 		{
 			throw new SQLException("Fail to update group id=" + g.getId());
 		}
+		
 		g.setVersion(g.getVersion()+1);
+		
 		return GroupMapper.find(g.getId());
 	}
 	
 	public static void delete(Group g) throws SQLException
-	{
+	{		
 		int count = GroupTDG.delete(g.getId(), g.getName(), g.getDescription(), g.getVersion());
 		if(count == 0)
 		{
 			throw new SQLException("Fail to delete group id=" + g.getId());
-		}
+		}				
 	}
 }
