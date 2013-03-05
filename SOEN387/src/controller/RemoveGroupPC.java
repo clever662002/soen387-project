@@ -27,6 +27,7 @@ public class RemoveGroupPC extends BaseHttpServlet
 			
 			// delete requested group
 			Group g = GroupMapper.find(Integer.parseInt(sGroupID));
+		  
 			GroupMapper.delete(g);
 			
 			// prepare data for BrowseGroupTV
