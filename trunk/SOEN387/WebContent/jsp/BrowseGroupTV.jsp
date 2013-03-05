@@ -18,7 +18,7 @@ List<Group> groups = (List<Group>)request.getAttribute("group");
 for(int i=0; i<groups.size(); i++) {
 %><a href="ViewGroup?group_id=<%= groups.get(i).getId() %>"><%= groups.get(i).getName() %></a><br/>
 <% } %> 
-
+<br>
 <a href="CreateGroup">Create New Group</a><br/>
 </body>
 
