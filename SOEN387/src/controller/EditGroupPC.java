@@ -12,7 +12,7 @@ import model.Group;
 public class EditGroupPC extends BaseHttpServlet{
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_NAME = "/jsp/EditGroupTV.jsp";
+	private String VIEW_NAME = "";
 	
 	 public EditGroupPC() {
 	        super();
@@ -32,18 +32,24 @@ public class EditGroupPC extends BaseHttpServlet{
 			String sGroupNameNew 	= request.getParameter("name");
 			String sGroupDescNew 	= request.getParameter("description");
 			String sGroupVersionNew = request.getParameter("version");
-						
-			// prepare data to load page
-			Group g = GroupMapper.find(Integer.parseInt(sGroupID));
 			
 			// when EditGroupTV call to update
 			if (sGroupNameNew != null && !sGroupNameNew.equals(""))			
-			{
+			{				
+				// prepare data to load page
+				Group g = GroupMapper.find(Integer.parseInt(sGroupID));
 				g.setName(sGroupNameNew);
 				g.setDescription(sGroupDescNew);
 				g.setVersion(Integer.parseInt(sGroupVersionNew));
 				request.setAttribute("group", GroupMapper.update(g));
 				request.setAttribute("warning", "Edited successully.");
+				
+				VIEW_NAME = "/jsp/ViewGroupTV.jsp";
+			}
+			else
+			{			
+				request.setAttribute("group", GroupMapper.find(Integer.parseInt(sGroupID)));
+				VIEW_NAME = "/jsp/EditGroupTV.jsp";
 			}
 			
 			request.getRequestDispatcher(VIEW_NAME).forward(request, response);

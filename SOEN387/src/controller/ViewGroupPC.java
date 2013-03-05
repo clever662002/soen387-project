@@ -19,8 +19,7 @@ public class ViewGroupPC extends BaseHttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String VIEW_NAME = "/jsp/ViewGroupTV.jsp";
-	private static final String VIEW_NAME_LOGIN = "/jsp/LogInTV.jsp";
-	
+		
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
