@@ -10,7 +10,17 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
- 
+ <servlet>
+    <description></description>
+    <display-name>LogInPC</display-name>
+    <servlet-name>LogInPC</servlet-name>
+    <servlet-class>controller.LogInPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogInPC</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>LogOutPC</display-name>
@@ -31,6 +41,7 @@
     <servlet-name>AddUsersPC</servlet-name>
     <url-pattern>/AddUsers</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>ViewGroupPC</display-name>
@@ -67,6 +78,17 @@
     <url-pattern>/CreateGroup</url-pattern>
   </servlet-mapping>
   
+  <!-- REMOVE GROUP -->
+  <servlet>
+    <description></description>
+    <display-name>RemoveGroupPC</display-name>
+    <servlet-name>RemoveGroupPC</servlet-name>
+    <servlet-class>controller.RemoveGroupPC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveGroupPC</servlet-name>
+    <url-pattern>/RemoveGroup</url-pattern>
+  </servlet-mapping>
   
   <!-- VIEW INVITES -->
   <servlet>
@@ -107,12 +129,12 @@
 	<!-- BROWSE GROUP -->
   <servlet>
     <description></description>
-    <display-name>BrowseGroup</display-name>
-    <servlet-name>BrowseGroup</servlet-name>
-    <servlet-class>controller.BrowseGroup</servlet-class>
+    <display-name>BrowseGroupPC</display-name>
+    <servlet-name>BrowseGroupPC</servlet-name>
+    <servlet-class>controller.BrowseGroupPC</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>BrowseGroup</servlet-name>
+    <servlet-name>BrowseGroupPC</servlet-name>
     <url-pattern>/BrowseGroup</url-pattern>
   </servlet-mapping>
   
