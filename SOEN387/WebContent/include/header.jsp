@@ -9,16 +9,15 @@
 </head>
 <body>
 
-<h1> HEADER GOES HERE </h1>
+<h3> HEADER GOES HERE </h3>
 
 <div id="navBarContainer">
 	<ul id="navBar">
 		
 		<% if(request.getSession().getAttribute("user_id") != null){
-		  %><li><a href="Group">GROUP</a></li>
+		  %><li><a href="ViewGroup">GROUP</a></li>
 			<li><a href="Invite">INVITES</a></li>
-			<li><a href="Logout">LOGOUT</a></li>
-			
+			<li><a href="Logout">LOGOUT</a></li>			
 			<% 
 			if(request.getSession().getAttribute("admin") != null){
 				%><li><a href="Admin">ADMIN</a></li><%
