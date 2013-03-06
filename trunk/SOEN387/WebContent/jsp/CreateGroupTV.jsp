@@ -12,10 +12,9 @@
 
 <form action="CreateGroup" method="POST">
 		 
-	Group Name: 		<input type="text" name="name" 			value="" /><br/>
+	Group Name:</><br /> <br /><input type="text" name="name" 			value="" /><br/>
 	Group Description: 	<input type="text" name="description" 	value="" /> <br />
-	Group Version: 		1 <br />
-
+	
 	<input type="submit" value="Submit" /> </br>
 </form>
 </body>	
