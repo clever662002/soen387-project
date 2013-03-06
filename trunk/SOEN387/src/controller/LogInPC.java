@@ -21,8 +21,10 @@ public class LogInPC extends BaseHttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String VIEW_NAME_LOGIN = "/jsp/LogInTV.jsp";
-	//private static final String VIEW_NAME_GROUP = "/jsp/ViewGroupTV.jsp";
 	private static final String VIEW_NAME_INDEX = "/jsp/Index.jsp";
+
+	//private static final String VIEW_NAME_GROUP = "/jsp/ViewGroupTV.jsp";
+
 	
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
