@@ -6,23 +6,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>View Person</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>View Person</title>
 </head>
 <body>
-<h2>View Group</h2>
+	<h2>View Group</h2>
 
-<%
-Group group = (Group)request.getAttribute("group");
-%>
-Group ID: 			<%= group.getId()%> <br /> 
-Group Name: 		<%= group.getName()%><br/>
-Group Description: 	<%= group.getDescription()%> <br />
-Group Version: 		<%= group.getVersion()%> <br />
+	<%
+	Group group = (Group)request.getAttribute("group");
+	%>
+	<table  CELLPADDING="3" CELLSPACING="1">
+		<tr>
+			<td>Group ID: <%= group.getId()%></td>
+			<td></td>
+			<td></td>
+		</tr>
+		
+		<tr>
+			<td>Group Name: <%= group.getName()%> </td>
+			<td></td>
+			<td></td>
+		</tr>
+		
+		<tr>		
+		<td>Group Description: 	<%= group.getDescription()%> </td>
+			<td></td>
+			<td></td>
+		</tr>
+		
+		<tr>
+		<td>Group Version: <%= group.getVersion()%> </td>
+			<td></td>
+			<td></td>
+		</tr>
+	
+	
+		<tr>
+			<td>
+		    	<a href="EditGroup?group_id=<%= group.getId() %>&version=<%= group.getVersion() %>"> Edit Group</a>
+		    </td>
+		    <td>
+		    	<a href="RemoveGroup?group_id=<%= group.getId()%>">Remove Group</a>
+		    </td>
+		    <td>
+				<a href="BrowseGroup">Browse All Groups</a>
+			</td>
+		</tr>
+	</table>
 
-<a href="EditGroup?group_id=<%= group.getId() %>&version=<%= group.getVersion() %>"> Edit Group</a><br/><br/>
-<a href="RemoveGroup?group_id=<%= group.getId()%>">Remove Group</a><br/><br/>
-<a href="BrowseGroup">Browse All Groups</a><br/>
 </body>	
 
 <%@include file="../include/footer.jsp" %>
