@@ -58,4 +58,7 @@ public class Group implements IGroup{
 		return users;
 	}
 
+	public String toString() {
+		return "name is : " + this.name + "des is :" + this.description + "id is :" + this.id;
+	}
 }
