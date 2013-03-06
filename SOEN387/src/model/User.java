@@ -16,7 +16,7 @@ public class User implements IUser{
 	private String password; //Should we keep the password in the object??
 	private int version;
 	private List<Invite> invites;
-	private IGroup group;
+	private GroupProxy group;
 	private boolean isAdmin;
 	
 	public User(int id, String firstName, String lastName, String username,String password, int version){
@@ -101,12 +101,12 @@ public class User implements IUser{
 		return invites;
 	}
 	
-	public IGroup getGroup(){
+	public GroupProxy getGroup(){
 		return group;
 	}
 	
-	public void setGroup(IGroup group){
-		this.group = group;
+	public void setGroup(GroupProxy group){
+		this.group =(GroupProxy)group;
 	}
 	
 	public boolean hasGroup(){
