@@ -32,7 +32,8 @@ public class UserTDG {
 	private static String GROUP_ID = "group_id";
 	//// SQL STATEMENTS
 	//USER
-	private static String SELECT = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ DB_NAME_USER+"."+USER_ID+"=?";
+//	private static String SELECT = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ DB_NAME_USER+"."+USER_ID+"=?";
+	private static String SELECT = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+"="+ DB_NAME_USER_GROUP + "."+ USER_ID+") WHERE "+ DB_NAME_USER+"."+USER_ID+"=?";
 	private static String SELECT_ALL = "SELECT * FROM " + DB_NAME_USER;
 	private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ USERNAME+"=?";
 	//private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + ","+DB_NAME_GROUP+ " WHERE "+DB_NAME_USER+"."+USER_ID+"="+DB_NAME_GROUP+"."+USER_ID+" AND "+USERNAME+"=?";
