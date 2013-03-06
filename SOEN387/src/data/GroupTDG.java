@@ -17,11 +17,8 @@ public class GroupTDG {
 	private static String SELECT_BY_ID = "SELECT * FROM " + TABLE + " WHERE group_id = ?";
 	private static String SELECT_BY_NAME = "SELECT * FROM " + TABLE + " WHERE name = ?";
 	private static String SELECT_ALL = "SELECT g.group_id, g.name, g.description, g.version FROM " + TABLE + " AS g;";
-	//private static String INSERT = "INSERT INTO " + TABLE + " (name,description,version) " + " VALUES((select max(group_id)+1 FROM " + TABLE + ")," +
-	//		                           		    " name,description,1)";
 	private static String INSERT = "INSERT INTO " + TABLE + " (name,description) " + " VALUES(?,?)";
 	private static String UPDATE = "UPDATE " + TABLE + " SET group_id = ?, name = ?, description = ?, version = ? WHERE group_id = ?";
-	//private static String UPDATE = "UPDATE " + TABLE + " SET name = ?, description = ?  WHERE group_id = ?";
 	private static String DELETE = "DELETE FROM " + TABLE + " WHERE group_id = ?";
 	
 	
@@ -55,10 +52,11 @@ public class GroupTDG {
 	throws SQLException
 	{
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(INSERT);
-		//ps.setInt(1, group_id);
+
 		ps.setString(1, name);
 		ps.setString(2, description);		
-		ps.executeUpdate();
+//		ps.executeUpdate();
+		System.out.print(ps.executeUpdate());
 		ps.close();
 	}
 	
