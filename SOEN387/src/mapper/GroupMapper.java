@@ -48,6 +48,7 @@ public class GroupMapper {
 								   rs.getString(NAME),
 								   rs.getString(DESC),
 								   rs.getInt(VERSION));
+				System.out.print(result.getId());
 			}						
 		}
 		catch(SQLException ex)		
@@ -89,7 +90,6 @@ public class GroupMapper {
 	//public static Group insert(int group_id,String name, String description) throws SQLException
 	{	
 		GroupTDG.insert(name, description);
-		//GroupTDG.insert(group_id, name, description);
 		return GroupMapper.find(name);		
 	}
 	
