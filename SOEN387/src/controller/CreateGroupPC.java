@@ -13,8 +13,8 @@ public class CreateGroupPC extends BaseHttpServlet
 	
 	private static final long serialVersionUID = 1L;
 
-	private String VIEW_NAME = "";
-	
+	private static String VIEW_NAME = "/jsp/CreateGroupTV.jsp";
+
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -27,15 +27,10 @@ public class CreateGroupPC extends BaseHttpServlet
 			{
 				// insert action + prepare data for ViewGroupTV
 				request.setAttribute("group", GroupMapper.insert(sGroupName,sGroupDesc));
-						
-				VIEW_NAME = "/jsp/ViewGroupTV.jsp";
-				request.getRequestDispatcher(VIEW_NAME).forward(request, response);
 			}
-			else
-			{
-				VIEW_NAME = "/jsp/CreateGroupTV.jsp";
-				request.getRequestDispatcher(VIEW_NAME).forward(request, response);
-			}
+			
+			request.getRequestDispatcher(VIEW_NAME).forward(request, response);
+
 		}
 		catch(Exception e)
 		{
