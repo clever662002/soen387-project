@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminPC extends BaseHttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW = "/jsp/Admin.jsp";
+	private static final String VIEW = "/WEB-INF/jsp/Admin.jsp";
 	@Override
 	protected void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher(VIEW).forward(request,response);

@@ -1,28 +1,21 @@
 package controller;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import mapper.UserMapper;
 import model.User;
@@ -35,8 +28,8 @@ public class AddUsersPC extends BaseHttpServlet {
 	
 	private static final String DELIMITER = ",";
 	
-	private static final String VIEW_NAME = "/jsp/AddUsersTV.jsp";
-	private static final String VIEW_NAME_LOGIN =  "jsp/LogInTV.jsp";
+	private static final String VIEW_NAME = "/WEB-INF/jsp/AddUsersTV.jsp";
+	private static final String VIEW_NAME_LOGIN =  "/WEB-INF/jsp/LogInTV.jsp";
 	
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,7 +57,6 @@ public class AddUsersPC extends BaseHttpServlet {
 						String extension = filename.substring(filename.lastIndexOf(".")+1,filename.length());
 						// Make sure the file has the right extension
 						if(validExtensions.contains(extension.toLowerCase())) {
-							
 							InputStream filecontent = fileItem.getInputStream();
 							BufferedReader br = new BufferedReader(new InputStreamReader(filecontent));
 						

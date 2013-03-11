@@ -20,8 +20,8 @@ public class ViewInvitePC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_NAME = "/jsp/ViewInviteTV.jsp";
-	private static final String VIEW_NAME_LOGIN = "/jsp/LogInTV.jsp";
+	private static final String VIEW_NAME = "/WEB-INF/jsp/ViewInviteTV.jsp";
+	private static final String VIEW_NAME_LOGIN = "/WEB-INF/jsp/LogInTV.jsp";
 	
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

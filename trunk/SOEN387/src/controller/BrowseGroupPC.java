@@ -14,7 +14,7 @@ import java.util.Vector;
 
 public class BrowseGroupPC extends BaseHttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String VIEW_NAME = "/jsp/BrowseGroupTV.jsp";
+	private static final String VIEW_NAME = "/WEB-INF/jsp/BrowseGroupTV.jsp";
 	
     public BrowseGroupPC() {
         super();

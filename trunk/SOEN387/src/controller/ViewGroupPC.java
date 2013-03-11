@@ -21,8 +21,8 @@ public class ViewGroupPC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_NAME = "/jsp/ViewGroupTV.jsp";
-	private static final String NO_GROUP = "/jsp/NoGroupTV.jsp";
+	private static final String VIEW_NAME = "/WEB-INF/jsp/ViewGroupTV.jsp";
+	private static final String NO_GROUP = "/WEB-INF/jsp/NoGroupTV.jsp";
 	
 		
 	@Override

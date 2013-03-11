@@ -17,7 +17,7 @@ public class LogOutPC extends BaseHttpServlet {
 	@Override
 	protected void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		request.getRequestDispatcher("/jsp/LogInTV.jsp").forward(request,response);
+		request.getRequestDispatcher("/WEB-INF/jsp/LogInTV.jsp").forward(request,response);
 	}
        
 }

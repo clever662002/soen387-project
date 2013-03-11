@@ -25,8 +25,8 @@ public class SendInvitePC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_NAME = "/jsp/SendInviteTV.jsp";
-	private static final String VIEW_NAME_LOGIN = "/jsp/LogInTV.jsp";
+	private static final String VIEW_NAME = "/WEB-INF/jsp/SendInviteTV.jsp";
+	private static final String VIEW_NAME_LOGIN = "/WEB-INF/jsp/LogInTV.jsp";
 	
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

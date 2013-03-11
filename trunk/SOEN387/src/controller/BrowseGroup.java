@@ -23,7 +23,7 @@ public class BrowseGroup extends BaseHttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setAttribute("groups", GroupMapper.findAll());
-			String content = "/jsp/BrowseGroup.jsp";
+			String content = "/WEB-INF/jsp/BrowseGroup.jsp";
 			request.getRequestDispatcher(content).forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

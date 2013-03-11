@@ -44,12 +44,12 @@ public class EditGroupPC extends BaseHttpServlet{
 				request.setAttribute("group", GroupMapper.update(g));
 				request.setAttribute("warning", "Edited successully.");
 				
-				VIEW_NAME = "/jsp/ViewGroupTV.jsp";
+				VIEW_NAME = "/WEB-INF/jsp/ViewGroupTV.jsp";
 			}
 			else
 			{			
 				request.setAttribute("group", GroupMapper.find(Integer.parseInt(sGroupID)));
-				VIEW_NAME = "/jsp/EditGroupTV.jsp";
+				VIEW_NAME = "/WEB-INF/jsp/EditGroupTV.jsp";
 			}
 			
 			request.getRequestDispatcher(VIEW_NAME).forward(request, response);

@@ -13,7 +13,7 @@ public class CreateGroupPC extends BaseHttpServlet
 	
 	private static final long serialVersionUID = 1L;
 
-	private static String VIEW_NAME = "/jsp/CreateGroupTV.jsp";
+	private static String VIEW_NAME = "/WEB-INF/jsp/CreateGroupTV.jsp";
 
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
