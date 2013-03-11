@@ -1,13 +1,20 @@
 package controller;
 
 import java.io.IOException;
+import java.net.CookieManager;
+import java.net.HttpCookie;
 import java.sql.SQLException;
+import java.util.Enumeration;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.naming.resources.jndi.Handler;
 
 import utils.SecurityUtil;
 
@@ -20,10 +27,10 @@ public class LogInPC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_NAME_LOGIN = "/jsp/LogInTV.jsp";
-	private static final String VIEW_NAME_INDEX = "/jsp/Index.jsp";
+	private static final String VIEW_NAME_LOGIN = "/WEB-INF/jsp/LogInTV.jsp";
+	private static final String VIEW_NAME_INDEX = "/WEB-INF/jsp/Index.jsp";
 
-	//private static final String VIEW_NAME_GROUP = "/jsp/ViewGroupTV.jsp";
+	private static final String VIEW_NAME_GROUP = "/WEB-INF/jsp/ViewGroupTV.jsp";
 
 	
 	@Override
@@ -31,7 +38,7 @@ public class LogInPC extends BaseHttpServlet {
 		
 		// Check the see if the user is already authenticated
 		if(SecurityUtil.isAuthenticated(request)){
-			request.getRequestDispatcher(VIEW_NAME_INDEX).forward(request, response);
+			request.getRequestDispatcher(VIEW_NAME_GROUP).forward(request, response);
 			return;
 		}
 		
@@ -54,12 +61,19 @@ public class LogInPC extends BaseHttpServlet {
 				request.getRequestDispatcher(VIEW_NAME_LOGIN).forward(request, response);
 			}
 			else{ 
+				//TODO Regenerate the session
+				//HashMap<String, Object> attributes = new HashMap<String, Object>();
+				//Enumeration<String> attributesNames = request.getSession().getAttributeNames();
+				//HttpSession newSession = request.getSession(true);
+				//HttpCookie cookie = new HttpCookie("sessionId",request.getSession().getId());
+				//cookie.setMaxAge(60*60*60*60*60);
+				
 				System.out.println("found user [" + user.toString() + "]");
 
 				if(user.getGroup() != null){
 					System.out.println("User is in group [" + user.getGroup().getId() + "]");
 				}
-				
+
 				request.getSession().setAttribute("username",user.getUsername());
 				request.getSession().setAttribute("user_id",user.getId()+"");
 				
@@ -67,7 +81,7 @@ public class LogInPC extends BaseHttpServlet {
 					request.getSession().setAttribute("admin", "true");
 				}
 				
-				request.getRequestDispatcher("/jsp/Index.jsp").forward(request, response); //somewhere else!
+				request.getRequestDispatcher(VIEW_NAME_GROUP).forward(request, response); //somewhere else!
 			}
 		}
 	}

@@ -13,7 +13,7 @@ public class RemoveGroupPC extends BaseHttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_NAME = "/jsp/BrowseGroupTV.jsp";
+	private static final String VIEW_NAME = "/WEB-INF/jsp/BrowseGroupTV.jsp";
 	
 	public RemoveGroupPC() {
         super();
