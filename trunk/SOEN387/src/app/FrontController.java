@@ -11,8 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.dsrg.soenea.application.servlet.DispatcherServlet;
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
+import org.dsrg.soenea.application.servlet.dispatcher.HttpServletHelper;
 import org.dsrg.soenea.application.servlet.service.DispatcherFactory;
 import org.dsrg.soenea.domain.helper.Helper;
+import org.dsrg.soenea.domain.role.impl.GuestRole;
+import org.dsrg.soenea.domain.role.mapper.RoleOutputMapper;
+import org.dsrg.soenea.domain.user.GuestUser;
+import org.dsrg.soenea.domain.user.User;
+import org.dsrg.soenea.domain.user.mapper.UserOutputMapper;
 import org.dsrg.soenea.service.MySQLConnectionFactory;
 import org.dsrg.soenea.service.authorization.ApplicationAuthorizaton;
 import org.dsrg.soenea.service.registry.Registry;
@@ -21,8 +27,9 @@ import org.dsrg.soenea.service.threadLocal.ThreadLocalTracker;
 import org.dsrg.soenea.uow.MapperFactory;
 import org.dsrg.soenea.uow.UoW;
 
+import dom.model.role.AdminRole;
+import dom.model.role.RegisteredRole;
 import dom.model.user.IUser;
-import dom.model.user.User;
 import dom.model.user.mappers.UserMapper;
 
 public class FrontController extends DispatcherServlet {
@@ -35,7 +42,7 @@ public class FrontController extends DispatcherServlet {
 		super.init(config);
 		try {
 			defaultDispatcher = Registry.getProperty("defaultDispatcher");
-		} catch (Exception e1) {}
+		} catch (Exception e) {}
 
 		ApplicationAuthorizaton.setBasePath(getServletContext().getRealPath("."));
 		prepareDbRegistry();
@@ -43,15 +50,17 @@ public class FrontController extends DispatcherServlet {
 	}
 
 	@Override
-	protected void processRequest(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		Dispatcher command = null;
 		Helper myHelper = null;
 		String commandName = null;
-		IUser user = null;
+		User user = null;
 		
 		try{
+			
+			//TODO is this necessary???
+			myHelper = new HttpServletHelper(request);
 			
 			for(Object key : request.getParameterMap().keySet()){
 				System.out.println("Key " + key + " value: " + request.getParameterValues(key.toString()));
@@ -64,19 +73,19 @@ public class FrontController extends DispatcherServlet {
 				commandName = "";
 			}
 			
-			//user = (IUser) myHelper.getSessionAttribute("currentUser");
+			user = (User) myHelper.getSessionAttribute("currentUser");
 			
 			if(user == null){
-				//user = new IUser();
-				//request.getSession(true).setAttribute("currentUser", user);
+				user = new GuestUser();
+				request.getSession(true).setAttribute("currentUser", user);
 			}
 			
-			//ApplicationAuthorizaton.hasAuthority(commandName,user.getRoles());
-			
+			ApplicationAuthorizaton.hasAuthority(commandName,user.getRoles());
 			command = DispatcherFactory.getInstance(commandName);
 			command.init(request, response);
 			long time = System.currentTimeMillis();
 			command.execute();
+			System.out.println("Total Request time: " + (System.currentTimeMillis() - time) + " ms.");
 			
 		}
 		catch(Exception ex){
@@ -110,7 +119,7 @@ public class FrontController extends DispatcherServlet {
 		UoW.newCurrent();
 		try{
 			DbRegistry.getDbConnection().setAutoCommit(false);
-			DbRegistry.getDbConnection().createStatement().execute("START TRANSACTION");
+			DbRegistry.getDbConnection().createStatement().execute("START TRANSACTION;");
 		}
 		catch(SQLException ex){
 			ex.printStackTrace();
@@ -136,7 +145,7 @@ public class FrontController extends DispatcherServlet {
 	public static void setupUoW() {
 		MapperFactory myDomain2MapperMapper = new MapperFactory();
 		myDomain2MapperMapper.addMapping(User.class, UserMapper.class);
-/*		myDomain2MapperMapper.addMapping(GuestUser.class,
+		myDomain2MapperMapper.addMapping(GuestUser.class,
 		UserOutputMapper.class);
 		myDomain2MapperMapper.addMapping(GuestRole.class,
 		RoleOutputMapper.class);
@@ -144,7 +153,6 @@ public class FrontController extends DispatcherServlet {
 		RoleOutputMapper.class);
 		myDomain2MapperMapper.addMapping(RegisteredRole.class,
 		RoleOutputMapper.class);
-*/
 		UoW.initMapperFactory(myDomain2MapperMapper);
 	}
 	

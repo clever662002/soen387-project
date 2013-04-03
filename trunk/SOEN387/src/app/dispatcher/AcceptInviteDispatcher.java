@@ -17,9 +17,10 @@ public class AcceptInviteDispatcher extends Dispatcher {
 		// TODO Auto-generated method stub
 		try{
 			new AcceptInviteCommand(myHelper).execute();
+			forward("/WEB-INF/jsp/ViewInviteTV.jsp");
 		}
 		catch(Exception e){
-			
+			forward("/WEB-INF/jsp/ViewInviteTV.jsp");
 		}
 	}
 }

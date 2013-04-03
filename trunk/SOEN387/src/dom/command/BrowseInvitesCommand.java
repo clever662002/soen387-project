@@ -1,9 +1,14 @@
 package dom.command;
 
+import java.util.List;
+
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
+
+import dom.model.invite.Invite;
+import dom.model.user.mappers.UserMapper;
 
 public class BrowseInvitesCommand extends Command {
 
@@ -13,8 +18,13 @@ public class BrowseInvitesCommand extends Command {
 	
 	@Override
 	public void execute() throws CommandException {
-		// TODO Auto-generated method stub
-		super.execute();
+		
+		String id = helper.getString("user_id");
+		if(id == null){
+			throw new CommandException("User id not set.");
+		}
+		List<Invite> invites = UserMapper.findInvites(Integer.parseInt(id));
+		helper.setSessionAttribute("invites", invites);
 	}
 
 	@Override
