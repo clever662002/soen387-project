@@ -10,11 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mapper.GroupMapper;
-import mapper.UserMapper;
-import model.Group;
-import model.GroupProxy;
-import model.User;
+import dom.model.group.Group;
+import dom.model.group.GroupProxy;
+import dom.model.group.mappers.GroupMapper;
+import dom.model.user.User;
+import dom.model.user.mappers.UserMapper;
+
 
 
 public class ViewGroupPC extends BaseHttpServlet {

@@ -1,7 +1,7 @@
 <%@include file="../include/header.jsp" %>
 
 
-<%@page import="java.util.List,model.Group"%>
+<%@page import="java.util.List,dom.model.group.Group"%>
 <%@ page language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

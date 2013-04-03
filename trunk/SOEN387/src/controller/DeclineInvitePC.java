@@ -10,12 +10,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dom.model.invite.Invite;
+import dom.model.invite.mappers.InviteMapper;
+import dom.model.user.User;
+import dom.model.user.mappers.UserMapper;
+
 import utils.SecurityUtil;
 
-import mapper.InviteMapper;
-import mapper.UserMapper;
-import model.Invite;
-import model.User;
 
 public class DeclineInvitePC extends BaseHttpServlet {
 

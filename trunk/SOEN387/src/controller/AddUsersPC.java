@@ -17,8 +17,9 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import mapper.UserMapper;
-import model.User;
+import dom.model.user.User;
+import dom.model.user.mappers.UserMapper;
+
 
 public class AddUsersPC extends BaseHttpServlet {
 

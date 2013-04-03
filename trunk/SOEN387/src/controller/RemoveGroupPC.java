@@ -6,8 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mapper.GroupMapper;
-import model.Group;
+import dom.model.group.Group;
+import dom.model.group.mappers.GroupMapper;
+
 
 public class RemoveGroupPC extends BaseHttpServlet
 {
