@@ -10,11 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dom.model.invite.Invite;
+import dom.model.user.User;
+import dom.model.user.mappers.UserMapper;
+
 import utils.SecurityUtil;
 
-import mapper.UserMapper;
-import model.Invite;
-import model.User;
 
 public class ViewInvitePC extends BaseHttpServlet {
 

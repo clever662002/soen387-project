@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="model.Invite"%>
+<%@page import="dom.model.invite.Invite"%>
 <%@include file="../include/header.jsp" %>
 
 	<h2> INVITES </h2>

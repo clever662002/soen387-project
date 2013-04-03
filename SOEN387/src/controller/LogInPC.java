@@ -16,12 +16,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.naming.resources.jndi.Handler;
 
+import dom.model.group.Group;
+import dom.model.group.IGroup;
+import dom.model.user.User;
+import dom.model.user.mappers.UserMapper;
+
 import utils.SecurityUtil;
 
-import mapper.UserMapper;
-import model.Group;
-import model.IGroup;
-import model.User;
 
 public class LogInPC extends BaseHttpServlet {
 

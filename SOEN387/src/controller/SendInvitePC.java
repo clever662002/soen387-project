@@ -10,16 +10,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dom.model.group.Group;
+import dom.model.group.mappers.GroupMapper;
+import dom.model.invite.Invite;
+import dom.model.invite.mappers.InviteMapper;
+import dom.model.invite.tdg.InviteTDG;
+import dom.model.user.User;
+import dom.model.user.mappers.UserMapper;
+
 import utils.SecurityUtil;
 
-import data.InviteTDG;
 
-import mapper.GroupMapper;
-import mapper.InviteMapper;
-import mapper.UserMapper;
-import model.Group;
-import model.Invite;
-import model.User;
 
 public class SendInvitePC extends BaseHttpServlet {
 

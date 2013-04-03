@@ -1,16 +1,13 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import javax.swing.GroupLayout.Group;
 
-import mapper.GroupMapper;
-import model.Group;
+import dom.model.group.mappers.GroupMapper;
 
-import java.util.List;
-import java.util.Vector;
 
 public class BrowseGroupPC extends BaseHttpServlet {
 	private static final long serialVersionUID = 1L;
