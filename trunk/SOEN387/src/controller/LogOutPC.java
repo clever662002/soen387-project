@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class LogOutPC
  */
 //@WebServlet("/LogOutPC")
+@Deprecated
 public class LogOutPC extends BaseHttpServlet {
 	private static final long serialVersionUID = 1L;
 

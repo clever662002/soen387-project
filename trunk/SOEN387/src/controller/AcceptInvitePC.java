@@ -16,8 +16,7 @@ import dom.model.invite.tdg.InviteTDG;
 import dom.model.user.User;
 import dom.model.user.mappers.UserMapper;
 
-
-
+@Deprecated
 public class AcceptInvitePC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;

@@ -20,7 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import dom.model.user.User;
 import dom.model.user.mappers.UserMapper;
 
-
+@Deprecated
 public class AddUsersPC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;

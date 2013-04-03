@@ -20,8 +20,7 @@ import dom.model.user.mappers.UserMapper;
 
 import utils.SecurityUtil;
 
-
-
+@Deprecated
 public class SendInvitePC extends BaseHttpServlet {
 
 	private static final long serialVersionUID = 1L;
