@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<access>
+	<role name="org.dsrg.soenea.domain.role.impl.GuestRole">
+		<command name="app.dispatcher.LoginDispatcher" get="true" post="true" />
+		<command name="app.dispatcher.LogoutDispatcher" get="true" post="true" />
+	</role>
+
+	<role name="dom.model.role.RegisteredRole">
+		<command name="app.dispatcher.CreateGroupDispatcher" post="true" />
+		<command name="app.dispatcher.RemoveGroupDispatcher" post="true" />
+		<command name="app.dispatcher.ViewGroupDispatcher" get="true"/>
+		<command name="app.dispatcher.InviteMemberDispatcher" post="true" />
+		<command name="app.dispatcher.AcceptInviteDispatcher" post="true" />
+		<command name="app.dispatcher.RemoveMemberDispatcher" post="true" />
+	</role>
+
+	<role name="dom.model.role.AdminRole">
+		<command name="app.dispatcher.AddUserDispatcher" post="true" />
+	</role> 
+</access>
