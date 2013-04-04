@@ -10,6 +10,8 @@ import java.util.Vector;
 import org.dsrg.soenea.domain.DomainObject;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.IOutputMapper;
+import org.dsrg.soenea.domain.user.mapper.UserInputMapper;
+import org.dsrg.soenea.service.tdg.finder.UserFinder;
 
 import dom.model.group.Group;
 import dom.model.group.GroupProxy;
@@ -50,7 +52,8 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 					rs.getString(LAST_NAME), 
 					rs.getString(USERNAME),
 					rs.getString(PASSWORD),
-					rs.getInt(VERSION));
+					rs.getInt(VERSION),
+					null);
 			
 			//Group group = GroupTDG.find(1);
 			
@@ -74,7 +77,6 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 			//TODO check this 
 			throw new MapperException("Could not find user with id " + id + ".");
 		}
-		
 		return user;
 	}
 	
@@ -87,7 +89,6 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		catch(SQLException ex){
 			System.err.print("SQLException : " + ex.getMessage());
 		}
-		
 		return user;
 	}
 	
@@ -100,11 +101,7 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		try{
 			ResultSet rs = UserTDG.findAll();
 			while(rs.next()) {
-				result.add(new User(rs.getLong(USER_ID), 
-						rs.getString(FIRST_NAME),
-						rs.getString(LAST_NAME), 
-						rs.getString(USERNAME),
-						rs.getInt(VERSION)));
+				result.add(makeUser(rs));
 			}
 		}
 		catch(SQLException ex){
@@ -123,11 +120,7 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		try{
 			ResultSet rs = UserTDG.find(id);
 			if(rs.next()){
-				result = new User(rs.getLong(USER_ID), 
-						rs.getString(FIRST_NAME),
-						rs.getString(LAST_NAME), 
-						rs.getString(USERNAME),
-						rs.getInt(VERSION));
+				result = makeUser(rs);
 
 				GroupProxy gp = null;
 				int groupID = rs.getInt(GROUP_ID);
@@ -162,7 +155,7 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	}
 	
 	/**
-	 * Udates a user
+	 * Updates a user
 	 * @param user
 	 */
 	public static void update(User user){

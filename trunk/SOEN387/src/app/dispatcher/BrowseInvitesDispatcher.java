@@ -23,5 +23,4 @@ public class BrowseInvitesDispatcher extends Dispatcher {
 			forward("/WEB-INF/jsp/ViewInviteTV.jsp");
 		}
 	}
-	
 }
