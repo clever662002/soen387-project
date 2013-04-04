@@ -5,60 +5,34 @@ import java.util.List;
 
 
 import org.dsrg.soenea.domain.DomainObject;
+import org.dsrg.soenea.domain.role.IRole;
 
 import dom.model.group.GroupProxy;
+import dom.model.group.IGroup;
 import dom.model.invite.Invite;
 
 /**
  * Domain model representing a user
  * @author Alex
  */
-public class User extends DomainObject<Long> implements IUser{
+public class User extends org.dsrg.soenea.domain.user.User implements IUser{
 
-	//private int id;
 	private String firstName;
 	private String lastName;
-	private String username;
-	private String password; //Should we keep the password in the object??
-	private int version;
 	private List<Invite> invites;
-	private GroupProxy group;
+	private IGroup group;
 	private boolean isAdmin;
 	
-	public User(Long id, String firstName, String lastName, String username,String password, int version){
-		super(id,version);
+	public User(Long id, String firstName, String lastName, String username,String password, int version, List<IRole> roles){
+		super(id,version,username,roles);
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.username = username;
-		this.version = version;
-		this.password = password;
-		this.invites = new ArrayList<Invite>();
-		isAdmin = false;
-	}
-	
-	public User(Long id, String firstName, String lastName, String username, int version){
-		super(id,version);
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.version = version;
-		this.invites = new ArrayList<Invite>();
-		isAdmin = false;
-	}
-	
-	public User(String username, String firstName, String lastName, String password){
-		//TODO check this
-		super(new Long(-1));
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
 		this.invites = new ArrayList<Invite>();
 		isAdmin = false;
 	}
 	
 	public String toString(){
-		return "User ID: "+super.getId()+ ", username: " + username+ ", first name: " +firstName+ ", last name: " + lastName;
+		return "User ID: "+super.getId()+ ", username: " + super.getUsername()+ ", first name: " +firstName+ ", last name: " + lastName;
 	}
 
 	public String getFirstName() {
@@ -77,30 +51,6 @@ public class User extends DomainObject<Long> implements IUser{
 		this.lastName = lastName;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-/*
-	public int getId() {
-		return id;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-*/	
 	public void setInvites(List<Invite> invites){
 		this.invites = invites;
 	}
@@ -109,12 +59,12 @@ public class User extends DomainObject<Long> implements IUser{
 		return invites;
 	}
 	
-	public GroupProxy getGroup(){
+	public IGroup getGroup(){
 		return group;
 	}
 	
-	public void setGroup(GroupProxy group){
-		this.group =(GroupProxy)group;
+	public void setGroup(IGroup group){
+		this.group = group;
 	}
 	
 	public boolean hasGroup(){

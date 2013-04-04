@@ -14,7 +14,6 @@ public class AcceptInviteDispatcher extends Dispatcher {
 
 	@Override
 	public void execute() throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try{
 			new AcceptInviteCommand(myHelper).execute();
 			forward("/WEB-INF/jsp/ViewInviteTV.jsp");

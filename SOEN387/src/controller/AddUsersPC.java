@@ -66,7 +66,8 @@ public class AddUsersPC extends BaseHttpServlet {
 						
 							while(line != null){
 								String info[] = line.split(DELIMITER);
-								UserMapper.insert(new User(info[0],info[1],info[2],info[3]));
+								//TODO fix this
+								//UserMapper.insert(new User(info[0],info[1],info[2],info[3]));
 								added++;
 								line = br.readLine();
 							}

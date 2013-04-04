@@ -45,15 +45,13 @@ public class UserOutputMapper implements IOutputMapper<Long, DomainObject<Long>>
 		if(rs.next()) {
 			//TODO fix the fact that the version is the same name
 			//Group group = new Group(rs.getInt(GROUP_ID),rs.getString(NAME),rs.getString(DESCRIPTION),rs.getInt(VERSION));
-			user = new User(rs.getLong(USER_ID), 
+/*			user = new User(rs.getLong(USER_ID), 
 					rs.getString(FIRST_NAME),
 					rs.getString(LAST_NAME), 
 					rs.getString(USERNAME),
 					rs.getString(PASSWORD),
 					rs.getInt(VERSION));
-			
-			//Group group = GroupTDG.find(1);
-			
+*/			
 			GroupProxy gp = null;
 			int groupID = rs.getInt(GROUP_ID);
 			if(groupID > 0){
@@ -100,11 +98,13 @@ public class UserOutputMapper implements IOutputMapper<Long, DomainObject<Long>>
 		try{
 			ResultSet rs = UserTDG.findAll();
 			while(rs.next()) {
+/*
 				result.add(new User(rs.getLong(USER_ID), 
 						rs.getString(FIRST_NAME),
 						rs.getString(LAST_NAME), 
 						rs.getString(USERNAME),
 						rs.getInt(VERSION)));
+*/
 			}
 		}
 		catch(SQLException ex){
@@ -123,12 +123,13 @@ public class UserOutputMapper implements IOutputMapper<Long, DomainObject<Long>>
 		try{
 			ResultSet rs = UserTDG.find(id);
 			if(rs.next()){
+/*
 				result = new User(rs.getLong(USER_ID), 
 						rs.getString(FIRST_NAME),
 						rs.getString(LAST_NAME), 
 						rs.getString(USERNAME),
 						rs.getInt(VERSION));
-
+*/
 				GroupProxy gp = null;
 				int groupID = rs.getInt(GROUP_ID);
 				if(groupID > 0){

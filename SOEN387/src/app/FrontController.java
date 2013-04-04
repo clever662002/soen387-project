@@ -59,7 +59,6 @@ public class FrontController extends DispatcherServlet {
 		
 		try{
 			
-			//TODO is this necessary???
 			myHelper = new HttpServletHelper(request);
 			
 			for(Object key : request.getParameterMap().keySet()){
@@ -128,8 +127,7 @@ public class FrontController extends DispatcherServlet {
 	
 
 	@Override
-	protected void postProcessRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+	protected void postProcessRequest(HttpServletRequest request, HttpServletResponse response) {
 		super.postProcessRequest(request, response);
 		try{
 			DbRegistry.getDbConnection().createStatement().execute("ROLLBACK;");

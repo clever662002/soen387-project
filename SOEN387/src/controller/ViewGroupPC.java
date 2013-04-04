@@ -33,7 +33,7 @@ public class ViewGroupPC extends BaseHttpServlet {
 			int userId = Integer.parseInt(request.getSession().getAttribute("user_id")+"");
 			User user = UserMapper.find(userId);
 			
-			GroupProxy gp = user.getGroup();
+			Group gp = (Group)user.getGroup();
 			int sGroupId = gp.getId();
 			
 			Group gr = GroupMapper.find(sGroupId);			
