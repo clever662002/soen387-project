@@ -20,8 +20,9 @@ public class LoginCommand extends Command{
 	
 	@Override
 	public void execute() throws CommandException {
-		String username = helper.getString("username");
-		String password = helper.getString("password");
+
+		String username = (String)helper.getSessionAttribute("username");
+		String password = (String)helper.getSessionAttribute("password");
 		
 		if(username == null && password == null){
 			throw new CommandException("");

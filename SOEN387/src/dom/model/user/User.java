@@ -31,6 +31,10 @@ public class User extends org.dsrg.soenea.domain.user.User implements IUser{
 		isAdmin = false;
 	}
 	
+	public User(long id, long version, String username, List<IRole> roles) {
+		super(id,version,username,roles);
+	}
+	
 	public String toString(){
 		return "User ID: "+super.getId()+ ", username: " + super.getUsername()+ ", first name: " +firstName+ ", last name: " + lastName;
 	}

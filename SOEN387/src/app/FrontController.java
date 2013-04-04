@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.dsrg.soenea.application.servlet.DispatcherServlet;
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 import org.dsrg.soenea.application.servlet.dispatcher.HttpServletHelper;
@@ -16,8 +15,6 @@ import org.dsrg.soenea.application.servlet.service.DispatcherFactory;
 import org.dsrg.soenea.domain.helper.Helper;
 import org.dsrg.soenea.domain.role.impl.GuestRole;
 import org.dsrg.soenea.domain.role.mapper.RoleOutputMapper;
-import org.dsrg.soenea.domain.user.GuestUser;
-import org.dsrg.soenea.domain.user.User;
 import org.dsrg.soenea.domain.user.mapper.UserOutputMapper;
 import org.dsrg.soenea.service.MySQLConnectionFactory;
 import org.dsrg.soenea.service.authorization.ApplicationAuthorizaton;
@@ -29,12 +26,14 @@ import org.dsrg.soenea.uow.UoW;
 
 import dom.model.role.AdminRole;
 import dom.model.role.RegisteredRole;
-import dom.model.user.IUser;
+import dom.model.user.GuestUser;
+import dom.model.user.User;
 import dom.model.user.mappers.UserMapper;
 
 public class FrontController extends DispatcherServlet {
 
 	private static final long serialVersionUID = 1L;
+	
 	private static String defaultDispatcher = "";
 	
 	@Override
@@ -85,7 +84,6 @@ public class FrontController extends DispatcherServlet {
 			long time = System.currentTimeMillis();
 			command.execute();
 			System.out.println("Total Request time: " + (System.currentTimeMillis() - time) + " ms.");
-			
 		}
 		catch(Exception ex){
 			request.setAttribute("errorMessage", ex.getMessage());
@@ -111,8 +109,7 @@ public class FrontController extends DispatcherServlet {
 	}
 
 	@Override
-	protected void preProcessRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+	protected void preProcessRequest(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		super.preProcessRequest(request, response);
 		UoW.newCurrent();
