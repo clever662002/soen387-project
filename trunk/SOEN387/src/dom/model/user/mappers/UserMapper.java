@@ -7,11 +7,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.catalina.Role;
 import org.dsrg.soenea.domain.DomainObject;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.IOutputMapper;
+import org.dsrg.soenea.domain.role.IRole;
+import org.dsrg.soenea.domain.role.RoleListProxy;
+import org.dsrg.soenea.domain.role.mapper.RoleInputMapper;
+import org.dsrg.soenea.domain.user.UserProxy;
 import org.dsrg.soenea.domain.user.mapper.UserInputMapper;
 import org.dsrg.soenea.service.tdg.finder.UserFinder;
+import org.dsrg.soenea.uow.UoW;
 
 import dom.model.group.Group;
 import dom.model.group.GroupProxy;
@@ -44,26 +50,33 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	
 	public static User makeUser(ResultSet rs) throws SQLException{
 		User user = null;
-		if(rs.next()) {
-			//TODO fix the fact that the version is the same name
-			//Group group = new Group(rs.getInt(GROUP_ID),rs.getString(NAME),rs.getString(DESCRIPTION),rs.getInt(VERSION));
-			user = new User(rs.getLong(USER_ID), 
-					rs.getString(FIRST_NAME),
-					rs.getString(LAST_NAME), 
-					rs.getString(USERNAME),
-					rs.getString(PASSWORD),
-					rs.getInt(VERSION),
-					null);
+		//TODO fix the fact that the version is the same name
+		//Group group = new Group(rs.getInt(GROUP_ID),rs.getString(NAME),rs.getString(DESCRIPTION),rs.getInt(VERSION));
+		user = new User(rs.getLong(USER_ID), 
+				rs.getString(FIRST_NAME),
+				rs.getString(LAST_NAME), 
+				rs.getString(USERNAME),
+				rs.getString(PASSWORD),
+				rs.getInt(VERSION),
+				null);
 			
-			//Group group = GroupTDG.find(1);
-			
-			GroupProxy gp = null;
-			int groupID = rs.getInt(GROUP_ID);
-			if(groupID > 0){
-				gp = new GroupProxy(rs.getInt(GROUP_ID));
-			}
-			user.setGroup(gp);
+///// DIRTY			
+		List<IRole> roles = null;
+		try{
+			// Get the users roles
+			roles = RoleInputMapper.find(user);
 		}
+		catch(Exception ex){
+		}	
+		user.setRoles(roles);
+////DIRTY
+		
+		GroupProxy gp = null;
+		int groupID = rs.getInt(GROUP_ID);
+		if(groupID > 0){
+			gp = new GroupProxy(rs.getInt(GROUP_ID));
+		}
+		user.setGroup(gp);
 		return user;
 	}
 	
@@ -71,32 +84,37 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		User user = null;
 		try{
 			ResultSet rs = UserTDG.find(id);
+			if(!rs.next()) throw new MapperException("User with that id doesn't exist!");
 			user = makeUser(rs);
 		}
 		catch(SQLException ex){
-			//TODO check this 
 			throw new MapperException("Could not find user with id " + id + ".");
 		}
 		return user;
 	}
 	
-	public static User find(String username) {
+	public static User find(String username) throws MapperException {
 		User user = null;
 		try{
 			ResultSet rs = UserTDG.find(username);
+			if(!rs.next()) throw new MapperException("User with that username doesn't exist!");
 			user = makeUser(rs);
 		}
 		catch(SQLException ex){
-			System.err.print("SQLException : " + ex.getMessage());
+			throw new MapperException("No user with username " + username);
 		}
 		return user;
 	}
 	
-	public static User find(String username, String password) throws SQLException, MapperException{
+	public static User find(String username, String password) throws Exception, SQLException, MapperException{
 		User user = null;
 		ResultSet rs = UserTDG.find(username,password);
 		if(!rs.next()) throw new MapperException("User with that Username/Password doesn't exist!");
 		user = makeUser(rs);
+		
+		// UOW
+		//UoW.getCurrent().registerClean(user);
+		
 		return user;
 	}
 	
@@ -104,7 +122,7 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	 * Find all Users
 	 * @return list of users
 	 */
-	public static List<User> findAll() {
+	public static List<User> findAll() throws Exception{
 		List<User> result = new Vector<User>();
 		try{
 			ResultSet rs = UserTDG.findAll();
@@ -148,25 +166,21 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	 * Inserts a user into the db
 	 * @param user the user to insert
 	 */
-	public static void insert(User user){
-		try{
-			HashMap<String,String> params = new HashMap<String,String>();
-			params.put(USERNAME,user.getUsername());
-			params.put(FIRST_NAME,user.getFirstName());
-			params.put(LAST_NAME,user.getLastName());
-			params.put(PASSWORD,user.getPassword());
-			UserTDG.insert(params);
-		}
-		catch(SQLException ex){
-			System.err.print("SQLException : " + ex.getMessage());
-		}
+	public static void insert(User user) throws SQLException, MapperException{
+		HashMap<String,String> params = new HashMap<String,String>();
+		params.put(USERNAME,user.getUsername());
+		params.put(FIRST_NAME,user.getFirstName());
+		params.put(LAST_NAME,user.getLastName());
+		params.put(PASSWORD,user.getPassword());
+		UserTDG.insert(params);
+		insertRoles(user);
 	}
 	
 	/**
 	 * Updates a user
 	 * @param user
 	 */
-	public static void update(User user){
+	public static void update(User user) throws MapperException{
 		try{
 			HashMap<String,String> params = new HashMap<String,String>();
 			params.put(USERNAME,user.getUsername());
@@ -174,6 +188,9 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 			params.put(LAST_NAME,user.getLastName());
 			params.put(PASSWORD,user.getPassword());
 			UserTDG.update(params);
+			user.getRoles().size(); // We do this to make sure the proxies are loaded.
+			deleteRoles(user);
+			insertRoles(user);
 		}
 		catch(SQLException ex){
 			System.err.print("SQLException : " + ex.getMessage());
@@ -226,6 +243,18 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 			ex.printStackTrace();
 		}
 		return isAdmin;
+	}
+	
+	public static void deleteRoles(User d) throws SQLException {
+		UserTDG.deleteUserRole(d.getId());
+	}
+
+	public static void insertRoles(User d) throws SQLException, MapperException {
+		for(IRole r: d.getRoles()) {
+			int result = UserTDG.insertUserRole(d.getId(), r.getId());
+			if(result == 0) throw new MapperException("Unable to insert User Role: " + d.getUsername() + 
+					"("+d.getId()+") " + r.getName() + "(" + r.getId() + ")");
+		}
 	}
 
 	@Override

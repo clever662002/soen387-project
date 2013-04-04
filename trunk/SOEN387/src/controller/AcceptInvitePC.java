@@ -41,7 +41,13 @@ public class AcceptInvitePC extends BaseHttpServlet {
 			int userId = Integer.parseInt(request.getSession().getAttribute("user_id")+"");
 			int groupId = Integer.parseInt(request.getParameter("group_id")+"");
 			
-			User user = UserMapper.find(userId);
+			User user = null;
+			try{
+				user = UserMapper.find(userId);
+			}
+			catch(Exception ex){
+				
+			}
 			
 			if(user.getGroup() != null){
 				//The user is already in a group.

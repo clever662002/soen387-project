@@ -14,26 +14,29 @@
 
 <div id="navBarContainer">
 	<ul id="navBar">
-		
-		<c:if test="${!empty sessionScope[\"currentUser\"]}">
-			<p> THAT WORKED </p>
+	
+	<!--  THIS IS DIRTY, I KNOW !!  -->
+	
+		<c:if test="${empty sessionScope[\"currentUser\"]}">
+			<li><a href="front?command=app.dispatcher.LoginDispatcher">LOGIN</a></li>
 		</c:if>
 		
-		
-		
-		<% if(request.getSession().getAttribute("currentUser") != null){
-		  %><li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>
-			<li><a href="front?command=app.dispatcher.BrowseInvitesDispatcher">INVITES</a></li>
-			<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>			
-			<% 
-			if(request.getSession().getAttribute("currentUser") != null){
-				%><li><a href="Admin">ADMIN</a></li><%
-			}
-			
-			}
-		else{ %>
-			<li><a href="Login">LOGIN</a></li><%
-		}
-		 %>
+		<c:if test="${!empty sessionScope[\"currentUser\"]}">
+			<c:forEach items="${sessionScope[\"currentUser\"].roles}" var="role">
+				<c:if test="${role.id == 1}">
+					<li><a href="front?command=app.dispatcher.LoginDispatcher">LOGIN</a></li>
+				</c:if>
+				<c:if test="${role.id == 2}">
+					<p>Role: ${role.name}</p>
+					<li><a href="front?command=app.dispatcher.BrowseInvitesDispatcher">INVITES</a></li>
+					<li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>
+					<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>
+				</c:if>
+				<c:if test="${role.id == 3}">
+					<p>Role: ${role.name}</p>
+					<li><a href="Admin">ADMIN</a></li>
+				</c:if>
+			</c:forEach>
+		</c:if>
 	</ul>
 </div>

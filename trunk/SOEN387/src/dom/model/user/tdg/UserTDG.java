@@ -1,5 +1,6 @@
 package dom.model.user.tdg;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Vector;
 
 
+import org.dsrg.soenea.service.logging.SQLLogger;
 import org.dsrg.soenea.service.threadLocal.DbRegistry;
 
 import dom.model.user.User;
@@ -21,6 +23,8 @@ public class UserTDG {
 	private static final String DB_NAME_GROUP = DB_PREFIX+"group";
 	private static final String DB_NAME_USER_GROUP = DB_PREFIX+"user_group";
 	private static final String DB_NAME_ADMIN = DB_PREFIX+"admin";
+	
+	private static final String DB_USER_ROLE_TABLE = DB_PREFIX+"UserRole";
 	////COLUMN NAMES
 	//USER
 	private static String USER_ID = "user_id";
@@ -50,6 +54,14 @@ public class UserTDG {
 		GROUP_ID+"="+
 		DB_NAME_INVITE+"."+GROUP_ID+" AND "+DB_NAME_INVITE+"."+USER_ID+"=?";
 	private static String IS_ADMIN = "SELECT * FROM "+DB_NAME_ADMIN+" WHERE "+USER_ID+ "=?";
+	
+	public static String DELETE_USER_ROLE_SQL = 
+			"DELETE FROM " + DB_USER_ROLE_TABLE + " " +
+			"WHERE user_id=?;";
+	
+	public static String INSERT_USER_ROLE_SQL = 
+			"INSERT INTO " + DB_USER_ROLE_TABLE + " " +
+			"(user_id, role_id) VALUES(?, ?);";
 	
 	public static ResultSet find(String username,String password) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(LOGIN);
@@ -134,6 +146,25 @@ public class UserTDG {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(IS_ADMIN);
 		ps.setLong(1, userId);
 		return ps.executeQuery();
+	}
+	
+	public static int deleteUserRole(long user_id) throws SQLException {
+		Connection con = DbRegistry.getDbConnection();
+		PreparedStatement ps = con.prepareStatement(DELETE_USER_ROLE_SQL);
+		ps.setLong(1, user_id);
+		int count = SQLLogger.processUpdate(ps);
+		ps.close();
+		return count;
+	}
+	
+	public static int insertUserRole(long user_id, long role_id) throws SQLException {
+		Connection con = DbRegistry.getDbConnection();
+		PreparedStatement ps = con.prepareStatement(INSERT_USER_ROLE_SQL);
+		ps.setLong(1, user_id);
+		ps.setLong(2, role_id);
+		int count = SQLLogger.processUpdate(ps);
+		ps.close();
+		return count;
 	}
 	
 }

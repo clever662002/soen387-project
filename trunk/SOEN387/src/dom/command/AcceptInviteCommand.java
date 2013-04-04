@@ -22,7 +22,16 @@ public class AcceptInviteCommand extends Command {
 		int userId = helper.getInt("user_id");
 		int groupId = helper.getInt("group_id");
 		
-		User user = UserMapper.find(userId);
+		User user = null;
+		try{
+			//Get the user who is sending the invite
+			user = UserMapper.find(userId);
+		}
+		catch(Exception ex){
+			throw new CommandException(ex);
+		}
+		
+		//TODO if user null do something.
 		
 		if(user.getGroup() != null){
 			//The user is already in a group.

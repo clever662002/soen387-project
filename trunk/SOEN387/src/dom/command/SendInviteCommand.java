@@ -28,8 +28,15 @@ public class SendInviteCommand extends Command {
 		//TODO check this 
 		User currentUser = (User)helper.getSessionAttribute("currentUser");
 		
-		//Get the user who is sending the invite
-		User userToInvite = UserMapper.find(userId); 
+		User userToInvite = null; 
+		
+		try{
+			//Get the user who is sending the invite
+			 userToInvite = UserMapper.find(userId);
+		}
+		catch(Exception ex){
+			throw new CommandException(ex);
+		}
 		
 		if(userToInvite == null){
 			throw new CommandException("The user with id " + userId + 
