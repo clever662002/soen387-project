@@ -53,8 +53,14 @@ public class LogInPC extends BaseHttpServlet {
 		}
 		else{
 			
+			User user = null;
 			//TODO check the identity map for the user
-			User user = UserMapper.find(username);
+			try{
+				user = UserMapper.find(username);
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}
 			
 			if(user == null || !password.equals(user.getPassword())){
 				//Redirect to login page (user does not exist)

@@ -39,6 +39,10 @@ public class LoginCommand extends Command{
 			getNotifications().add("No user for that username and password combo.");
 			throw new CommandException("No user for that username and password combo.");
 		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			throw new CommandException(ex);
+		}
 	
 	}
 
