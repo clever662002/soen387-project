@@ -92,6 +92,14 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		return user;
 	}
 	
+	public static User find(String username, String password) throws SQLException, MapperException{
+		User user = null;
+		ResultSet rs = UserTDG.find(username,password);
+		if(!rs.next()) throw new MapperException("User with that Username/Password doesn't exist!");
+		user = makeUser(rs);
+		return user;
+	}
+	
 	/**
 	 * Find all Users
 	 * @return list of users

@@ -21,15 +21,15 @@ public class LoginCommand extends Command{
 	@Override
 	public void execute() throws CommandException {
 
-		String username = (String)helper.getSessionAttribute("username");
-		String password = (String)helper.getSessionAttribute("password");
+		String username = helper.getString("username");
+		String password = helper.getString("password");
 		
 		if(username == null && password == null){
 			throw new CommandException("");
 		}
 		
 		try{
-			helper.setSessionAttribute("currentUser",UserInputMapper.find(username,password));
+			helper.setSessionAttribute("currentUser",UserMapper.find(username,password));
 		}
 		catch(SQLException ex){
 			ex.printStackTrace();

@@ -10,156 +10,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
- <servlet>
-    <description></description>
-    <display-name>LogInPC</display-name>
-    <servlet-name>LogInPC</servlet-name>
-    <servlet-class>controller.LogInPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogInPC</servlet-name>
-    <url-pattern>/Login</url-pattern>
-  </servlet-mapping>
   
-  <servlet>
-    <description></description>
-    <display-name>LogOutPC</display-name>
-    <servlet-name>LogOutPC</servlet-name>
-    <servlet-class>controller.LogOutPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogOutPC</servlet-name>
-    <url-pattern>/Logout</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AddUsersPC</display-name>
-    <servlet-name>AddUsersPC</servlet-name>
-    <servlet-class>controller.AddUsersPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddUsersPC</servlet-name>
-    <url-pattern>/AddUsers</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <description></description>
-    <display-name>ViewGroupPC</display-name>
-    <servlet-name>ViewGroupPC</servlet-name>
-    <servlet-class>controller.ViewGroupPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewGroupPC</servlet-name>
-    <url-pattern>/ViewGroup</url-pattern>
-  </servlet-mapping>
-
-  
-  <!-- EDIT GROUP -->
-  <servlet>
-    <description></description>
-    <display-name>EditGroupPC</display-name>
-    <servlet-name>EditGroupPC</servlet-name>
-    <servlet-class>controller.EditGroupPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EditGroupPC</servlet-name>
-    <url-pattern>/EditGroup</url-pattern>
-  </servlet-mapping>
-  
-  <!-- CREATE GROUP -->
-  <servlet>
-    <description></description>
-    <display-name>CreateGroupPC</display-name>
-    <servlet-name>CreateGroupPC</servlet-name>
-    <servlet-class>controller.CreateGroupPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CreateGroupPC</servlet-name>
-    <url-pattern>/CreateGroup</url-pattern>
-  </servlet-mapping>
-  
-  <!-- REMOVE GROUP -->
-  <servlet>
-    <description></description>
-    <display-name>RemoveGroupPC</display-name>
-    <servlet-name>RemoveGroupPC</servlet-name>
-    <servlet-class>controller.RemoveGroupPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RemoveGroupPC</servlet-name>
-    <url-pattern>/RemoveGroup</url-pattern>
-  </servlet-mapping>
-  
-  <!-- VIEW INVITES -->
-  <servlet>
-    <description></description>
-    <display-name>ViewInvitePC</display-name>
-    <servlet-name>ViewInvitePC</servlet-name>
-    <servlet-class>controller.ViewInvitePC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewInvitePC</servlet-name>
-    <url-pattern>/Invite</url-pattern>
-  </servlet-mapping>
-  
-  <!-- ACCEPT INVITE -->
-  <servlet>
-    <description></description>
-    <display-name>AcceptInvitePC</display-name>
-    <servlet-name>AcceptInvitePC</servlet-name>
-    <servlet-class>controller.AcceptInvitePC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AcceptInvitePC</servlet-name>
-    <url-pattern>/AcceptInvite</url-pattern>
-  </servlet-mapping>
-  
-  <!-- DECLINE INVITE -->
-  <servlet>
-    <description></description>
-    <display-name>DeclineInvitePC</display-name>
-    <servlet-name>DeclineInvitePC</servlet-name>
-    <servlet-class>controller.DeclineInvitePC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DeclineInvitePC</servlet-name>
-    <url-pattern>/DeclineInvite</url-pattern>
-  </servlet-mapping>
-
-	<!-- BROWSE GROUP -->
-  <servlet>
-    <description></description>
-    <display-name>BrowseGroupPC</display-name>
-    <servlet-name>BrowseGroupPC</servlet-name>
-    <servlet-class>controller.BrowseGroupPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BrowseGroupPC</servlet-name>
-    <url-pattern>/BrowseGroup</url-pattern>
-  </servlet-mapping>
-  
-  <!-- SEND INVITE -->
-  <servlet>
-    <description></description>
-    <display-name>SendInvitePC</display-name>
-    <servlet-name>SendInvitePC</servlet-name>
-    <servlet-class>controller.SendInvitePC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SendInvitePC</servlet-name>
-    <url-pattern>/SendInvite</url-pattern>
-  </servlet-mapping>
-  
-  <!-- ADMIN PAGE -->
-  <servlet>
-    <description></description>
-    <display-name>AdminPC</display-name>
-    <servlet-name>AdminPC</servlet-name>
-    <servlet-class>controller.AdminPC</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminPC</servlet-name>
-    <url-pattern>/Admin</url-pattern>
-  </servlet-mapping>
+	<servlet>
+	   <description></description>
+	   <display-name>FrontController</display-name>
+	   <servlet-name>FrontController</servlet-name>
+	   <servlet-class>app.FrontController</servlet-class>
+	 </servlet>
+	 <servlet-mapping>
+	   <servlet-name>FrontController</servlet-name>
+	   <url-pattern>/front</url-pattern>
+	 </servlet-mapping>
 
 </web-app>

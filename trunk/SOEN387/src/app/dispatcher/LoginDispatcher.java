@@ -17,7 +17,7 @@ public class LoginDispatcher  extends Dispatcher  {
 		// TODO Auto-generated method stub
 		try{
 			new LoginCommand(myHelper).execute();
-			forward("/WEB-INF/jsp/BrowseGroupTV.jsp");
+			forward("/WEB-INF/jsp/Home.jsp");
 		}
 		catch(Exception e){
 			forward("/WEB-INF/jsp/LogInTV.jsp");

@@ -15,12 +15,18 @@
 <div id="navBarContainer">
 	<ul id="navBar">
 		
-		<% if(request.getSession().getAttribute("user_id") != null){
-		  %><li><a href="ViewGroup">GROUP</a></li>
-			<li><a href="Invite">INVITES</a></li>
-			<li><a href="Logout">LOGOUT</a></li>			
+		<c:if test="${!empty sessionScope[\"currentUser\"]}">
+			<p> THAT WORKED </p>
+		</c:if>
+		
+		
+		
+		<% if(request.getSession().getAttribute("currentUser") != null){
+		  %><li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>
+			<li><a href="front?command=app.dispatcher.BrowseInvitesDispatcher">INVITES</a></li>
+			<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>			
 			<% 
-			if(request.getSession().getAttribute("admin") != null){
+			if(request.getSession().getAttribute("currentUser") != null){
 				%><li><a href="Admin">ADMIN</a></li><%
 			}
 			
