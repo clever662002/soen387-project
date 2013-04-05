@@ -1,4 +1,3 @@
-<%@include file="../include/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,18 +18,17 @@
 
 	<c:forEach var="group" items="${groups}">
 		<tr>
-			<td><a href="ViewGroup?group_id="><c:out value="${group.id}" /></a></td>
+			<td><a href="front?command=app.dispatcher.ViewGroupDispatcher&group_id=${group.id}"><c:out value="${group.id}" /></a></td>
 			<td><c:out value="${group.name}" /></td>
 			<td><c:out value="${group.description}" /></td>
 		</tr>
 	</c:forEach>
 	
 	<tr>
-		<td><a href="CreateGroupDispatcher">Create New Group</a><br/></td>
+	
+		<td><a href="front?command=app.dispatcher.CreateGroupDispatcher">Create New Group</a><br/></td>
 	</tr>
 	
  </table>
 </body>
-
-<%@include file="../include/footer.jsp" %>
 </html>

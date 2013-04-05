@@ -26,9 +26,10 @@ public class BrowseGroupCommand extends Command{
 	@Override
 	public void process() throws CommandException {
 		// TODO Auto-generated method stub
-		helper.setSessionAttribute("group", GroupMapper.findAll());
-		List<Group> groups = (List<Group>)helper.getAttribute("group");
+		//helper.setSessionAttribute("group", GroupMapper.findAll());
+		List<Group> groups = GroupMapper.findAll();
 		helper.setRequestAttribute("groups",groups);
+		helper.setRequestAttribute("template_view","/WEB-INF/jsp/BrowseGroupTV.jsp");
 		
 	}
 
