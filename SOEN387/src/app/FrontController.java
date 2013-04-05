@@ -24,6 +24,8 @@ import org.dsrg.soenea.service.threadLocal.ThreadLocalTracker;
 import org.dsrg.soenea.uow.MapperFactory;
 import org.dsrg.soenea.uow.UoW;
 
+import dom.model.group.Group;
+import dom.model.group.mappers.GroupMapper;
 import dom.model.role.AdminRole;
 import dom.model.role.RegisteredRole;
 import dom.model.user.GuestUser;
@@ -140,14 +142,11 @@ public class FrontController extends DispatcherServlet {
 	public static void setupUoW() {
 		MapperFactory myDomain2MapperMapper = new MapperFactory();
 		myDomain2MapperMapper.addMapping(User.class, UserMapper.class);
-		myDomain2MapperMapper.addMapping(GuestUser.class,
-		UserOutputMapper.class);
-		myDomain2MapperMapper.addMapping(GuestRole.class,
-		RoleOutputMapper.class);
-		myDomain2MapperMapper.addMapping(AdminRole.class,
-		RoleOutputMapper.class);
-		myDomain2MapperMapper.addMapping(RegisteredRole.class,
-		RoleOutputMapper.class);
+		myDomain2MapperMapper.addMapping(Group.class, GroupMapper.class);
+		myDomain2MapperMapper.addMapping(GuestUser.class,UserOutputMapper.class);
+		myDomain2MapperMapper.addMapping(GuestRole.class,RoleOutputMapper.class);
+		myDomain2MapperMapper.addMapping(AdminRole.class,RoleOutputMapper.class);
+		myDomain2MapperMapper.addMapping(RegisteredRole.class,RoleOutputMapper.class);
 		UoW.initMapperFactory(myDomain2MapperMapper);
 	}
 	
