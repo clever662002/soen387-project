@@ -34,7 +34,7 @@ public class ViewGroupPC extends BaseHttpServlet {
 			User user = UserMapper.find(userId);
 			
 			Group gp = (Group)user.getGroup();
-			int sGroupId = gp.getId();
+			Long sGroupId = gp.getId();
 			
 			Group gr = GroupMapper.find(sGroupId);			
 			String sGroupID = request.getParameter("group_id:");

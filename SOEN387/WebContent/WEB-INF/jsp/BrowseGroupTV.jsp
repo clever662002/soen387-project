@@ -26,7 +26,7 @@
 	</c:forEach>
 	
 	<tr>
-		<td><a href="CreateGroup">Create New Group</a><br/></td>
+		<td><a href="CreateGroupDispatcher">Create New Group</a><br/></td>
 	</tr>
 	
  </table>

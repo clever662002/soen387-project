@@ -18,15 +18,6 @@ public class BrowseGroupCommand extends Command{
 	}
 	
 	@Override
-	public void execute() throws CommandException {
-		helper.setSessionAttribute("group", GroupMapper.findAll());
-		List<Group> groups = (List<Group>)helper.getAttribute("group");
-		helper.setRequestAttribute("groups",groups);
-		
-		
-	}
-
-	@Override
 	public void setUp() throws CommandException {
 		// TODO Auto-generated method stub
 		
@@ -35,6 +26,9 @@ public class BrowseGroupCommand extends Command{
 	@Override
 	public void process() throws CommandException {
 		// TODO Auto-generated method stub
+		helper.setSessionAttribute("group", GroupMapper.findAll());
+		List<Group> groups = (List<Group>)helper.getAttribute("group");
+		helper.setRequestAttribute("groups",groups);
 		
 	}
 
