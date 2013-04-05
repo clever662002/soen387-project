@@ -48,9 +48,7 @@ public class GroupTDG {
 
 	
 	//public static void insert(int group_id, String name, String description) 
-	public static void insert(String name, String description)
-	throws SQLException
-	{
+	public static void insert(String name, String description) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(INSERT);
 
 		ps.setString(1, name);

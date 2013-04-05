@@ -20,7 +20,7 @@ public class Group extends DomainObject<Long> implements IGroup{
 	private long version;
 
 	
-	public Group(int id, String name, String description, long version) {
+	public Group(long id,String name, String description, long version) {
 		super(version);
 		this.id = id;
 		this.name = name;

@@ -8,17 +8,15 @@ import org.dsrg.soenea.domain.proxy.DomainObjectProxy;
 
 import dom.model.group.mappers.GroupMapper;
 import dom.model.user.IUser;
-import dom.model.user.mappers.UserMapper;
-
 
 public class GroupProxy extends DomainObjectProxy<Long,Group>implements IGroup {
 
 	private long id;
 	private Group group;
 	
-	public GroupProxy(int id){
+	public GroupProxy(long l){
 		super(null);
-		this.id = id;
+		this.id = l;
 	}
 	
 	public Group getGroup(){

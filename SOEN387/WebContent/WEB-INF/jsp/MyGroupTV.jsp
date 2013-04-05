@@ -3,10 +3,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>View Person</title>
+	<title>My Group</title>
 </head>
 <body>
-	<h2>ViewGroup</h2>
+	<h2>My Own Group</h2>
 		
 	<c:if test="${!empty error}">
 		<p id="error"> ${error} </p>

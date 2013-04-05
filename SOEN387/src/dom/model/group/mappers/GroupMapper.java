@@ -41,12 +41,11 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		return group;		
 	}
 	
-	public static Group find(long id2)
-	{		
+	public static Group find(long id) {		
 		Group result = null;
 		try
 		{			
-			ResultSet rs = GroupTDG.find(id2);
+			ResultSet rs = GroupTDG.find(id);
 			if(rs.next())
 			{
 				result = new Group(rs.getInt(ID),
@@ -64,8 +63,7 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		return result;
 	}
 	
-	public static Group find(String group_name)
-	{
+	public static Group find(String group_name) {
 		Group result = null;
 		try
 		{
