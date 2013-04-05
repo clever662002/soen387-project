@@ -2,17 +2,22 @@ package dom.model.group;
 
 import java.util.List;
 
+import org.dsrg.soenea.domain.DomainObjectCreationException;
+import org.dsrg.soenea.domain.MapperException;
+import org.dsrg.soenea.domain.proxy.DomainObjectProxy;
+
 import dom.model.group.mappers.GroupMapper;
 import dom.model.user.IUser;
 import dom.model.user.mappers.UserMapper;
 
 
-public class GroupProxy implements IGroup {
+public class GroupProxy extends DomainObjectProxy<Long,Group>implements IGroup {
 
-	private int id;
+	private long id;
 	private Group group;
 	
 	public GroupProxy(int id){
+		super(null);
 		this.id = id;
 	}
 	
@@ -24,7 +29,7 @@ public class GroupProxy implements IGroup {
 	}
 
 	@Override
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -33,10 +38,10 @@ public class GroupProxy implements IGroup {
 		return getGroup().getName();
 	}
 
-	@Override
-	public String getDescription() {
-		return getGroup().getDescription();
-	}
+//	@Override
+//	public String getDescription() {
+//		return getGroup().getDescription();
+//	}
 
 	@Override
 	public List<IUser> getUsers() {
@@ -44,8 +49,27 @@ public class GroupProxy implements IGroup {
 	}
 
 	@Override
-	public int getVersion() {
+	public long getVersion() {
 		return getGroup().getVersion();
 	}
+
+	@Override
+	public void setVersion(long new_version) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected Group getFromMapper(Long id) throws MapperException,
+			DomainObjectCreationException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

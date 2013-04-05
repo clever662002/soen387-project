@@ -37,7 +37,7 @@ public class GroupTDG {
 		return rs;
 	}
 	
-	public static ResultSet find(int id) throws SQLException {
+	public static ResultSet find(long id) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT_BY_ID);
 		ps.setString(1, id+"");
 		System.out.println(ps.toString());
@@ -60,25 +60,25 @@ public class GroupTDG {
 		ps.close();
 	}
 	
-	public static int update(int group_id, String name, String description, int version) throws SQLException
+	public static int update(Long long1, String name, String description, long l) throws SQLException
 	{
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(UPDATE);
-		ps.setInt(1, group_id);
+		ps.setLong(1, long1);
 		ps.setString(2, name);
 		ps.setString(3, description);
-		ps.setInt(4, version);
-		ps.setInt(5, group_id);
+		ps.setLong(4, l);
+		ps.setLong(5, long1);
 		int count = ps.executeUpdate();
 		ps.close();
 		return count;
 	}
 	
-	public static int delete(int group_id, String name, String description, int version) throws SQLException
+	public static int delete(Long long1, String name, String description, long l) throws SQLException
 	{
-		System.out.println("Group id" + group_id);
+		System.out.println("Group id" + long1);
 		System.out.println(DbRegistry.getDbConnection().prepareStatement(DELETE));
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(DELETE);
-		ps.setInt(1, group_id);
+		ps.setLong(1, long1);
 		//ps.setInt(2, version);
 		int count = ps.executeUpdate();
 		ps.close();

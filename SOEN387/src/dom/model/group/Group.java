@@ -2,6 +2,8 @@ package dom.model.group;
 
 import java.util.List;
 
+import org.dsrg.soenea.domain.DomainObject;
+
 import dom.model.user.IUser;
 
 
@@ -9,20 +11,21 @@ import dom.model.user.IUser;
  * Domain model representing a Group
  * @author Alex Perkins, Dan Wang
  */
-public class Group implements IGroup{
+public class Group extends DomainObject<Long> implements IGroup{
 
-	private int id;
+	private long id;
 	private String name;
 	private String description;
 	private List<IUser> users;
-	private int version;
+	private long version;
 
 	
-	public Group(int id, String name, String description, int version) {
+	public Group(int id, String name, String description, long version) {
+		super(version);
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.version = version;
+	//	this.version = version;
 	}
 	
 	public String getName() {
@@ -38,18 +41,19 @@ public class Group implements IGroup{
 		this.description = description;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
+//	public void setId(int id) {
+//		this.id = id;
+//	}
 
-	public int getVersion() {
+	public long getVersion() {
 		return version;
 	}
 
-	public void setVersion(int version) {
+	public void setVersion(long version) {
 		this.version = version;
 	}
 	
@@ -64,4 +68,5 @@ public class Group implements IGroup{
 	public String toString() {
 		return "name is : " + this.name + "des is :" + this.description + "id is :" + this.id;
 	}
+
 }
