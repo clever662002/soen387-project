@@ -1,11 +1,10 @@
-<%@page import="java.util.List"%>
 <%@page import="dom.model.invite.Invite"%>
 <%@include file="../include/header.jsp" %>
 
 	<h2> INVITES </h2>
 	
 	<ul>	
-		<li><a href="SendInvite">Send Invite</a></li>
+		<li><a href="front?command=app.dispatcher.SendInviteDispatcher">Send Invite</a></li>
 	</ul>	
 		
 	<c:if test="${!empty error}">
@@ -25,8 +24,8 @@
 				<td>${invite.id}</td>
 				<td>${invite.group.id}</td>
 				<td>${invite.group.description}</td>
-				<td><a href="AcceptInvite?group_id=${invite.group.id}"></a></td>
-				<td><a href="DeclineInvite?group_id=${invite.group.id}"></a></td>
+				<td><a href="front?command=app.dispatcher.AcceptInviteDispatcher&group_id=${invite.group.id}">Accept</a></td>
+				<td><a href="front?commad=app.dispatcher.DeclineInviteDispatcher&group_id=${invite.group.id}">Decline</a></td>
 			</tr>
 		</c:forEach>
 		</table>

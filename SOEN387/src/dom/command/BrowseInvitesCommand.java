@@ -8,6 +8,7 @@ import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
 
 import dom.model.invite.Invite;
+import dom.model.user.User;
 import dom.model.user.mappers.UserMapper;
 
 public class BrowseInvitesCommand extends Command {
@@ -21,7 +22,8 @@ public class BrowseInvitesCommand extends Command {
 		
 		String id = helper.getString("user_id");
 		if(id == null){
-			throw new CommandException("User id not set.");
+			//throw new CommandException("User id not set.");
+			id = ((User)helper.getSessionAttribute("currentUser")).getId()+"";
 		}
 		List<Invite> invites = UserMapper.findInvites(Integer.parseInt(id));
 		helper.setSessionAttribute("invites", invites);
