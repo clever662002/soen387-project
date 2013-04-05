@@ -13,13 +13,13 @@ public class BrowseGroupDispatcher extends Dispatcher{
 	{
 		try
 		{
-			new BrowseGroupCommand(myHelper).execute();
+			new BrowseGroupCommand(myHelper).process();
 			forward("/WEB-INF/jsp/BrowseGroupTV.jsp");
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			forward("/WEB-INF/jsp/BrowseGroupTV.jsp");
+			forward("/WEB-INF/jsp/html/Error.jsp");
 		}
 	}
 	 
