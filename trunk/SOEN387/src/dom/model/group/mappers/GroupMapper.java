@@ -7,12 +7,16 @@ import java.util.Vector;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.dsrg.soenea.domain.DomainObject;
+import org.dsrg.soenea.domain.MapperException;
+import org.dsrg.soenea.domain.mapper.IOutputMapper;
+
 import dom.model.group.Group;
 import dom.model.group.tdg.GroupTDG;
 import dom.model.user.tdg.UserTDG;
 
 
-public class GroupMapper {
+public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	
 	private static final String    ID      = "group_id";
 	private static final String    NAME    = "name";
@@ -37,12 +41,12 @@ public class GroupMapper {
 		return group;		
 	}
 	
-	public static Group find(int id)
+	public static Group find(long id2)
 	{		
 		Group result = null;
 		try
 		{			
-			ResultSet rs = GroupTDG.find(id);
+			ResultSet rs = GroupTDG.find(id2);
 			if(rs.next())
 			{
 				result = new Group(rs.getInt(ID),
@@ -114,5 +118,59 @@ public class GroupMapper {
 		{
 			throw new SQLException("Fail to delete group id=" + g.getId());
 		}				
+	}
+
+	@Override
+	public void insert(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cascadeInsert(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cascadeUpdate(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cascadeDelete(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void validateInsert(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void validateUpdate(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void validateDelete(DomainObject<Long> d) throws MapperException {
+		// TODO Auto-generated method stub
+		
 	}
 }
