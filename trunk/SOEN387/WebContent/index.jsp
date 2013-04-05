@@ -1,14 +1,9 @@
 <html>
-
-<head>
-
-</head>
-
-<body>
-
-	<p> You should log in fool! </p>
-	<a href="jsp/LogInTV.jsp"> LOGIN </a>
-
-</body>
-
+	<head>
+		<title>Index</title>
+	</head>
+	<body>
+		<p> You should log in fool! </p>
+		<a href="front"> LOGIN </a>
+	</body>
 </html>
