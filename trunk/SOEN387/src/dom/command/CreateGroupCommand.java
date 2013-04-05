@@ -32,6 +32,7 @@ public class CreateGroupCommand extends Command{
 			// insert action + prepare data for ViewGroupTV
 			try {
 				helper.setRequestAttribute("group", GroupMapper.insert(sGroupName,sGroupDesc));
+				helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

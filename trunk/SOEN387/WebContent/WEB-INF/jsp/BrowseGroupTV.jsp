@@ -8,6 +8,8 @@
 
 <body>
 <h2>Browse Group</h2>
+
+
 <table>
 	<tr>
 		<td>group id</td>

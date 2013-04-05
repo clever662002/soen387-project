@@ -1,11 +1,14 @@
 package dom.command;
 
+import java.util.List;
+
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
 
 import dom.model.group.Group;
+import dom.model.group.GroupProxy;
 import dom.model.group.mappers.GroupMapper;
 import dom.model.user.User;
 import dom.model.user.mappers.UserMapper;
@@ -27,16 +30,28 @@ public class ViewGroupCommand extends Command{
 	public void process() throws CommandException {
 		try
 		{
-			int userId = Integer.parseInt(helper.getRequestAttribute("user_id").toString());
-			User user = UserMapper.find(userId);
+//			long userId = Long.parseLong(helper.getRequestAttribute("currentUser").toString());
+//			User user = UserMapper.find(userId);
+//			Group gp = (Group)user.getGroup();
+//			Long groupId = gp.getId();
+//			Group gr = GroupMapper.find(groupId);			
+//			String sGroupID = helper.getString("group_id:");
+//			helper.setRequestAttribute("group",gr);
+//			helper.setRequestAttribute("groupId", sGroupID);
+			User user= (User)helper.getSessionAttribute("currentUser");
+			GroupProxy myGroup = (GroupProxy)user.getGroup();
+			Long myGroupId = myGroup.getId();
+			long groupId = helper.getLong("group_id");
+			Group group = GroupMapper.find(groupId);
+			if(groupId == myGroupId) {
+				helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
+				helper.setRequestAttribute("group",group);				
+			}else {
+				helper.setRequestAttribute("template_view","/WEB-INF/jsp/ViewGroupTV.jsp");
+				helper.setRequestAttribute("group",group);
+
+			}
 			
-			Group gp = (Group)user.getGroup();
-			Long sGroupId = gp.getId();
-			
-			Group gr = GroupMapper.find(sGroupId);			
-			String sGroupID = helper.getString("group_id:");
-			helper.setRequestAttribute("group",gr);
-			helper.setRequestAttribute("groupId", sGroupID);
 		}
 		catch(Exception e)
 		{

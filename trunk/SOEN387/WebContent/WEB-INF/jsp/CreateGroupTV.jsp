@@ -9,7 +9,7 @@
 <body>
 <h2>Create Group</h2>
 
-<form action="CreateGroup" method="POST"> 
+<form action="front?command=app.dispatcher.CreateGroupCommandDispatcher" method="POST"> 
 	Group Name: <br /> <br /><input type="text" name="name" value="" /> <br />
 	Group Description: <input type="text" name="description" value="" /> <br />
 	<input type="submit" value="Submit" />

@@ -6,11 +6,8 @@ import javax.servlet.ServletException;
 
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 
-import dom.command.CreateGroupCommand;
-import dom.model.group.Group;
-import dom.model.group.mappers.GroupMapper;
-import dom.model.user.User;
-import dom.model.user.mappers.UserMapper;
+import dom.command.ViewGroupCommand;
+
 
 public class ViewGroupDispatcher extends Dispatcher{
 
@@ -18,8 +15,8 @@ public class ViewGroupDispatcher extends Dispatcher{
 	public void execute() throws ServletException, IOException {
 		try
 		{
-			new CreateGroupCommand(myHelper).process();
-			forward("/WEB-INF/jsp/ViewGroupTV.jsp");
+			new ViewGroupCommand(myHelper).process();
+			forward("/WEB-INF/jsp/Home.jsp");
 		}
 		catch(Exception e)
 		{
