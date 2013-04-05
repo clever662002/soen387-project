@@ -14,7 +14,7 @@ public class BrowseGroupDispatcher extends Dispatcher{
 		try
 		{
 			new BrowseGroupCommand(myHelper).process();
-			forward("/WEB-INF/jsp/BrowseGroupTV.jsp");
+			forward("/WEB-INF/jsp/Home.jsp");
 		}
 		catch(Exception e)
 		{
