@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>GROUP FORMER</title>
 </head>
@@ -27,13 +27,11 @@
 					<li><a href="front?command=app.dispatcher.LoginDispatcher">LOGIN</a></li>
 				</c:if>
 				<c:if test="${role.id == 2}">
-					<p>Role: ${role.name}</p>
 					<li><a href="front?command=app.dispatcher.BrowseInvitesDispatcher">INVITES</a></li>
 					<li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>
 					<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>
 				</c:if>
 				<c:if test="${role.id == 3}">
-					<p>Role: ${role.name}</p>
 					<li><a href="Admin">ADMIN</a></li>
 				</c:if>
 			</c:forEach>

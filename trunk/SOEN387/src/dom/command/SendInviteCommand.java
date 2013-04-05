@@ -20,8 +20,6 @@ public class SendInviteCommand extends Command {
 	@Override
 	public void execute() throws CommandException {
 		
-		helper.setSessionAttribute("info", "Invite Accepted");
-		
 		int userId = helper.getInt("user_id");
 		int groupId = helper.getInt("group_id");
 
@@ -59,8 +57,7 @@ public class SendInviteCommand extends Command {
 		//ADD user to group
 		InviteMapper.insert(userId,groupId);
 		
-		//TODO what to use for info??
-		//request.setAttribute("info", "invite sent");
+		getNotifications().add("Invite Sent.");
 	}
 
 	@Override
