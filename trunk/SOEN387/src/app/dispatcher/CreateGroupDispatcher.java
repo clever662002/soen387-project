@@ -13,8 +13,9 @@ public class CreateGroupDispatcher extends Dispatcher{
 	@Override
 	public void execute() throws ServletException, IOException
 	{
-		try
-		{	new CreateGroupCommand(myHelper).process();
+		try {
+			
+			new CreateGroupCommand(myHelper).process();
 			forward("/WEB-INF/jsp/CreateGroupTV.jsp");
 			
 		}
