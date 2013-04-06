@@ -25,6 +25,7 @@ public class CreateGroupCommand extends Command{
 	@Override
 	public void process() throws CommandException {
 		
+		//helper.setRequestAttribute("template_view","/WEB-INF/jsp/CreateGroupTV.jsp");
 		String sGroupName = helper.getString("name");
 		String sGroupDesc = helper.getString("description");		
 		if (sGroupName != null && !sGroupName.equals(""))
