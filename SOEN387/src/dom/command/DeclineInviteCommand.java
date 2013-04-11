@@ -34,8 +34,8 @@ public class DeclineInviteCommand extends Command {
 		
 		InviteMapper.delete(Integer.parseInt(userId),Integer.parseInt(groupId));
 		
-		helper.setSessionAttribute("info", "invite declined.");
 		helper.setSessionAttribute("invites",UserMapper.findInvites(Integer.parseInt(userId)));
+		getNotifications().add("Invite Declined.");
 	}
 
 	@Override

@@ -31,7 +31,7 @@
 					<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>
 				</c:if>
 				<c:if test="${role.id == 3}">
-					<li><a href="Admin">ADMIN</a></li>
+					<li><a href="front?command=app.dispatcher.AddUsersDispatcher">ADMIN</a></li>
 				</c:if>
 			</c:forEach>
 		</c:if>

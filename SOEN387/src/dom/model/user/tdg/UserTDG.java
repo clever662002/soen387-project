@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Vector;
 
 
+import org.dsrg.soenea.service.UniqueIdFactory;
 import org.dsrg.soenea.service.logging.SQLLogger;
 import org.dsrg.soenea.service.threadLocal.DbRegistry;
 
@@ -62,6 +63,25 @@ public class UserTDG {
 	public static String INSERT_USER_ROLE_SQL = 
 			"INSERT INTO " + DB_USER_ROLE_TABLE + " " +
 			"(user_id, role_id) VALUES(?, ?);";
+	
+	public final static String CREATE_TABLE = 
+		"CREATE TABLE IF NOT EXISTS " + DB_NAME_USER + " (" +
+		"user_id int NOT NULL,"+ //user_id int NOT NULL AUTO_INCREMENT,
+		"PRIMARY KEY(user_id),"+
+		"username varchar(25) NOT NULL UNIQUE,"+
+		"password varchar(25),"+
+		"first_name varchar(25)," +
+		"last_name varchar(25),"+
+		"version int NOT NULL DEFAULT 0"+
+		") ENGINE=InnoDB;";
+
+	public final static String DROP_TABLE =
+		"DROP TABLE IF EXISTS " + DB_NAME_USER + ";";
+
+	
+	public static long getMaxID() throws SQLException {
+		return UniqueIdFactory.getMaxId( DB_NAME_USER, "id" );
+	}
 	
 	public static ResultSet find(String username,String password) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(LOGIN);

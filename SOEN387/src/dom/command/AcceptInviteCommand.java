@@ -17,8 +17,6 @@ public class AcceptInviteCommand extends Command {
 	@Override
 	public void execute() throws CommandException {
 		
-		helper.setSessionAttribute("info", "Invite Accepted");
-		
 		int userId = helper.getInt("user_id");
 		int groupId = helper.getInt("group_id");
 		
@@ -33,7 +31,7 @@ public class AcceptInviteCommand extends Command {
 		
 		//TODO if user null do something.
 		
-		if(user.getGroup() != null){
+		if(user.getGroup() != null || user.getGroup().getId() <= 0){
 			//The user is already in a group.
 		}
 		
@@ -42,6 +40,8 @@ public class AcceptInviteCommand extends Command {
 		
 		//TODO dont reload everything again
 		helper.setSessionAttribute("invites",UserMapper.findInvites(userId));
+		
+		//TODO add user to group.
 	}
 
 	@Override
