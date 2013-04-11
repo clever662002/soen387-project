@@ -5,3 +5,5 @@
 <c:if test="${!empty errorMessage}">
 	<p id="error"> ${errorMessage} </p>
 </c:if>
+
+<a href="front?command=app.dispatcher.LoginDispatcher"> Get me out of here! </a>

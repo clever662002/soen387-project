@@ -53,12 +53,14 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	public static User makeUser(ResultSet rs) throws SQLException{
 		User user = null;
 		try{
+			user = UserFactory.createClean(rs.getLong(USER_ID), rs.getString(USERNAME), rs.getString(FIRST_NAME), 
+										rs.getString(LAST_NAME), rs.getString(PASSWORD), null, rs.getInt(VERSION));
+			
 			// Get the users roles
 			List<IRole> roles = RoleInputMapper.find(user);
-			user = UserFactory.createClean(rs.getLong(USER_ID), rs.getString(USERNAME), rs.getString(FIRST_NAME), 
-										rs.getString(LAST_NAME), rs.getString(PASSWORD), roles, rs.getInt(VERSION));
-			GroupProxy gp = null;
+			user.setRoles(roles);
 			int groupID = rs.getInt(GROUP_ID);
+			GroupProxy gp = null;
 			if(groupID > 0){
 				gp = new GroupProxy(rs.getInt(GROUP_ID));
 			}
@@ -77,6 +79,8 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 			ResultSet rs = UserTDG.find(id);
 			if(!rs.next()) throw new MapperException("User with that id doesn't exist!");
 			user = makeUser(rs);
+			//Put the user in the identity map
+			UserIdentityMap.put(user.getId(), user);
 		}
 		catch(SQLException ex){
 			throw new MapperException("Could not find user with id " + id + ".");
@@ -102,10 +106,6 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		ResultSet rs = UserTDG.find(username,password);
 		if(!rs.next()) throw new MapperException("User with that Username/Password doesn't exist!");
 		user = makeUser(rs);
-		
-		// UOW
-		//UoW.getCurrent().registerClean(user);
-		
 		return user;
 	}
 	
