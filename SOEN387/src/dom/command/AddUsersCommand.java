@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
@@ -41,9 +42,6 @@ public class AddUsersCommand extends Command{
 	public void execute() throws CommandException {
 		
 		try{
-		
-			//String id = (String) helper.getSessionAttribute("user_id");
-
 			Object obj = helper.getRequestAttribute("fileItems");
 			
 			if(obj == null){
@@ -51,17 +49,6 @@ public class AddUsersCommand extends Command{
 			}
 			
 			List<FileItem> items = (List<FileItem>)helper.getRequestAttribute("fileItems");
-			
-			//ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
-			
-			//String[] fileItems = helper.getValues("");
-			
-			//List fileItemsList = ServletFileUpload.parseRequest(request);
-			//Iterator it = fileItemsList.iterator();
-		//	FileUploadUtil fuu = new FileUploadUtil(helper.getString("realPath"));
-			
-		//	String ext = fuu.getFileNameExtension("");
-			
 			Iterator<FileItem> it = items.iterator();
 			while (it.hasNext()){
 				FileItem fileItem = (FileItem)it.next();
@@ -100,6 +87,9 @@ public class AddUsersCommand extends Command{
 				  }
 			  }
 			}
+		}
+		catch(CommandException ex){
+			
 		}
 		catch(IOException ex){
 			getNotifications().add("There was a problem reading the file.");

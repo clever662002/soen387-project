@@ -17,11 +17,13 @@ public class DeclineInviteDispatcher extends Dispatcher {
 		// TODO Auto-generated method stub
 		try{
 			new DeclineInviteCommand(myHelper).execute();
-			forward("/WEB-INF/jsp/ViewInviteTV.jsp");
+			redirectToDispatcher(new BrowseInvitesDispatcher());
+			//forward("/WEB-INF/jsp/ViewInviteTV.jsp");
 		}
 		catch(Exception e){
 			e.printStackTrace();
-			forward("/WEB-INF/jsp/ViewInviteTV.jsp");
+			//forward("/WEB-INF/jsp/ViewInviteTV.jsp");
+			redirectToDispatcher(new BrowseInvitesDispatcher());
 		}
 	}
 	

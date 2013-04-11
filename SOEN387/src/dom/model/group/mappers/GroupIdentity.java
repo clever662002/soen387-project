@@ -8,7 +8,7 @@ public class GroupIdentity {
 	
 	public GroupIdentity() 
 	{
-		
+		map = new HashMap<Long,Group>();
 	}
 	
 	public void put(long id, Group p)

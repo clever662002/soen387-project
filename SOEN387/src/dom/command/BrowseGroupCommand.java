@@ -3,6 +3,7 @@ package dom.command;
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 
+import java.sql.SQLException;
 import java.util.List;
 import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
@@ -27,7 +28,13 @@ public class BrowseGroupCommand extends Command{
 	public void process() throws CommandException {
 		// TODO Auto-generated method stub
 		//helper.setSessionAttribute("group", GroupMapper.findAll());
-		List<Group> groups = GroupMapper.findAll();
+		List<Group> groups = null;
+		try{
+			groups = GroupMapper.findAll();
+		}
+		catch(SQLException ex){
+			throw new CommandException(ex);
+		}
 		helper.setRequestAttribute("groups",groups);
 		helper.setRequestAttribute("template_view","/WEB-INF/jsp/BrowseGroupTV.jsp");
 		

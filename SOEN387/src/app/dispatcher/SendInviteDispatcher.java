@@ -21,6 +21,7 @@ public class SendInviteDispatcher extends Dispatcher {
 			forward("/WEB-INF/jsp/SendInviteTV.jsp");
 		}
 		catch(Exception e){
+			//e.printStackTrace();
 			forward("/WEB-INF/jsp/SendInviteTV.jsp");
 		}
 	}
