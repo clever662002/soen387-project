@@ -7,7 +7,16 @@
 </head>
 
 <body>
-<h2>Browse Group</h2>
+ 	<c:choose>
+ 		<c:when test="${!empty notice}">
+        	<h2>${notice}</h2>>
+        </c:when>
+        <c:otherwise>
+			<h2>Browse Group</h2>
+        </c:otherwise>                                 
+    </c:choose>
+	
+
 
 
 <table>
@@ -27,7 +36,7 @@
 	</c:forEach>
 	
 	<tr>
-		<td><a href="front?command=app.dispatcher.CreateGroupDispatcher">Create New Group</a><br/></td>
+	<td><a href="front?command=app.dispatcher.CreateGroupFormDispatcher">Create New Group</a><br/></td>
 	</tr>
 	
  </table>
