@@ -30,6 +30,8 @@
 				<td>${group.description}</td>
 			</tr>							
 		</table>
+		
+		<a href="front?command=app.dispatcher.EditGroupDispatcher?group_id=${group.id}">Edit Group</a>
 	</c:if>
 </body>	
 </html>
