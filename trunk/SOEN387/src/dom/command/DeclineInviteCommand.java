@@ -6,6 +6,7 @@ import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
 
 import dom.model.invite.mappers.InviteMapper;
+import dom.model.user.User;
 import dom.model.user.mappers.UserMapper;
 
 public class DeclineInviteCommand extends Command {
@@ -17,20 +18,12 @@ public class DeclineInviteCommand extends Command {
 	@Override
 	public void execute() throws CommandException {
 	
-		//TODO implement decline invite
-		
-		String userId = helper.getString("user_id");
+		String userId = ((User)helper.getSessionAttribute("currentUser")).getId() +"";
 		String groupId = helper.getString("group_id");
 		
 		if(groupId == null){
 			throw new CommandException("Group Id is null.");
 		}
-		
-		if(userId == null){
-			throw new CommandException("User Id is null.");
-		}
-		
-		//TODO finish this method
 		
 		InviteMapper.delete(Integer.parseInt(userId),Integer.parseInt(groupId));
 		

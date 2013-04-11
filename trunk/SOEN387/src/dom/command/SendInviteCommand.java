@@ -1,5 +1,6 @@
 package dom.command;
 
+import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
@@ -37,13 +38,16 @@ public class SendInviteCommand extends Command {
 		}
 		
 		if(userToInvite == null){
-			throw new CommandException("The user with id " + userId + 
+			helper.setRequestAttribute("error", "The user with id " + userId + 
 					" you are trying to invite does not exist.");
+			throw new CommandException("The user with id " + userId + 
+					" you are trying to invite does not exist.");			
 		}
 		
 		if(currentUser.getGroup().getId() != groupId){
 			//TODO check what notifications do...
-			getNotifications().add("You can only invite someone to a group that you are a member of.");
+			
+			helper.setRequestAttribute("error", "You can only invite someone to a group that you are a member of.");
 			throw new CommandException("You can only invite someone to a group that you are a member of.");
 		}
 		
@@ -51,25 +55,33 @@ public class SendInviteCommand extends Command {
 		Group group = GroupMapper.find(groupId);
 		
 		if(group == null){
+			helper.setRequestAttribute("error", "The group with id " + groupId + " group doesn't exist.");
 			throw new CommandException("The group with id " + groupId + " group doesn't exist.");
 		}
 	
-		//ADD user to group
-		InviteMapper.insert(userId,groupId);
+		boolean sent = true;
 		
-		getNotifications().add("Invite Sent.");
+		try{
+			InviteMapper.insert(userId,groupId);
+		}
+		catch(MapperException ex){
+			helper.setRequestAttribute("error",ex.getMessage());
+			sent = false;
+		}
+		
+		if(sent){
+			getNotifications().add("Invite to group '" + group.getName() + "' has been sent.");
+		}
 	}
 
 	@Override
 	public void setUp() throws CommandException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void process() throws CommandException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

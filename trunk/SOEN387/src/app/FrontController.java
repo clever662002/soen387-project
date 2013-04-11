@@ -80,6 +80,8 @@ public class FrontController extends DispatcherServlet {
 				myHelper = new HttpServletHelper(request);
 			}
 			
+			String path = request.getRequestURL().toString();
+			myHelper.setRequestAttribute("path", path);
 			myHelper.setRequestAttribute("realPath", getServletContext().getRealPath("."));
 			
 			commandName = getCommandName(request);
@@ -101,6 +103,7 @@ public class FrontController extends DispatcherServlet {
 			
 			command = DispatcherFactory.getInstance(commandName);
 			command.init(request, response);
+			String method = request.getMethod();
 			long time = System.currentTimeMillis();
 			command.execute();
 			System.out.println("Total Request time: " + (System.currentTimeMillis() - time) + " ms.");

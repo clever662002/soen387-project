@@ -36,6 +36,7 @@ public class UserTDG {
 	private static String VERSION = "version";
 	//INVITE
 	private static String GROUP_ID = "group_id";
+	
 	//// SQL STATEMENTS
 	//USER
 //	private static String SELECT = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ DB_NAME_USER+"."+USER_ID+"=?";
@@ -44,7 +45,7 @@ public class UserTDG {
 	private static String LOGIN = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+"="+ DB_NAME_USER_GROUP + "."+ USER_ID+") WHERE "+ USERNAME+"=? AND " + PASSWORD + "=?";
 	private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ USERNAME+"=?";
 	//private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + ","+DB_NAME_GROUP+ " WHERE "+DB_NAME_USER+"."+USER_ID+"="+DB_NAME_GROUP+"."+USER_ID+" AND "+USERNAME+"=?";
-	private static String INSERT = "INSERT INTO " +DB_NAME_USER+ " ("+USERNAME+","+FIRST_NAME+","+LAST_NAME+","+PASSWORD+") VALUES (?,?,?,?)";
+	private static String INSERT = "INSERT INTO " +DB_NAME_USER+ " ("+USERNAME+","+FIRST_NAME+","+LAST_NAME+","+PASSWORD+","+VERSION +") VALUES (?,?,?,?,?)";
 	//TODO finish update query
 	private static String UPDATE = "UPDATE " +DB_NAME_USER+ "SET ";
 	private static String DELETE_INVITES = "DELETE FROM  " +DB_NAME_INVITE+ " WHERE "+USER_ID+ "=?";
@@ -72,7 +73,7 @@ public class UserTDG {
 		"password varchar(25),"+
 		"first_name varchar(25)," +
 		"last_name varchar(25),"+
-		"version int NOT NULL DEFAULT 0"+
+		"version int NOT NULL DEFAULT 1"+
 		") ENGINE=InnoDB;";
 
 	public final static String DROP_TABLE =
@@ -95,14 +96,14 @@ public class UserTDG {
 	public static ResultSet find(String username) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(FIND_BY_USERNAME);
 		ps.setString(1, username);
-		System.out.println(FIND_BY_USERNAME);
+		//System.out.println(FIND_BY_USERNAME);
 		ResultSet rs = ps.executeQuery();
 		return rs;
 	}
 	
 	public static ResultSet find(long id) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT);
-		System.out.println(SELECT);
+		//System.out.println(SELECT);
 		ps.setString(1, id+"");
 		ResultSet rs = ps.executeQuery();
 		//ps.close();
@@ -121,18 +122,17 @@ public class UserTDG {
 		ps.setString(1, params.get(USERNAME));
 		ps.setString(2, params.get(FIRST_NAME));
 		ps.setString(3, params.get(LAST_NAME));
-		
 		//TODO hash the password
 		String password = params.get(PASSWORD);
 		String encryptedPassword = password;
-		
 		ps.setString(4, encryptedPassword);
+		ps.setInt(5, Integer.parseInt(params.get(VERSION)));		
 		int rs = ps.executeUpdate();
 		ps.close();
 	}
 	
 	public static int update(HashMap<String,String> params) throws SQLException {
-		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(INSERT);
+		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(UPDATE);
 		ps.setString(1, params.get(USERNAME));
 		ps.setString(2, params.get(FIRST_NAME));
 		ps.setString(3, params.get(LAST_NAME));

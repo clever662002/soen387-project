@@ -37,7 +37,8 @@ public class LoginCommand extends Command{
 			throw new CommandException(ex);
 		}
 		catch(MapperException ex){
-			getNotifications().add("No user for that username and password combo.");
+			//getNotifications().add("No user for that username and password combo.");
+			helper.setRequestAttribute("error", "No user for that username and password combo.");
 			throw new CommandException("No user for that username and password combo.");
 		}
 		catch(Exception ex){

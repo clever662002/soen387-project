@@ -11,29 +11,19 @@ import dom.model.user.IUser;
 
 public class GroupProxy extends DomainObjectProxy<Long,Group>implements IGroup {
 
-	private long id;
+	//private long id;
 	private Group group;
 	
 	public GroupProxy(long l){
-		super(null);
-		this.id = l;
+		super(l);
+		//this.id = l;
 	}
 	
 	public Group getGroup(){
 		if(group == null){
-			group = GroupMapper.find(id);
+			group = GroupMapper.find(super.getId());
 		}
 		return group;
-	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public String getName() {
-		return getGroup().getName();
 	}
 
 //	@Override
@@ -63,11 +53,15 @@ public class GroupProxy extends DomainObjectProxy<Long,Group>implements IGroup {
 	}
 
 	@Override
+	public String getName() {
+		return getGroup().getName();
+	}
+
+	@Override
 	protected Group getFromMapper(Long id) throws MapperException,
 			DomainObjectCreationException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
 }

@@ -163,9 +163,9 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		params.put(FIRST_NAME,user.getFirstName());
 		params.put(LAST_NAME,user.getLastName());
 		params.put(PASSWORD,user.getPassword());
+		params.put(VERSION,user.getVersion()+"");
 		UserTDG.insert(params);
 		insertRoles(user);
-		
 		//UserIdentityMap.put(user.getId(),user);
 	}
 	
