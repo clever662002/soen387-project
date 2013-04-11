@@ -12,7 +12,7 @@
 <body>
 <h2>View Person</h2>
 
-<form action="EditGroup" method="POST">
+<form action="front?command=app.dispatcher.EditGroupDispatcher" method="POST">
 	<%
 	Group group = (Group)request.getAttribute("group");
 	String warning = (String)request.getAttribute("warning");
