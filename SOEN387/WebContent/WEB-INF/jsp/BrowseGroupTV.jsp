@@ -27,7 +27,6 @@
 	</c:forEach>
 	
 	<tr>
-	
 		<td><a href="front?command=app.dispatcher.CreateGroupDispatcher">Create New Group</a><br/></td>
 	</tr>
 	
