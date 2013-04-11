@@ -22,24 +22,27 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	private static final String    NAME    = "name";
 	private static final String    DESC    = "description";
 	private static final String    VERSION = "version";
+	private static GroupIdentity   map     = new GroupIdentity();
 	
-	public static List<Group> findAll() 
-	{		
-		List<Group> group = new Vector<Group>();
-		try
-		{				
-			ResultSet rs = GroupTDG.findAll();
-			while(rs.next()) 
-			{
-				group.add(getGroup(rs));
-			}		
-		}
-		catch(Exception e)
+	public static List<Group> findAll() throws SQLException
+	{
+		List<Group> list_group = new Vector<Group>();
+	
+		ResultSet rs = GroupTDG.findAll();
+		while(rs.next())
 		{
-			e.getStackTrace();
+			Group g = getGroup(rs);
+			list_group.add(g);
+	
+			if(map.get(g.getId()) == null)
+			{
+				map.put(g.getId(), g);
+			}
 		}
-		return group;		
+		
+		return list_group;
 	}
+	
 	
 	public static Group find(long id) {		
 		Group result = null;
@@ -52,7 +55,10 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 								   rs.getString(NAME),
 								   rs.getString(DESC),
 								   rs.getInt(VERSION));
-				System.out.print(result.getId());
+				if(map.get(result.getId())== null)
+				{
+					map.put(result.getId(), result);
+				}
 			}						
 		}
 		catch(SQLException ex)		
@@ -74,6 +80,10 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 								   rs.getString(NAME),
 								   rs.getString(DESC),
 								   rs.getInt(VERSION));
+				if(map.get(result.getId()) == null)
+				{
+					map.put(result.getId(), result);
+				}
 			}
 		}
 		catch(SQLException ex)
@@ -98,19 +108,35 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	
 	public static Group update(Group g) throws SQLException
 	{		
-		int count = GroupTDG.update(g.getId(), g.getName(), g.getDescription(), g.getVersion());
+		Group g_actual;
+		
+		if(map.get(g.getId())==null)
+		{
+			g_actual = g;
+		}
+		else
+		{
+			g_actual = map.get(g.getId());
+		}
+		
+		int count = GroupTDG.update(g_actual.getId(), g_actual.getName(), g_actual.getDescription(), g_actual.getVersion());
 		if(count == 0)
 		{
 			throw new SQLException("Fail to update group id=" + g.getId());
 		}
 		
-		g.setVersion(g.getVersion()+1);
+		g_actual.setVersion(g_actual.getVersion()+1);
 		
-		return GroupMapper.find(g.getId());
+		return GroupMapper.find(g_actual.getId());
 	}
 	
 	public static void delete(Group g) throws SQLException
 	{		
+		if(map.get(g.getId())!=null)
+		{
+			map.remove(g.getId());
+		}
+		
 		int count = GroupTDG.delete(g.getId(), g.getName(), g.getDescription(), g.getVersion());
 		if(count == 0)
 		{
