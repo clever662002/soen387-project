@@ -25,6 +25,8 @@ import dom.model.group.IGroup;
 import dom.model.group.tdg.GroupTDG;
 import dom.model.invite.Invite;
 import dom.model.user.User;
+import dom.model.user.UserFactory;
+import dom.model.user.UserIdentityMap;
 import dom.model.user.tdg.UserTDG;
 
 
@@ -50,39 +52,28 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	
 	public static User makeUser(ResultSet rs) throws SQLException{
 		User user = null;
-		//TODO fix the fact that the version is the same name
-		//Group group = new Group(rs.getInt(GROUP_ID),rs.getString(NAME),rs.getString(DESCRIPTION),rs.getInt(VERSION));
-		user = new User(rs.getLong(USER_ID), 
-				rs.getString(FIRST_NAME),
-				rs.getString(LAST_NAME), 
-				rs.getString(USERNAME),
-				rs.getString(PASSWORD),
-				rs.getInt(VERSION),
-				null);
-			
-///// DIRTY			
-		List<IRole> roles = null;
 		try{
 			// Get the users roles
-			roles = RoleInputMapper.find(user);
+			List<IRole> roles = RoleInputMapper.find(user);
+			user = UserFactory.createClean(rs.getLong(USER_ID), rs.getString(USERNAME), rs.getString(FIRST_NAME), 
+										rs.getString(LAST_NAME), rs.getString(PASSWORD), roles, rs.getInt(VERSION));
+			GroupProxy gp = null;
+			int groupID = rs.getInt(GROUP_ID);
+			if(groupID > 0){
+				gp = new GroupProxy(rs.getInt(GROUP_ID));
+			}
+			user.setGroup(gp);
 		}
-		catch(Exception ex){
-		}	
-		user.setRoles(roles);
-////DIRTY
-		
-		GroupProxy gp = null;
-		int groupID = rs.getInt(GROUP_ID);
-		if(groupID > 0){
-			gp = new GroupProxy(rs.getInt(GROUP_ID));
-		}
-		user.setGroup(gp);
+		catch(Exception ex){ ex.printStackTrace(); }
 		return user;
 	}
 	
 	public static User find(long id) throws MapperException {
 		User user = null;
 		try{
+			if(UserIdentityMap.isKnown(id)){
+				return UserIdentityMap.get(id);
+			}
 			ResultSet rs = UserTDG.find(id);
 			if(!rs.next()) throw new MapperException("User with that id doesn't exist!");
 			user = makeUser(rs);
@@ -174,6 +165,8 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		params.put(PASSWORD,user.getPassword());
 		UserTDG.insert(params);
 		insertRoles(user);
+		
+		//UserIdentityMap.put(user.getId(),user);
 	}
 	
 	/**

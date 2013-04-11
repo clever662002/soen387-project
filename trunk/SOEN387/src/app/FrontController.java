@@ -2,12 +2,17 @@ package app;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.dsrg.soenea.application.servlet.DispatcherServlet;
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 import org.dsrg.soenea.application.servlet.dispatcher.HttpServletHelper;
@@ -23,6 +28,10 @@ import org.dsrg.soenea.service.threadLocal.DbRegistry;
 import org.dsrg.soenea.service.threadLocal.ThreadLocalTracker;
 import org.dsrg.soenea.uow.MapperFactory;
 import org.dsrg.soenea.uow.UoW;
+
+import utils.FileUploadUtil;
+import utils.MultipartHttpServletHelper;
+import utils.MultipartRequest;
 
 import dom.model.group.Group;
 import dom.model.group.mappers.GroupMapper;
@@ -60,12 +69,18 @@ public class FrontController extends DispatcherServlet {
 		
 		try{
 			
-			myHelper = new HttpServletHelper(request);
+			boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
 			
-			for(Object key : request.getParameterMap().keySet()){
-				System.out.println("Key " + key + " value: " + request.getParameterValues(key.toString()));
-				 
+			if(isMultipartContent){
+				myHelper = new MultipartHttpServletHelper(request);
+				final List<FileItem> items = FileUploadUtil.getMultipartFileItems(request);
+				myHelper.setRequestAttribute("fileItems", items);
 			}
+			else{
+				myHelper = new HttpServletHelper(request);
+			}
+			
+			myHelper.setRequestAttribute("realPath", getServletContext().getRealPath("."));
 			
 			commandName = getCommandName(request);
 			
@@ -80,7 +95,10 @@ public class FrontController extends DispatcherServlet {
 				request.getSession(true).setAttribute("currentUser", user);
 			}
 			
-			ApplicationAuthorizaton.hasAuthority(commandName,user.getRoles());
+			if(!ApplicationAuthorizaton.hasAuthority(commandName,user.getRoles())){
+				throw new Exception("You need to be logged in to access this page.");
+			}
+			
 			command = DispatcherFactory.getInstance(commandName);
 			command.init(request, response);
 			long time = System.currentTimeMillis();
@@ -90,7 +108,7 @@ public class FrontController extends DispatcherServlet {
 		catch(Exception ex){
 			request.setAttribute("errorMessage", ex.getMessage());
 			request.setAttribute("exception", ex);
-			request.getRequestDispatcher("/WEB-INF/jsp/html/Error.jsp");
+			request.getRequestDispatcher("/WEB-INF/jsp/html/Error.jsp").forward(request,response);
 		}
 	}
 	

@@ -24,7 +24,7 @@ public class LoginCommand extends Command{
 		String username = helper.getString("username");
 		String password = helper.getString("password");
 		
-		if(username == null && password == null){
+		if(username == null || password == null){
 			throw new CommandException("");
 		}
 		
