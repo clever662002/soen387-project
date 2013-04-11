@@ -10,6 +10,7 @@ import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
 import org.dsrg.soenea.domain.user.mapper.UserInputMapper;
 
+import dom.model.user.GuestUser;
 import dom.model.user.mappers.UserMapper;
 
 public class LoginCommand extends Command{
@@ -20,7 +21,7 @@ public class LoginCommand extends Command{
 	
 	@Override
 	public void execute() throws CommandException {
-
+		
 		String username = helper.getString("username");
 		String password = helper.getString("password");
 		

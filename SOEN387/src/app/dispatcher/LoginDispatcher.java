@@ -9,6 +9,7 @@ import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 import controller.BrowseGroupPC;
 
 import dom.command.LoginCommand;
+import dom.model.user.GuestUser;
 
 public class LoginDispatcher  extends Dispatcher  {
 
@@ -16,7 +17,9 @@ public class LoginDispatcher  extends Dispatcher  {
 	public void execute() throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try{
-			new LoginCommand(myHelper).execute();
+			if(myHelper.getSessionAttribute("currentUser") instanceof GuestUser){
+				new LoginCommand(myHelper).execute();
+			}
 			forward("/WEB-INF/jsp/Home.jsp");
 		}
 		catch(Exception e){
