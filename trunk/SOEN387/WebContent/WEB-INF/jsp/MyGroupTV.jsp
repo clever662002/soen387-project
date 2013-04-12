@@ -31,7 +31,7 @@
 			</tr>							
 		</table>
 		
-		<a href="front?command=app.dispatcher.EditGroupDispatcher?group_id=${group.id}">Edit Group</a>
+		<a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit Group</a>
 	</c:if>
 </body>	
 </html>
