@@ -29,7 +29,11 @@
 
 	<c:forEach var="group" items="${groups}">
 		<tr>
+			<!-- 
 			<td><a href="front?command=app.dispatcher.ViewGroupDispatcher&group_id=${group.id}"><c:out value="${group.id}" /></a></td>
+			-->
+			<td><a href="view_group/${group.id}"><c:out value="${group.id}" /></a></td>
+			
 			<td><c:out value="${group.name}" /></td>
 			<td><c:out value="${group.description}" /></td>
 		</tr>

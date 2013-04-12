@@ -84,12 +84,22 @@ public class FrontController extends DispatcherServlet {
 			myHelper.setRequestAttribute("path", path);
 			myHelper.setRequestAttribute("realPath", getServletContext().getRealPath("."));
 			
+			/*
 			commandName = getCommandName(request);
-			
 			if(commandName == null){
-				commandName = "";
+				commandName =  "";
 			}
+			*/
+			commandName = (String)request.getAttribute("command");			
+			if(commandName == null){
+				commandName =  getCommandName(request);
+				if (commandName == null)
+					commandName = "";
+			}
+			else
+				commandName = "app.dispatcher." + commandName;
 			
+					
 			user = (User) myHelper.getSessionAttribute("currentUser");
 			
 			if(user == null){
