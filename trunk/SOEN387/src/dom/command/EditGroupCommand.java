@@ -36,11 +36,15 @@ public class EditGroupCommand extends Command{
 			long groupId = helper.getLong("group_id");
 			Group group = GroupMapper.find(groupId);			
 			*/
-			long groupId 			= helper.getLong("group_id");			
+			
+			//long groupId 			= helper.getLong("group_id");
+			String sGroupID = (String)helper.getAttribute("group_id");
+			long groupId = Long.parseLong(sGroupID);	
+			
 			String sGroupNameNew 	= helper.getString("name");			
 			String sGroupDescNew 	= helper.getString("description");
 			String sGroupVersionNew = helper.getString("version");
-			
+						
 			if (sGroupNameNew != null && !sGroupNameNew.equals(""))			
 			{	
 				// prepare data to load page				

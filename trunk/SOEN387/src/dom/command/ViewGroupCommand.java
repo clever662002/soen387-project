@@ -41,7 +41,12 @@ public class ViewGroupCommand extends Command{
 			User user= (User)helper.getSessionAttribute("currentUser");
 			GroupProxy myGroup = (GroupProxy)user.getGroup();
 			Long myGroupId = myGroup.getId();
-			long groupId = helper.getLong("group_id");
+			
+			
+			//long groupId = helper.getLong("group_id");
+			String strGroupId = (String)helper.getAttribute("group_id");
+			long groupId = Long.parseLong(strGroupId);			
+			
 			Group group = GroupMapper.find(groupId);
 			if(groupId == myGroupId) {
 				helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");

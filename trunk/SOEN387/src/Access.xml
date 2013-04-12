@@ -8,7 +8,10 @@
 
 	<role name="dom.model.role.RegisteredRole">
 		<command name="app.dispatcher.AcceptInviteDispatcher" post="true" />
+		 
 		<command name="app.dispatcher.BrowseGroupDispatcher" get="true"/>
+		 
+		 
 		<command name="app.dispatcher.EditGroupDispatcher"   post="true"/>
 		<command name="app.dispatcher.BrowseInvitesDispatcher" get="true"/>
 		<command name="app.dispatcher.CreateGroupDispatcher" post="true" />
