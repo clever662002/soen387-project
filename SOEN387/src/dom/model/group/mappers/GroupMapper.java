@@ -7,6 +7,7 @@ import java.util.Vector;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 import org.dsrg.soenea.domain.DomainObject;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.IOutputMapper;
@@ -27,18 +28,20 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	public static List<Group> findAll() throws SQLException
 	{
 		List<Group> list_group = new Vector<Group>();
-	
+		List<Long> list_id = new Vector<Long>();
+		
 		ResultSet rs = GroupTDG.findAll();
 		while(rs.next())
 		{
 			Group g = getGroup(rs);
 			list_group.add(g);
-	
+			
 			if(map.get(g.getId()) == null)
 			{
 				map.put(g.getId(), g);
 			}
 		}
+		
 		
 		return list_group;
 	}
@@ -93,7 +96,69 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		return result;
 	}
 	
-
+	/*
+	public static List<Group> findAll() 
+	{		
+		List<Group> group = new Vector<Group>();
+		try
+		{				
+			ResultSet rs = GroupTDG.findAll();
+			while(rs.next()) 
+			{
+				group.add(getGroup(rs));
+			}		
+		}
+		catch(Exception e)
+		{
+			e.getStackTrace();
+		}
+		return group;		
+	}
+	
+	public static Group find(long id)
+	{		
+		Group result = null;
+		try
+		{			
+			ResultSet rs = GroupTDG.find(id);
+			if(rs.next())
+			{
+				result = new Group(rs.getInt(ID),
+								   rs.getString(NAME),
+								   rs.getString(DESC),
+								   rs.getInt(VERSION));
+				System.out.print(result.getId());
+			}						
+		}
+		catch(SQLException ex)		
+		{
+			System.err.print("SQLException : " + ex.getMessage());
+		}
+		
+		return result;
+	}
+	
+	public static Group find(String group_name)
+	{
+		Group result = null;
+		try
+		{
+			ResultSet rs = GroupTDG.find(group_name);
+			if(rs.next())
+			{
+				result = new Group(rs.getInt(ID),
+								   rs.getString(NAME),
+								   rs.getString(DESC),
+								   rs.getInt(VERSION));
+			}
+		}
+		catch(SQLException ex)
+		{
+			System.err.print("SQLException : " + ex.getMessage());
+		}
+		return result;
+	}
+	*/
 	private static Group getGroup(ResultSet rs) throws SQLException {
 		Group result = new Group(rs.getInt("g.group_id"), rs.getString("g.name"),rs.getString("g.description"),rs.getInt("g.version"));
 		return result;
@@ -106,28 +171,51 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		return GroupMapper.find(name);		
 	}
 	
+	/*
 	public static Group update(Group g) throws SQLException
 	{		
-		Group g_actual;
-		
-		if(map.get(g.getId())==null)
-		{
-			g_actual = g;
-		}
-		else
-		{
-			g_actual = map.get(g.getId());
-		}
-		
-		int count = GroupTDG.update(g_actual.getId(), g_actual.getName(), g_actual.getDescription(), g_actual.getVersion());
+		int count = GroupTDG.update(g.getId(), g.getName(), g.getDescription(), g.getVersion());
 		if(count == 0)
 		{
 			throw new SQLException("Fail to update group id=" + g.getId());
 		}
 		
-		g_actual.setVersion(g_actual.getVersion()+1);
+		g.setVersion(g.getVersion()+1);
 		
-		return GroupMapper.find(g_actual.getId());
+		return GroupMapper.find(g.getId());
+	}
+	
+	public static void delete(Group g) throws SQLException
+	{		
+		int count = GroupTDG.delete(g.getId(), g.getName(), g.getDescription(), g.getVersion());
+		if(count == 0)
+		{
+			throw new SQLException("Fail to delete group id=" + g.getId());
+		}				
+	}
+	*/
+	
+	public static Group update(Group g) throws SQLException
+	{			
+		// update db
+		int count = GroupTDG.update(g.getId(), g.getName(), g.getDescription(), g.getVersion());
+		if(count == 0)
+		{			
+			throw new SQLException("Fail to update group id=" + g.getId());
+		}
+		
+		g.setVersion(g.getVersion()+1);
+		
+		// refresh map identiy, if currently in memory
+		if(map.get(g.getId())!=null)
+		{
+			map.get(g.getId()).setName(g.getName());
+			map.get(g.getId()).setDescription(g.getName());
+			map.get(g.getId()).setVersion(g.getVersion());
+		}
+		
+
+		return GroupMapper.find(g.getId());
 	}
 	
 	public static void delete(Group g) throws SQLException
@@ -143,7 +231,7 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 			throw new SQLException("Fail to delete group id=" + g.getId());
 		}				
 	}
-
+	
 	@Override
 	public void insert(DomainObject<Long> d) throws MapperException {
 		// TODO Auto-generated method stub
