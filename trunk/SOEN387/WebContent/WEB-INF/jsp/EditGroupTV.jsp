@@ -1,5 +1,3 @@
-<%@include file="../include/header.jsp" %>
-
 <%@page import="dom.model.group.Group"%>
 
 <%@ page language="java" %>
@@ -29,6 +27,4 @@
 	<input type="submit" value="Submit" /> </br>
 </form>
 </body>	
-
-<%@include file="../include/footer.jsp" %>
 </html>
