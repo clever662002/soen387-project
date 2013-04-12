@@ -11,7 +11,7 @@ public class EditGroupDispatcher extends Dispatcher{
 	@Override
 	public void execute() throws ServletException, IOException {
 		try
-		{
+		{			
 			new EditGroupCommand(myHelper).process();
 			forward("/WEB-INF/jsp/Home.jsp");
 		}
@@ -20,9 +20,5 @@ public class EditGroupDispatcher extends Dispatcher{
 			e.printStackTrace();
 			forward("/WEB-INF/jsp/html/Error.jsp");
 		}
-
 	}
-
-	
-
 }
