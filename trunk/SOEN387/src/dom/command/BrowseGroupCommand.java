@@ -27,17 +27,19 @@ public class BrowseGroupCommand extends Command{
 	@Override
 	public void process() throws CommandException {
 		// TODO Auto-generated method stub
-		//helper.setSessionAttribute("group", GroupMapper.findAll());
+		
 		List<Group> groups = null;
-		try{
+		try
+		{
 			groups = GroupMapper.findAll();
 		}
-		catch(SQLException ex){
+		catch(SQLException ex)
+		{
 			throw new CommandException(ex);
 		}
-		helper.setRequestAttribute("groups",groups);
-		helper.setRequestAttribute("template_view","/WEB-INF/jsp/BrowseGroupTV.jsp");
 		
+		helper.setRequestAttribute("groups",groups);
+		helper.setRequestAttribute("template_view","/WEB-INF/jsp/BrowseGroupTV.jsp");	
 	}
 
 	@Override
