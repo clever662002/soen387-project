@@ -96,10 +96,11 @@ public class FrontController extends DispatcherServlet {
 				user = new GuestUser();
 				request.getSession(true).setAttribute("currentUser", user);
 			}
-			
+						
 			if(!ApplicationAuthorizaton.hasAuthority(commandName,user.getRoles())){
 				throw new Exception("You need to be logged in to access this page.");
 			}
+			
 			
 			command = DispatcherFactory.getInstance(commandName);
 			command.init(request, response);
