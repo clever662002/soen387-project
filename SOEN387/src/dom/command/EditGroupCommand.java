@@ -27,29 +27,36 @@ public class EditGroupCommand extends Command{
 	}
 
 	@Override
-	public void process() throws CommandException {
+	public void process() throws CommandException {		
 		try
-		{			
-			Long sGroupID   		= helper.getLong("group_id");
-			String sGroupNameNew 	= helper.getString("name");
+		{	/*
+			User user= (User)helper.getSessionAttribute("currentUser");
+			GroupProxy myGroup = (GroupProxy)user.getGroup();
+			Long myGroupId = myGroup.getId();
+			long groupId = helper.getLong("group_id");
+			Group group = GroupMapper.find(groupId);			
+			*/
+			long groupId 			= helper.getLong("group_id");			
+			String sGroupNameNew 	= helper.getString("name");			
 			String sGroupDescNew 	= helper.getString("description");
-			Long sGroupVersionNew   = helper.getLong("version");
+			String sGroupVersionNew = helper.getString("version");
 			
 			if (sGroupNameNew != null && !sGroupNameNew.equals(""))			
-			{				
-				// prepare data to load page
-				Group g = GroupMapper.find(sGroupID);
+			{	
+				// prepare data to load page				
+				Group g = GroupMapper.find(groupId);				
 				g.setName(sGroupNameNew);
 				g.setDescription(sGroupDescNew);
-				g.setVersion(sGroupVersionNew);
-				
+				g.setVersion(Long.parseLong(sGroupVersionNew));
+								
 				helper.setRequestAttribute("group", GroupMapper.update(g));
 				helper.setRequestAttribute("warning", "Edited successully.");
+				//System.out.println(g.getDescription());
 				helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
 			}
 			else
-			{			
-				helper.setRequestAttribute("group", GroupMapper.find(sGroupID));
+			{					
+				helper.setRequestAttribute("group", GroupMapper.find(groupId));
 				helper.setRequestAttribute("template_view","/WEB-INF/jsp/EditGroupTV.jsp");
 			}			
 		}
