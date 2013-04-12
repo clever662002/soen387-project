@@ -33,7 +33,7 @@ public class GroupTDG {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT_BY_NAME);
 		ps.setString(1, group_name);
 		ResultSet rs = ps.executeQuery();
-		ps.close();
+		//ps.close();
 		return rs;
 	}
 	
@@ -66,6 +66,8 @@ public class GroupTDG {
 		ps.setString(3, description);
 		ps.setLong(4, l);
 		ps.setLong(5, long1);
+		
+		System.out.println("sql=[" + ps.toString() + "]");
 		int count = ps.executeUpdate();
 		ps.close();
 		return count;
