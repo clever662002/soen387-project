@@ -11,7 +11,7 @@ public class EditGroupDispatcher extends Dispatcher{
 	@Override
 	public void execute() throws ServletException, IOException {
 		try
-		{			
+		{				
 			new EditGroupCommand(myHelper).process();
 			forward("/WEB-INF/jsp/EditGroupTV.jsp");
 		}
