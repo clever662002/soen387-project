@@ -230,6 +230,10 @@ a image {
 	margin-top:10px;
 }
 
+#display ul li {
+	display:inline;
+}
+
 #display table {
 	/*background-color: #b7a285; */
 	background-color:#E0E0E0;

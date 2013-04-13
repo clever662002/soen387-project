@@ -12,7 +12,7 @@
 	    </c:choose>
 	    
 	    <ul>
-	    <li><a href="front?command=app.dispatcher.ViewGroupDispatcher&group_id=${currentUser.group.id}">My Group</a></li>
+	    	<li><a href="front?command=app.dispatcher.ViewGroupDispatcher&group_id=${currentUser.group.id}">My Group</a></li>
 			<li><a href="front?command=app.dispatcher.CreateGroupFormDispatcher">Create Group</a></li>
 		</ul>
 	    
@@ -23,7 +23,7 @@
 					<td>Name </td>
 					<td>Description</td>
 					<td></td>
-					<td></td>		
+					<!--td></td-->		
 				</tr>
 				<c:forEach var="group" items="${groups}">
 					<tr>

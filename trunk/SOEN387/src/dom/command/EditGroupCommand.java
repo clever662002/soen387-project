@@ -55,7 +55,7 @@ public class EditGroupCommand extends Command{
 				g.setVersion(Long.parseLong(sGroupVersionNew));
 								
 				helper.setRequestAttribute("group", GroupMapper.update(g));
-				helper.setRequestAttribute("warning", "Edited successully.");				
+				getNotifications().add("Edit Successful");
 				helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
 			}
 			else

@@ -8,6 +8,9 @@
 		<c:if test="${!empty warning}">
 			<p id="error"> ${warning} </p>
 		</c:if>
+		<c:if test="${!empty notifications}">
+			<p id="info"> ${notifications} </p>
+		</c:if>
 		<c:if test="${!empty group}">	
 			<div id="display">
 				<table>
