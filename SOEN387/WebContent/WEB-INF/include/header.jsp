@@ -30,28 +30,7 @@
 				</c:if>
 				<c:if test="${role.id == 2}">					 
 					<li><a href="front?command=app.dispatcher.BrowseInvitesDispatcher">INVITES</a></li>
-					
-					<!-- 
-					<li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>
-					-->
-					<%
-					String path = (String)request.getAttribute("prev_path");
-				    System.out.println("here-path=[" + path + "]");
-				    
-				    if (path != null && path.contains("front"))
-				    {
-				    %>
-				    	<li><a href="../browse_group">GROUP</a></li>						
-					<%
-				    }
-				    else
-				    {
-				    %>
-				    	<li><a href="front/browse_group">GROUP</a></li>
-				    <%	
-				    }
-					%>	
-					
+					<li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>					
 					<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>
 				</c:if>
 				<c:if test="${role.id == 3}">

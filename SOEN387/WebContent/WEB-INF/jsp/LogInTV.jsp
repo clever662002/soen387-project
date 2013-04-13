@@ -15,7 +15,7 @@
 		
 		<div id="loginContainer">
 			<div id="login">
-				<form action="front" method="POST" target="_self">
+				<form action="" method="POST" target="_self">
 							
 					<table>
 						<tr>

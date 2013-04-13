@@ -30,13 +30,12 @@
 				<td>${group.description}</td>
 			</tr>							
 		</table>
-		
-		<!-- 
-		<a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit Group</a>
-		-->
-				 
-		<a href="../edit_group/${group.id}">Edit Group</a>
-				
+		 
+		 
+			 
+		<!-- a href="../edit_group/${group.id}">Edit Group</a>
+		<a href="../remove_group/${group.id}">Remove Group</a-->
+
 	</c:if>
 	
 </body>	

@@ -12,7 +12,17 @@
 			<p>You are not in a group!</p>
 		</c:if>
 		
+			
 		<c:if test="${!empty group}">
+		
+			<ul>
+				<c:if test="${group.id == currentUser.group.id}">
+					<li><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit Group</a></li>
+					<li><a href="front?command=app.dispatcher.RemoveGroupDispatcher&group_id=${group.id}">Remove Group</a>	</li>				
+				</c:if>
+			</ul>
+		
+		
 			<div id="display">
 				<table>
 					<tr>

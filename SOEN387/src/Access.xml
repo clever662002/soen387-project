@@ -14,6 +14,7 @@
 		 
 		<command name="app.dispatcher.EditGroupDispatcher"   post="true"/>
 		<command name="app.dispatcher.BrowseInvitesDispatcher" get="true"/>
+		<command name="app.dispatcher.CreateGroupFormDispatcher" post="true" />
 		<command name="app.dispatcher.CreateGroupDispatcher" post="true" />
 		<command name="app.dispatcher.CreateGroupFormDispatcher" post="true" />
 		<command name="app.dispatcher.DeclineInviteDispatcher" post="true" />
@@ -23,6 +24,7 @@
 		<command name="app.dispatcher.RemoveMemberDispatcher" post="true" />
 		<command name="app.dispatcher.LoginDispatcher" get="true" post="true" />
 		<command name="app.dispatcher.LogoutDispatcher" get="true" post="true" />
+		
 	</role>
 
 	<role name="dom.model.role.AdminRole">

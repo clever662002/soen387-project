@@ -43,20 +43,21 @@ public class ViewGroupCommand extends Command{
 			Long myGroupId = myGroup.getId();
 			
 			
-			//long groupId = helper.getLong("group_id");
-			String strGroupId = (String)helper.getAttribute("group_id");
-			long groupId = Long.parseLong(strGroupId);			
+			long groupId = helper.getLong("group_id");
+			//String strGroupId = (String)helper.getAttribute("group_id");
+			//long groupId = Long.parseLong(strGroupId);			
 			
 			Group group = GroupMapper.find(groupId);
-			if(groupId == myGroupId) {
-				helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
-				helper.setRequestAttribute("group",group);				
-			}else {
-				helper.setRequestAttribute("template_view","/WEB-INF/jsp/ViewGroupTV.jsp");
-				helper.setRequestAttribute("group",group);
-
-			}
-			
+			helper.setRequestAttribute("group",group);	
+//			if(groupId == myGroupId) {
+//				helper.setRequestAttribute("mygroup","true");
+//				helper.setRequestAttribute("group",group);				
+//			}else {
+//				helper.setRequestAttribute("mygroup","false");
+//				helper.setRequestAttribute("group",group);
+//
+//			}
+//			
 		}
 		catch(Exception e)
 		{

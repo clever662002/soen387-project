@@ -30,7 +30,7 @@
 						<td>${group.name}</td>
 						<td>${group.description}</td>
 						<td><a href="front?command=app.dispatcher.ViewGroupDispatcher&group_id=${group.id}">View</a></td>
-						<td><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit</a></td>
+						<!-- td><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit</a></td-->
 					</tr>
 				</c:forEach>
 			</table>
