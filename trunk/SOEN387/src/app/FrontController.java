@@ -1,3 +1,4 @@
+
 package app;
 
 import java.io.IOException;
@@ -211,5 +212,5 @@ public class FrontController extends DispatcherServlet {
 		}
 		DbRegistry.setTablePrefix(db_id, tablePrefix);
 	}
-	
 }
+	

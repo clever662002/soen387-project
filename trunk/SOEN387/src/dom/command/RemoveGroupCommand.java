@@ -27,9 +27,11 @@ public class RemoveGroupCommand extends Command{
 	public void process() throws CommandException {
 		try
 		{
-			String sGroupID   = helper.getString("group_id");
+			//String sGroupID   = helper.getString("group_id");
+			String sGroupID   = (String)helper.getAttribute("group_id");
+			long group_id     = Long.parseLong(sGroupID);
 			// delete requested group
-			Group g = GroupMapper.find(Integer.parseInt(sGroupID));
+			Group g = GroupMapper.find(group_id);
 			String notice = g.getName() + "has been deleted";
 			helper.setRequestAttribute("notice", notice);
 			GroupMapper.delete(g);

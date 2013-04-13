@@ -1,17 +1,12 @@
 package dom.command;
 
-import java.util.List;
-
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
 
 import dom.model.group.Group;
-import dom.model.group.GroupProxy;
 import dom.model.group.mappers.GroupMapper;
-import dom.model.user.User;
-import dom.model.user.mappers.UserMapper;
 
 public class EditGroupCommand extends Command{
 
@@ -36,10 +31,13 @@ public class EditGroupCommand extends Command{
 			long groupId = helper.getLong("group_id");
 			Group group = GroupMapper.find(groupId);			
 			*/
+
 			
-			//long groupId 			= helper.getLong("group_id");
-			String sGroupID = (String)helper.getAttribute("group_id");
-			long groupId = Long.parseLong(sGroupID);	
+			long groupId 			= helper.getLong("group_id");
+			//String sGroupID = (String)helper.getAttribute("group_id");
+			//long groupId = Long.parseLong(sGroupID);	
+
+
 			
 			String sGroupNameNew 	= helper.getString("name");			
 			String sGroupDescNew 	= helper.getString("description");

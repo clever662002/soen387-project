@@ -19,9 +19,9 @@
 	 </servlet>
 	 <servlet-mapping>
 	   <servlet-name>FrontController</servlet-name>
-	   <url-pattern>/front/*</url-pattern>
+	   <url-pattern>/front</url-pattern>
 	 </servlet-mapping>
-	
+	<!-- 
 	<filter>
     	<display-name>GroupFormingPermalinkFilter</display-name>
     	<filter-name>GroupFormingPermalinkFilter</filter-name>
@@ -31,4 +31,5 @@
     	<filter-name>GroupFormingPermalinkFilter</filter-name>
     	<servlet-name>FrontController</servlet-name>
   	</filter-mapping>
+  	-->
 </web-app>
