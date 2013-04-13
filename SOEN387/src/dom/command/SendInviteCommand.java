@@ -38,25 +38,33 @@ public class SendInviteCommand extends Command {
 		}
 		
 		if(userToInvite == null){
-			helper.setRequestAttribute("error", "The user with id " + userId + 
-					" you are trying to invite does not exist.");
-			throw new CommandException("The user with id " + userId + 
-					" you are trying to invite does not exist.");			
+			String msg = "That user doesn't exist.";
+			helper.setRequestAttribute("error",msg);
+			throw new CommandException(msg);			
+		}
+		
+		if(userToInvite.getGroup() != null){
+			if(userToInvite.getGroup().getId() != null && userToInvite.getGroup().getId() > 0){
+				String msg = "That user is already in a group.";
+				helper.setRequestAttribute("error",msg);
+				throw new CommandException(msg);
+			}
 		}
 		
 		if(currentUser.getGroup().getId() != groupId){
 			//TODO check what notifications do...
-			
-			helper.setRequestAttribute("error", "You can only invite someone to a group that you are a member of.");
-			throw new CommandException("You can only invite someone to a group that you are a member of.");
+			String msg = "You can only invite someone to a group that you are a member of.";
+			helper.setRequestAttribute("error",msg);
+			throw new CommandException(msg);
 		}
 		
 		//TODO check for group in identity map
 		Group group = GroupMapper.find(groupId);
 		
 		if(group == null){
-			helper.setRequestAttribute("error", "The group with id " + groupId + " group doesn't exist.");
-			throw new CommandException("The group with id " + groupId + " group doesn't exist.");
+			String msg = "The group with id " + groupId + " group doesn't exist.";
+			helper.setRequestAttribute("error", msg);
+			throw new CommandException(msg);
 		}
 	
 		boolean sent = true;
