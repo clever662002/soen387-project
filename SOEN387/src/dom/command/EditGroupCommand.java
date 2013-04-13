@@ -31,18 +31,21 @@ public class EditGroupCommand extends Command{
 			long groupId = helper.getLong("group_id");
 			Group group = GroupMapper.find(groupId);			
 			*/
-
 			
 			long groupId 			= helper.getLong("group_id");
 			//String sGroupID = (String)helper.getAttribute("group_id");
-			//long groupId = Long.parseLong(sGroupID);	
-
-
+			//long groupId = Long.parseLong(sGroupID);
 			
 			String sGroupNameNew 	= helper.getString("name");			
 			String sGroupDescNew 	= helper.getString("description");
 			String sGroupVersionNew = helper.getString("version");
-						
+			if ((sGroupVersionNew == null) || 
+				(sGroupVersionNew!= null && sGroupVersionNew.equals(""))
+			   )
+			{
+				sGroupVersionNew = "0";
+			}
+			
 			if (sGroupNameNew != null && !sGroupNameNew.equals(""))			
 			{	
 				// prepare data to load page				
@@ -52,8 +55,7 @@ public class EditGroupCommand extends Command{
 				g.setVersion(Long.parseLong(sGroupVersionNew));
 								
 				helper.setRequestAttribute("group", GroupMapper.update(g));
-				helper.setRequestAttribute("warning", "Edited successully.");
-				//System.out.println(g.getDescription());
+				helper.setRequestAttribute("warning", "Edited successully.");				
 				helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
 			}
 			else

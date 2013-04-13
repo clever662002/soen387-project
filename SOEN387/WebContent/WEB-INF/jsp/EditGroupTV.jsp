@@ -22,10 +22,11 @@
 						<td>${group.id}</td>
 						<td><input type="text" name="name" id="name" value="${group.name}" /></td>
 						<td><input type="text" name="description" id="description" value="${group.description}" /></td>
-						<td>${group.version}</td>
+						<td>${group.version}</td>						
 						<td><input type="submit" value="Update" /></td>
 					</tr>
 				</table>
+				<input type="hidden" name="version" id="version" value="${group.version}" />
 				<input type="hidden" name="group_id" id="group_id" value="${group.id}">
 			</div>
 		</div>

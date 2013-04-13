@@ -50,18 +50,19 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	public static Group find(long id) {		
 		Group result = null;
 		try
-		{			
+		{				
 			ResultSet rs = GroupTDG.find(id);
 			if(rs.next())
-			{
+			{				
 				result = new Group(rs.getInt(ID),
 								   rs.getString(NAME),
 								   rs.getString(DESC),
 								   rs.getInt(VERSION));
+				
 				if(map.get(result.getId())== null)
-				{
+				{					
 					map.put(result.getId(), result);
-				}
+				}				
 			}						
 		}
 		catch(SQLException ex)		
@@ -160,6 +161,7 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	}
 	*/
 	private static Group getGroup(ResultSet rs) throws SQLException {
+		System.out.println("getGroup");
 		Group result = new Group(rs.getInt("g.group_id"), rs.getString("g.name"),rs.getString("g.description"),rs.getInt("g.version"));
 		return result;
 	}
