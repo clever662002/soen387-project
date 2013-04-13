@@ -11,7 +11,6 @@
 		<c:if test="${empty group}">
 			<p>You are not in a group!</p>
 		</c:if>
-		
 			
 		<c:if test="${!empty group}">
 		

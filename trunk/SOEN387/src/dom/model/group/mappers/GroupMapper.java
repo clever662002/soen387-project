@@ -200,12 +200,11 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	{			
 		// update db
 		int count = GroupTDG.update(g.getId(), g.getName(), g.getDescription(), g.getVersion());
-		if(count == 0)
-		{			
+		if(count == 0) {			
 			throw new SQLException("Fail to update group id=" + g.getId());
 		}
 		
-		g.setVersion(g.getVersion()+1);
+		//g.setVersion(g.getVersion()+1);
 		
 		// refresh map identiy, if currently in memory
 		if(map.get(g.getId())!=null)
@@ -215,7 +214,6 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 			map.get(g.getId()).setVersion(g.getVersion());
 		}
 		
-
 		return GroupMapper.find(g.getId());
 	}
 	
@@ -227,10 +225,35 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		}
 		
 		int count = GroupTDG.delete(g.getId(), g.getName(), g.getDescription(), g.getVersion());
-		if(count == 0)
-		{
+		if(count == 0) {
 			throw new SQLException("Fail to delete group id=" + g.getId());
 		}				
+	}
+	
+	public static void removeMembers(Group group) throws SQLException{
+		int count = GroupTDG.removeMembers(group.getId());
+		if(count == 0) {
+			throw new SQLException("Fail to delete group id=" + group.getId());
+		}	
+	}
+	
+	public static void removeMember(long userId) throws SQLException {
+		int count = GroupTDG.removeMembers(userId);
+		if(count == 0) {
+			throw new SQLException("Fail to remove member with id " + userId);
+		}	
+	}
+	
+	public static void addMember(long userId, long groupId) throws MapperException {
+		try{
+			int count = GroupTDG.addMember(userId,groupId);
+			if(count == 0) {
+				throw new MapperException("Failed to add member to group id="+ groupId + " and user id=" + userId);
+			}
+		}
+		catch(SQLException ex){
+			throw new MapperException(ex.getMessage());
+		}
 	}
 	
 	@Override

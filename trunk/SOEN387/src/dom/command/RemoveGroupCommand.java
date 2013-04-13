@@ -35,9 +35,10 @@ public class RemoveGroupCommand extends Command{
 			System.out.println("RemoveCommand: group_id=[" + group_id + "]");
 			// delete requested group
 			Group g = GroupMapper.find(group_id);
-			String notice = g.getName() + " has been deleted";
-			helper.setRequestAttribute("notice", notice);
+			//helper.setRequestAttribute("notice", notice);
+			GroupMapper.removeMembers(g);
 			GroupMapper.delete(g);
+			getNotifications().add(g.getName() + " has been deleted");
 			List<Group> groups = GroupMapper.findAll();
 			helper.setRequestAttribute("groups",groups);
 			helper.setRequestAttribute("template_view","/WEB-INF/jsp/BrowseGroupTV.jsp");
