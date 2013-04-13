@@ -72,7 +72,7 @@ public class AddUsersCommand extends Command{
 									roles.add(RoleFactory.create(Long.parseLong(rolesArray[x].trim())));
 								}
 								UserMapper.insert(UserFactory.createNew(info[0], info[1], info[2], info[3], roles));
-								System.out.println("Info : " + info[0] +" , " + info[1] + " , " + info[2] + " , " + info[3] + " , " + info[4]);
+								//System.out.println("Info : " + info[0] +" , " + info[1] + " , " + info[2] + " , " + info[3] + " , " + info[4]);
 							}
 							catch(Exception ex){
 								ex.printStackTrace();
