@@ -19,9 +19,16 @@ public class AcceptInviteCommand extends Command {
 	@Override
 	public void execute() throws CommandException {
 		
+		// change to permalink - not sure what Alex meants. Try to fix (based on DeclineInviteCommand)!!!
+		/*
 		int userId = helper.getInt("user_id");
 		int groupId = helper.getInt("group_id");
-		
+		*/
+		String strUserId  = ((User)helper.getSessionAttribute("currentUser")).getId() +"";
+		String strGroupId = (String)helper.getAttribute("group_id");
+		int userId  = Integer.parseInt(strUserId);
+		int groupId = Integer.parseInt(strGroupId);
+				
 		User user = null;
 		try{
 			//Get the user who is sending the invite
