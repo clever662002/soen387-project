@@ -19,15 +19,21 @@
 	 </servlet>
 	 <servlet-mapping>
 	   <servlet-name>FrontController</servlet-name>
+	   <!-- 
 	   <url-pattern>/front</url-pattern>
+	   -->
+	   <url-pattern>/front/*</url-pattern>
 	 </servlet-mapping>
-	<!--filter>
-    	<display-name>GroupFormingPermalinkFilter</display-name>
+
+	
+	<filter>
+	   	<display-name>GroupFormingPermalinkFilter</display-name>
     	<filter-name>GroupFormingPermalinkFilter</filter-name>
     	<filter-class>app.filter.GroupFormingPermalinkFilter</filter-class>
   	</filter>
   	<filter-mapping>
     	<filter-name>GroupFormingPermalinkFilter</filter-name>
     	<servlet-name>FrontController</servlet-name>
-  	</filter-mapping-->
+  	</filter-mapping>
+  	
 </web-app>
