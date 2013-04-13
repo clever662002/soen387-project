@@ -47,6 +47,10 @@ public class CreateGroupCommand extends Command{
 				e.printStackTrace();
 			}
 		}
+		else{
+			helper.setRequestAttribute("error", "A group name is required.");
+			throw new CommandException("A group name is required.");
+		}
 
 	}
 	@Override
