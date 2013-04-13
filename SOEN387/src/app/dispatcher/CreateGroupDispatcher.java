@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
+import org.dsrg.soenea.domain.command.CommandException;
 
 import dom.command.CreateGroupCommand;
 import dom.command.SendInviteCommand;
@@ -15,6 +16,9 @@ public class CreateGroupDispatcher extends Dispatcher{
 	{
 		try {
 			new CreateGroupCommand(myHelper).process();
+			forward("/WEB-INF/jsp/ViewGroupTV.jsp");
+		}
+		catch(CommandException ex){
 			forward("/WEB-INF/jsp/CreateGroupTV.jsp");
 		}
 		catch(Exception e) {

@@ -25,6 +25,13 @@ public class Group extends DomainObject<Long> implements IGroup{
 		members = new ArrayList<IUser>();
 	}
 	
+	public Group(String name, String description) {
+		super(0l,1l);
+		this.name = name;
+		this.description = description;
+		members = new ArrayList<IUser>();
+	}
+	
 	public String getName() {
 		return name;
 	}
