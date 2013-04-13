@@ -75,7 +75,7 @@ public class AddUsersCommand extends Command{
 								System.out.println("Info : " + info[0] +" , " + info[1] + " , " + info[2] + " , " + info[3] + " , " + info[4]);
 							}
 							catch(Exception ex){
-								
+								ex.printStackTrace();
 							}
 							added++;
 							line = br.readLine();
