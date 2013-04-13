@@ -42,10 +42,10 @@ public class ViewGroupCommand extends Command{
 			GroupProxy myGroup = (GroupProxy)user.getGroup();
 			Long myGroupId = myGroup.getId();
 			
-			
-			long groupId = helper.getLong("group_id");
-			//String strGroupId = (String)helper.getAttribute("group_id");
-			//long groupId = Long.parseLong(strGroupId);			
+			// change to permalink
+			//long groupId = helper.getLong("group_id");
+			String strGroupId = (String)helper.getAttribute("group_id");
+			long groupId = Long.parseLong(strGroupId);			
 			
 			Group group = GroupMapper.find(groupId);
 			//helper.setRequestAttribute("group",group);	
