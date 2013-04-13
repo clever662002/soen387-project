@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dom.model.group.Group;
 import dom.model.group.mappers.GroupMapper;
 
 
@@ -27,7 +28,7 @@ public class CreateGroupPC extends BaseHttpServlet
 			if (sGroupName != null && !sGroupName.equals(""))
 			{
 				// insert action + prepare data for ViewGroupTV
-				request.setAttribute("group", GroupMapper.insert(sGroupName,sGroupDesc));
+				request.setAttribute("group", GroupMapper.insert(new Group(sGroupName,sGroupDesc)));
 			}
 			
 			request.getRequestDispatcher(VIEW_NAME).forward(request, response);

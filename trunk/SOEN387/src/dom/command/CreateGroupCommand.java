@@ -7,6 +7,7 @@ import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
 
+import dom.model.group.Group;
 import dom.model.group.mappers.GroupMapper;
 
 public class CreateGroupCommand extends Command{
@@ -32,10 +33,17 @@ public class CreateGroupCommand extends Command{
 		{
 			// insert action + prepare data for ViewGroupTV
 			try {
-				helper.setRequestAttribute("group", GroupMapper.insert(sGroupName,sGroupDesc));
-				helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
+				if(GroupMapper.find(sGroupName) == null){
+					helper.setRequestAttribute("group", GroupMapper.insert(new Group(sGroupName,sGroupDesc)));
+					helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
+				}
+				else{
+					helper.setRequestAttribute("error", "That group name is already taken");
+					throw new CommandException("That group name is already taken.");
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+				//helper.setRequestAttribute("error", value)
 				e.printStackTrace();
 			}
 		}

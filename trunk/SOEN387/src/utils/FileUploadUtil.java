@@ -210,6 +210,7 @@ public class FileUploadUtil
     	
     	DiskFileItemFactory factory = new DiskFileItemFactory();
     	factory.setRepository(new File(UPLOAD_DIR));
+    	factory.setSizeThreshold(MAX_FILE_SIZE);
     	//DiskFileUpload fu = new DiskFileUpload(factory);
     	ServletFileUpload servletFileUpload = new ServletFileUpload(factory);
 		List<FileItem> items = new ArrayList<FileItem>();

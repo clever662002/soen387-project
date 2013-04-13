@@ -170,11 +170,11 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		return result;
 	}
 	
-	public static Group insert(String name, String description) throws SQLException
+	public static Group insert(Group group) throws SQLException
 	//public static Group insert(int group_id,String name, String description) throws SQLException
 	{	
-		GroupTDG.insert(name, description);
-		return GroupMapper.find(name);		
+		GroupTDG.insert(group.getName(), group.getDescription());
+		return GroupMapper.find(group.getName());		
 	}
 	
 	/*
