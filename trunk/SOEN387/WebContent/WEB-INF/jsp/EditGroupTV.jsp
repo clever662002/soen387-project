@@ -1,33 +1,36 @@
-<%@page import="dom.model.group.Group"%>
+<%@include file="../include/header.jsp" %>
 
-<%@ page language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>View Person</title>
-</head>
-<body>
-<h2>View Person</h2>
+<h2>Edit Group</h2>
 
-<!-- 
 <form action="front?command=app.dispatcher.EditGroupDispatcher" method="POST">
--->
-<form action="../edit_group/${group.id}" method="POST">
-	<%
-	Group group = (Group)request.getAttribute("group");
-	String warning = (String)request.getAttribute("warning");
-	%>
-	<% if(warning != null) { %><b>Message: </b> <%=warning %><br/> <% } %>
-	Group ID: 			<%= group.getId()%> 	<br />
-						<input type="hidden" name="group_id"  	id="group_id"    value="<%= group.getId()%>"> 
-	Group Name: 		<input type="text" 	 name="name" 		id="name"		 value="<%= group.getName()%>" /><br/>
-	Group Description: 	<input type="text" 	 name="description" id="description" value="<%= group.getDescription()%>" /> <br />
-	Group Version: 		<%= group.getVersion()%> <br />
-						<input type="hidden" name="version" 	id="version" 	 value="<%= group.getVersion()%>">
-						
 
-	<input type="submit" value="Submit" /> </br>
+	<div id="container">
+		<c:if test="${!empty warning}">
+			<p id="error"> ${warning} </p>
+		</c:if>
+		<c:if test="${!empty group}">	
+			<div id="display">
+				<table>
+					<tr><!--td>Id</td-->
+						<td>Id</td>
+						<td>Name</td>
+						<td>Description</td>
+						<td>Version</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>${group.id}</td>
+						<td><input type="text" name="name" id="name" value="${group.name}" /></td>
+						<td><input type="text" name="description" id="description" value="${group.description}" /></td>
+						<td>${group.version}</td>
+						<td><input type="submit" value="Update" /></td>
+					</tr>
+				</table>
+				<input type="hidden" name="group_id" id="group_id" value="${group.id}">
+			</div>
+		</div>
+	</c:if>
+	</br>
+	<a href="front?command=app.dispatcher.BrowseGroupDispatcher">Back</a>
 </form>
-</body>	
-</html>
+<%@include file="../include/footer.jsp" %>

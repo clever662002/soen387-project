@@ -44,6 +44,8 @@
 				</form>
 			</div>
 		</div>
+		</br>
+		<a href="front?command=app.dispatcher.BrowseInvitesDispatcher">Back</a>
 	</div>
 	
 <%@include file="../include/footer.jsp" %>

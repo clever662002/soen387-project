@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.dsrg.soenea.application.filter.PermalinkFactory;
+import org.dsrg.soenea.application.filter.PermalinkFilter;
 import org.dsrg.soenea.application.servlet.DispatcherServlet;
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 import org.dsrg.soenea.application.servlet.dispatcher.HttpServletHelper;
@@ -68,6 +70,9 @@ public class FrontController extends DispatcherServlet {
 		User user = null;
 		
 		try{
+			//PermalinkFactory permFactory = new PermalinkFactory();
+			//String commandN = permFactory.extract(request);
+			//PermalinkFilter permFilter = new PermalinkFilter();
 			
 			boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
 			

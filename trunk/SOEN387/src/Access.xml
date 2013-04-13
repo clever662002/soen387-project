@@ -15,6 +15,7 @@
 		<command name="app.dispatcher.EditGroupDispatcher"   post="true"/>
 		<command name="app.dispatcher.BrowseInvitesDispatcher" get="true"/>
 		<command name="app.dispatcher.CreateGroupDispatcher" post="true" />
+		<command name="app.dispatcher.CreateGroupFormDispatcher" post="true" />
 		<command name="app.dispatcher.DeclineInviteDispatcher" post="true" />
 		<command name="app.dispatcher.SendInviteDispatcher" post="true" />
 		<command name="app.dispatcher.ViewGroupDispatcher" get="true"/>

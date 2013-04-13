@@ -39,7 +39,7 @@ public class BrowseGroupCommand extends Command{
 		}
 		
 		helper.setRequestAttribute("groups",groups);
-		helper.setRequestAttribute("template_view","/WEB-INF/jsp/BrowseGroupTV.jsp");	
+		//helper.setRequestAttribute("template_view","/WEB-INF/jsp/BrowseGroupTV.jsp");	
 	}
 
 	@Override

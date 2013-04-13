@@ -13,7 +13,7 @@ public class EditGroupDispatcher extends Dispatcher{
 		try
 		{			
 			new EditGroupCommand(myHelper).process();
-			forward("/WEB-INF/jsp/Home.jsp");
+			forward("/WEB-INF/jsp/EditGroupTV.jsp");
 		}
 		catch(Exception e)
 		{
