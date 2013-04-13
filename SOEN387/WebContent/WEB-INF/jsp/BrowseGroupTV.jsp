@@ -4,7 +4,7 @@
 	
 	 	<c:choose>
 	 		<c:when test="${!empty notice}">
-	        	<h2>${notice}</h2>>
+	        	<h2>${notice}</h2>
 	        </c:when>
 	        <c:otherwise>
 				<h2>Browse Group</h2>
@@ -12,8 +12,10 @@
 	    </c:choose>
 	    
 	    <ul>
-	    	<li><a href="front?command=app.dispatcher.ViewGroupDispatcher&group_id=${currentUser.group.id}">My Group</a></li>
+			<!-- change to permalink
 			<li><a href="front?command=app.dispatcher.CreateGroupFormDispatcher">Create Group</a></li>
+			-->
+			<li><a href="create_group">Create Group</a></li>
 		</ul>
 	    
 	    <div id="display">
@@ -30,7 +32,10 @@
 						<td>${group.id}</td>
 						<td>${group.name}</td>
 						<td>${group.description}</td>
+						<!--  
 						<td><a href="front?command=app.dispatcher.ViewGroupDispatcher&group_id=${group.id}">View</a></td>
+						-->
+						<td><a href="view_group/${group.id}">View</a></td>
 						<!-- td><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit</a></td-->
 					</tr>
 				</c:forEach>

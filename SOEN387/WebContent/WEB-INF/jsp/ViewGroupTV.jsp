@@ -16,8 +16,12 @@
 		
 			<ul>
 				<c:if test="${group.id == currentUser.group.id}">
+					<!-- change to permalink
 					<li><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit Group</a></li>
-					<li><a href="front?command=app.dispatcher.RemoveGroupDispatcher&group_id=${group.id}">Remove Group</a>	</li>				
+					<li><a href="front?command=app.dispatcher.RemoveGroupDispatcher&group_id=${group.id}">Remove Group</a>	</li>
+					-->				
+					<li><a href="../edit_group/${group.id}">Edit Group</a></li>
+					<li><a href="../remove_group/${group.id}">Remove Group</a>	</li>
 				</c:if>
 			</ul>
 		
@@ -40,6 +44,9 @@
 			</div>
 		</c:if>
 		</br>
+		<!-- change to permalink 
 		<a href="front?command=app.dispatcher.BrowseGroupDispatcher">Back</a>
+		-->
+		<a href="../browse_group">Back</a>
 	</div>
 <%@include file="../include/footer.jsp" %>
