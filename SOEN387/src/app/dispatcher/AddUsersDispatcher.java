@@ -12,7 +12,6 @@ public class AddUsersDispatcher extends Dispatcher {
 
 	@Override
 	public void execute() throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try{
 			new AddUsersCommand(myHelper).execute();
 			forward("/WEB-INF/jsp/AddUsersTV.jsp");

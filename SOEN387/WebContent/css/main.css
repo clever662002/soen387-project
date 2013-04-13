@@ -255,3 +255,12 @@ a image {
 #display table td a:hover {
 	color:blue;
 }
+
+#container a {
+	font-family:calibri, tahoma;
+	font-size:13pt;
+}
+
+#container a:hover {
+	color:blue;
+}

@@ -1,4 +1,3 @@
-<%@page import="dom.model.invite.Invite"%>
 <%@include file="../include/header.jsp" %>
 
 	<h2> INVITES </h2>

@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 
+import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
+
 import dom.command.CreateGroupFormCommand;
 
 public class CreateGroupFormDispatcher extends Dispatcher{
@@ -12,7 +14,7 @@ public class CreateGroupFormDispatcher extends Dispatcher{
 		try
 		{
 			new CreateGroupFormCommand(myHelper).process();
-			forward("/WEB-INF/jsp/Home.jsp");
+			forward("/WEB-INF/jsp/CreateGroupTV.jsp");
 		}
 		catch(Exception e)
 		{

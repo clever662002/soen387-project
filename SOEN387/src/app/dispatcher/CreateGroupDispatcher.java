@@ -14,13 +14,10 @@ public class CreateGroupDispatcher extends Dispatcher{
 	public void execute() throws ServletException, IOException
 	{
 		try {
-			
 			new CreateGroupCommand(myHelper).process();
 			forward("/WEB-INF/jsp/CreateGroupTV.jsp");
-			
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			e.printStackTrace();
 			forward("/WEB-INF/jsp/html/Error.jsp");
 		}
