@@ -1,5 +1,6 @@
 package dom.command;
 
+import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
@@ -43,7 +44,12 @@ public class AcceptInviteCommand extends Command {
 		helper.setSessionAttribute("invites",UserMapper.findInvites(userId));
 		
 		//TODO add user to group.
-		
+		try {
+			GroupMapper.addMember(userId, groupId);
+		}
+		catch(MapperException ex){
+			throw new CommandException(ex.getMessage());
+		}
 		
 		// Get the group
 		helper.setSessionAttribute("group",GroupMapper.find(groupId));

@@ -13,19 +13,14 @@ import dom.model.user.IUser;
  */
 public class Group extends DomainObject<Long> implements IGroup{
 
-	private long id;
 	private String name;
 	private String description;
 	private List<IUser> users;
-	private long version;
 
-	
 	public Group(long id,String name, String description, long version) {
-		super(version);
-		this.id = id;
+		super(id,version);
 		this.name = name;
 		this.description = description;
-	//	this.version = version;
 	}
 	
 	public String getName() {
@@ -40,23 +35,7 @@ public class Group extends DomainObject<Long> implements IGroup{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public Long getId() {
-		return id;
-	}
-	
-//	public void setId(int id) {
-//		this.id = id;
-//	}
 
-	public long getVersion() {
-		return version;
-	}
-
-	public void setVersion(long version) {
-		this.version = version;
-	}
-	
 	public void addUser(IUser user){
 		users.add(user);
 	}
@@ -66,7 +45,7 @@ public class Group extends DomainObject<Long> implements IGroup{
 	}
 
 	public String toString() {
-		return "name is : " + this.name + "des is :" + this.description + "id is :" + this.id;
+		return "name is : " + this.name + "des is :" + this.description + "id is :" + super.getId();
 	}
 
 }
