@@ -27,17 +27,18 @@ public class RemoveGroupCommand extends Command{
 	public void process() throws CommandException {
 		try
 		{			
-			//String sGroupID   = helper.getString("group_id");			
-			//String sGroupID   = (String)helper.getAttribute("group_id");
-			//long group_id     = Long.parseLong(sGroupID);
-			long group_id 	    = helper.getLong("group_id");
-			
-			System.out.println("RemoveCommand: group_id=[" + group_id + "]");
+			// change to permalink
+			//long group_id 	    = helper.getLong("group_id");
+			String sGroupID   = (String)helper.getAttribute("group_id");
+			long group_id     = Long.parseLong(sGroupID);
+									
 			// delete requested group
 			Group g = GroupMapper.find(group_id);
 			//helper.setRequestAttribute("notice", notice);
 			GroupMapper.removeMembers(g);
 			GroupMapper.delete(g);
+
+			// prepare data for next load
 			getNotifications().add(g.getName() + " has been deleted");
 			List<Group> groups = GroupMapper.findAll();
 			helper.setRequestAttribute("groups",groups);
