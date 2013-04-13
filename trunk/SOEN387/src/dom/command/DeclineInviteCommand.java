@@ -18,9 +18,14 @@ public class DeclineInviteCommand extends Command {
 	@Override
 	public void execute() throws CommandException {
 	
+		// change to permalink
+		/*
 		String userId = ((User)helper.getSessionAttribute("currentUser")).getId() +"";
 		String groupId = helper.getString("group_id");
-		
+		*/
+		String userId  = ((User)helper.getSessionAttribute("currentUser")).getId() +"";		
+		String groupId = (String)helper.getAttribute("group_id");
+					
 		if(groupId == null){
 			throw new CommandException("Group Id is null.");
 		}
