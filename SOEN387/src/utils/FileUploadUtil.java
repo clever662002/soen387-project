@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -206,7 +207,11 @@ public class FileUploadUtil
     
     @SuppressWarnings("unchecked")
     public static List<FileItem> getMultipartFileItems(HttpServletRequest request) throws FileUploadException{
-    	ServletFileUpload servletFileUpload = new ServletFileUpload(new DiskFileItemFactory());
+    	
+    	DiskFileItemFactory factory = new DiskFileItemFactory();
+    	factory.setRepository(new File(UPLOAD_DIR));
+    	//DiskFileUpload fu = new DiskFileUpload(factory);
+    	ServletFileUpload servletFileUpload = new ServletFileUpload(factory);
 		List<FileItem> items = new ArrayList<FileItem>();
 		items = servletFileUpload.parseRequest(request);
 		return items;

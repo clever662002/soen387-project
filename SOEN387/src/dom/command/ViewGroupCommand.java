@@ -48,7 +48,8 @@ public class ViewGroupCommand extends Command{
 			//long groupId = Long.parseLong(strGroupId);			
 			
 			Group group = GroupMapper.find(groupId);
-			helper.setRequestAttribute("group",group);	
+			//helper.setRequestAttribute("group",group);	
+			helper.setSessionAttribute("group",group);	
 //			if(groupId == myGroupId) {
 //				helper.setRequestAttribute("mygroup","true");
 //				helper.setRequestAttribute("group",group);				
