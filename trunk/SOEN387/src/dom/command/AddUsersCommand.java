@@ -80,7 +80,7 @@ public class AddUsersCommand extends Command{
 							added++;
 							line = br.readLine();
 						}
-						getNotifications().add(added+" users added.");
+						getNotifications().add(added+" user(s) added.");
 				  }
 				  else{
 					  throw new CommandException("'"+extension+"' is not a valid extension.");

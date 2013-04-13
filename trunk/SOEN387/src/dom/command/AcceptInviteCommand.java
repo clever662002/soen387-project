@@ -5,6 +5,7 @@ import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
 
+import dom.model.group.mappers.GroupMapper;
 import dom.model.user.User;
 import dom.model.user.mappers.UserMapper;
 
@@ -42,6 +43,10 @@ public class AcceptInviteCommand extends Command {
 		helper.setSessionAttribute("invites",UserMapper.findInvites(userId));
 		
 		//TODO add user to group.
+		
+		
+		// Get the group
+		helper.setSessionAttribute("group",GroupMapper.find(groupId));
 	}
 
 	@Override

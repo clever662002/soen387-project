@@ -16,7 +16,7 @@ public class AcceptInviteDispatcher extends Dispatcher {
 	public void execute() throws ServletException, IOException {
 		try{
 			new AcceptInviteCommand(myHelper).execute();
-			forward("/WEB-INF/jsp/ViewInviteTV.jsp");
+			forward("/WEB-INF/jsp/ViewGroupTV.jsp");
 		}
 		catch(Exception e){
 			forward("/WEB-INF/jsp/ViewInviteTV.jsp");

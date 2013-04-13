@@ -178,7 +178,7 @@ a image {
 	background-color:white;
 	width:800px;
 	height:400px;
-	overflow:auto;
+	/*overflow:auto;*/
 	margin: 10px auto;
 	/*border: 1px solid black;*/
 }
