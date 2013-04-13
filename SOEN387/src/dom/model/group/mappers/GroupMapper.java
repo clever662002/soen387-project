@@ -160,8 +160,7 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		return result;
 	}
 	*/
-	private static Group getGroup(ResultSet rs) throws SQLException {
-		System.out.println("getGroup");
+	private static Group getGroup(ResultSet rs) throws SQLException {		
 		Group result = new Group(rs.getInt("g.group_id"), rs.getString("g.name"),rs.getString("g.description"),rs.getInt("g.version"));
 		return result;
 	}
