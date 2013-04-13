@@ -16,6 +16,7 @@ public class User extends org.dsrg.soenea.domain.user.User implements IUser{
 
 	private String firstName;
 	private String lastName;
+	private String password;
 	private List<Invite> invites;
 	private IGroup group;
 	private boolean isAdmin;
@@ -24,6 +25,7 @@ public class User extends org.dsrg.soenea.domain.user.User implements IUser{
 		super(id,version,username,roles);
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.password = password;
 		this.invites = new ArrayList<Invite>();
 		isAdmin = false;
 	}
@@ -70,6 +72,10 @@ public class User extends org.dsrg.soenea.domain.user.User implements IUser{
 	
 	public boolean hasGroup(){
 		return (group != null && group.getId() > 0);
+	}
+	
+	public String getPwd(){
+		return this.password;
 	}
 	
 }

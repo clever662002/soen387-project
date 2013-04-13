@@ -18,8 +18,9 @@ import dom.model.user.User;
 public class UserTDG {
 	
 	private static final String DB_PREFIX = "groupformation_";
+	private static final String USER_BASE = "user";
 	////DATABASE NAME
-	private static final String DB_NAME_USER = DB_PREFIX+"user";
+	private static final String DB_NAME_USER = DB_PREFIX+USER_BASE;
 	private static final String DB_NAME_INVITE = DB_PREFIX+"invite";
 	private static final String DB_NAME_GROUP = DB_PREFIX+"group";
 	private static final String DB_NAME_USER_GROUP = DB_PREFIX+"user_group";
@@ -45,7 +46,7 @@ public class UserTDG {
 	private static String LOGIN = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+"="+ DB_NAME_USER_GROUP + "."+ USER_ID+") WHERE "+ USERNAME+"=? AND " + PASSWORD + "=?";
 	private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + " LEFT JOIN " +DB_NAME_USER_GROUP+" ON("+DB_NAME_USER+"."+USER_ID+") WHERE "+ USERNAME+"=?";
 	//private static String FIND_BY_USERNAME = "SELECT * FROM " + DB_NAME_USER + ","+DB_NAME_GROUP+ " WHERE "+DB_NAME_USER+"."+USER_ID+"="+DB_NAME_GROUP+"."+USER_ID+" AND "+USERNAME+"=?";
-	private static String INSERT = "INSERT INTO " +DB_NAME_USER+ " ("+USERNAME+","+FIRST_NAME+","+LAST_NAME+","+PASSWORD+","+VERSION +") VALUES (?,?,?,?,?)";
+	private static String INSERT = "INSERT INTO " +DB_NAME_USER+ " ("+USER_ID+","+USERNAME+","+FIRST_NAME+","+LAST_NAME+","+PASSWORD+","+VERSION +") VALUES (?,?,?,?,?,?)";
 	//TODO finish update query
 	private static String UPDATE = "UPDATE " +DB_NAME_USER+ "SET ";
 	private static String DELETE_INVITES = "DELETE FROM  " +DB_NAME_INVITE+ " WHERE "+USER_ID+ "=?";
@@ -81,7 +82,7 @@ public class UserTDG {
 
 	
 	public static long getMaxID() throws SQLException {
-		return UniqueIdFactory.getMaxId( DB_NAME_USER, "id" );
+		return UniqueIdFactory.getMaxId( USER_BASE, "user_id" );
 	}
 	
 	public static ResultSet find(String username,String password) throws SQLException {
@@ -119,14 +120,15 @@ public class UserTDG {
 	
 	public static void insert(HashMap<String,String> params) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(INSERT);
-		ps.setString(1, params.get(USERNAME));
-		ps.setString(2, params.get(FIRST_NAME));
-		ps.setString(3, params.get(LAST_NAME));
+		ps.setString(1, params.get(USER_ID));
+		ps.setString(2, params.get(USERNAME));
+		ps.setString(3, params.get(FIRST_NAME));
+		ps.setString(4, params.get(LAST_NAME));
 		//TODO hash the password
 		String password = params.get(PASSWORD);
 		String encryptedPassword = password;
-		ps.setString(4, encryptedPassword);
-		ps.setInt(5, Integer.parseInt(params.get(VERSION)));		
+		ps.setString(5, encryptedPassword);
+		ps.setInt(6, Integer.parseInt(params.get(VERSION)));		
 		int rs = ps.executeUpdate();
 		ps.close();
 	}
@@ -182,7 +184,9 @@ public class UserTDG {
 		PreparedStatement ps = con.prepareStatement(INSERT_USER_ROLE_SQL);
 		ps.setLong(1, user_id);
 		ps.setLong(2, role_id);
-		int count = SQLLogger.processUpdate(ps);
+		System.out.println(ps);
+		int count = ps.executeUpdate();
+		//int count = SQLLogger.processUpdate(ps);
 		ps.close();
 		return count;
 	}

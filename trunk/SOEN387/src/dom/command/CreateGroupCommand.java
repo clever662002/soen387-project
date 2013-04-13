@@ -2,6 +2,7 @@ package dom.command;
 
 import java.sql.SQLException;
 
+import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
@@ -9,6 +10,8 @@ import org.dsrg.soenea.domain.helper.Helper;
 
 import dom.model.group.Group;
 import dom.model.group.mappers.GroupMapper;
+import dom.model.user.User;
+import dom.model.user.mappers.UserMapper;
 
 public class CreateGroupCommand extends Command{
 
@@ -28,13 +31,32 @@ public class CreateGroupCommand extends Command{
 		
 		//helper.setRequestAttribute("template_view","/WEB-INF/jsp/CreateGroupTV.jsp");
 		String sGroupName = helper.getString("name");
-		String sGroupDesc = helper.getString("description");		
+		String sGroupDesc = helper.getString("description");
+		User user = (User)helper.getSessionAttribute("currentUser");
 		if (sGroupName != null && !sGroupName.equals(""))
 		{
 			// insert action + prepare data for ViewGroupTV
 			try {
+				if(user.getGroup() != null && user.getGroup().getId() > 0){
+					String msg = "You are already in a group and cannot create one.";
+					helper.setRequestAttribute("error",msg);
+					throw new CommandException(msg);
+				}
+				
 				if(GroupMapper.find(sGroupName) == null){
-					helper.setRequestAttribute("group", GroupMapper.insert(new Group(sGroupName,sGroupDesc)));
+					//Create the group
+					Group newGroup = GroupMapper.insert(new Group(sGroupName,sGroupDesc));
+					helper.setRequestAttribute("group", newGroup);
+					//Add the user to the group
+					try{
+						GroupMapper.addMember(user.getId(),newGroup.getId());
+					}
+					catch(MapperException ex){
+						throw new CommandException(ex.getMessage());
+					}
+					// Delete all the users pending invites;
+					UserMapper.deleteInvites(Integer.parseInt(user.getId()+""));
+					
 					helper.setRequestAttribute("template_view","/WEB-INF/jsp/MyGroupTV.jsp");
 				}
 				else{
