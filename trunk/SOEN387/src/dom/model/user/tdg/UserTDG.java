@@ -182,8 +182,8 @@ public class UserTDG {
 	public static int insertUserRole(long user_id, long role_id) throws SQLException {
 		Connection con = DbRegistry.getDbConnection();
 		PreparedStatement ps = con.prepareStatement(INSERT_USER_ROLE_SQL);
-		ps.setLong(1, user_id);
-		ps.setLong(2, role_id);
+		ps.setInt(1, Integer.parseInt(user_id+""));
+		ps.setInt(2, Integer.parseInt(role_id+""));
 		System.out.println(ps);
 		int count = ps.executeUpdate();
 		//int count = SQLLogger.processUpdate(ps);

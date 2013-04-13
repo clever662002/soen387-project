@@ -236,7 +236,7 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	public static void insertRoles(User d) throws SQLException, MapperException {
 		for(IRole r: d.getRoles()) {
 			int result = UserTDG.insertUserRole(d.getId(), r.getId());
-			if(result == 0) throw new MapperException("Unable to insert User Role: " + d.getUsername() + 
+			if(result == 0)throw new MapperException("Unable to insert User Role: " + d.getUsername() + 
 					"("+d.getId()+") " + r.getName() + "(" + r.getId() + ")");
 		}
 	}
@@ -294,7 +294,5 @@ public class UserMapper implements IOutputMapper<Long, DomainObject<Long>>{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
+
 }
