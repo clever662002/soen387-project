@@ -18,7 +18,11 @@
 	<ul id="navBar">
 	
 	<!--  THIS IS DIRTY, I KNOW !!  -->
-	
+		<!-- set absolute path -->
+		<%						
+		String strAbsolutePath 	= "http://" + request.getServerName() + ":8080" +
+				 				  request.getContextPath() + "/front" + "/" ;		
+		%>
 		<c:if test="${empty sessionScope[\"currentUser\"]}">
 			<li><a href="front?command=app.dispatcher.LoginDispatcher">LOGIN</a></li>
 		</c:if>
@@ -28,9 +32,15 @@
 				<c:if test="${role.id == 1}">
 					<li><a href="front?command=app.dispatcher.LoginDispatcher">LOGIN</a></li>
 				</c:if>
-				<c:if test="${role.id == 2}">					 
-					<li><a href="front?command=app.dispatcher.BrowseInvitesDispatcher">INVITES</a></li>
-					<li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>					
+				<c:if test="${role.id == 2}">
+					<!-- 					 
+					<li><a href="front?command=app.dispatcher.BrowseInvitesDispatcher">INVITES</a></li>					 
+					<li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>
+					-->                                         
+					<li><a href="<%out.print(strAbsolutePath + "browse_invite"); %>">INVITES</a></li>
+					<li><a href="<%out.print(strAbsolutePath + "browse_group"); %>">GROUP</a></li>					
+										
+					
 					<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>
 				</c:if>
 				<c:if test="${role.id == 3}">
