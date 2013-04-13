@@ -5,7 +5,11 @@
 	<div id="container">
 	
 		<ul>	
+			<!-- change to permalink
 			<li><a href="front?command=app.dispatcher.SendInviteDispatcher">Send Invite</a></li>
+			-->
+			<% out.println("[" + strAbsolutePath + "send_invite" + "]"); %>
+			<li><a href="<%out.print(strAbsolutePath + "send_invite"); %>">Send Invite</a></li>			
 		</ul>	
 			
 		<c:if test="${!empty error}">
@@ -35,8 +39,14 @@
 						<td>${invite.group.id}</td>
 						<td>${invite.group.name}</td>
 						<td>${invite.group.description}</td>
+						
+						<!-- change to permalink 
 						<td><a href="front?command=app.dispatcher.AcceptInviteDispatcher&group_id=${invite.group.id}">YES</a></td>
 						<td><a href="front?command=app.dispatcher.DeclineInviteDispatcher&group_id=${invite.group.id}">NO</a></td>
+						-->
+						<td><a href="accept_invite/${invite.group.id}">YES</a></td>												
+						<td><a href="decline_invite/${invite.group.id}">NO</a></td>
+						
 					</tr>
 				</c:forEach>
 				</table>

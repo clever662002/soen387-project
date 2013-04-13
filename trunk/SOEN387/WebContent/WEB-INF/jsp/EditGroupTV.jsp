@@ -2,9 +2,15 @@
 
 <h2>Edit Group</h2>
 
+<!-- change to permalink 
 <form action="front?command=app.dispatcher.EditGroupDispatcher" method="POST">
+-->
+<form action="../edit_group/${group.id}" method="POST">
 
 	<div id="container">
+		<c:if test="${!empty notice}">
+			<p id="notice"> ${notice} </p>
+		</c:if>
 		<c:if test="${!empty warning}">
 			<p id="error"> ${warning} </p>
 		</c:if>
@@ -14,7 +20,7 @@
 		<c:if test="${!empty group}">	
 			<div id="display">
 				<table>
-					<tr><!--td>Id</td-->
+					<tr>
 						<td>Id</td>
 						<td>Name</td>
 						<td>Description</td>
@@ -30,11 +36,15 @@
 					</tr>
 				</table>
 				<input type="hidden" name="version" id="version" value="${group.version}" />
-				<input type="hidden" name="group_id" id="group_id" value="${group.id}">
-			</div>
-		</div>
-	</c:if>
-	</br>
-	<a href="front?command=app.dispatcher.BrowseGroupDispatcher">Back</a>
+				<input type="hidden" name="group_id" id="group_id" value="${group.id}" />
+			</div>		
+		</c:if>
+		<br />
+	
+		<!-- change to permalink 
+		<a href="front?command=app.dispatcher.BrowseGroupDispatcher">Back</a>
+		-->
+		<a href="../browse_group">Back</a>
+	</div>
 </form>
 <%@include file="../include/footer.jsp" %>

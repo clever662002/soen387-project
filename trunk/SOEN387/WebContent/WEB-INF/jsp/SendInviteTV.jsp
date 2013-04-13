@@ -7,7 +7,10 @@
 	<div id="container">
 	
 		<ul>	
+			<!-- change to permalink
 			<li><a href="front?command=app.dispatcher.SendInviteDispatcher">Send Invite</a></li>
+			-->
+			<li><a href="../send_invite">Send Invite</a></li>
 		</ul>	
 	
 		<c:if test="${!empty error}">
@@ -22,7 +25,10 @@
 	
 		<div id="sendInviteContainer">
 			<div id="sendInvite">
+				<!-- change to permalink
 				<form action="front?command=app.dispatcher.SendInviteDispatcher" method="POST" target="_self">
+				-->
+				<form action="send_invite" method="POST" target="_self">
 					<!--span>USER ID </span> <input type="text" name="user_id" /> </br>
 					<span>GROUP ID </span> <input type="text" name="group_id" value="${currentUser.group.id}"/> </br>
 					<input type="submit" value="SEND INVITE" /> </br-->
@@ -44,8 +50,12 @@
 				</form>
 			</div>
 		</div>
-		</br>
+		<br />
+		
+		<!-- change to permalink 
 		<a href="front?command=app.dispatcher.BrowseInvitesDispatcher">Back</a>
+		-->
+		<a href="browse_invite">Back</a>
 	</div>
 	
 <%@include file="../include/footer.jsp" %>
