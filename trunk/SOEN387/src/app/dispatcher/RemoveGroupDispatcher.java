@@ -15,11 +15,13 @@ public class RemoveGroupDispatcher extends Dispatcher{
 	public void execute() throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try
-		{
-			System.out.println("RemoveGroupDispatcher");
-			new RemoveGroupCommand(myHelper).process();
-			//forward("/WEB-INF/jsp/Home.jsp");
-			forward("/WEB-INF/jsp/BrowseGroupTV.jsp");
+		{			
+			new RemoveGroupCommand(myHelper).process();			
+			//forward("/WEB-INF/jsp/BrowseGroupTV.jsp");
+			
+			String path = this.myRequest.getContextPath() + this.myRequest.getServletPath() + "/" + "browse_group";
+			System.out.println("RemoveGroupDispatcher:redirec_path=[" + path + "]");
+			this.myResponse.sendRedirect(path);
 		}
 		catch(Exception e)
 		{
