@@ -3,11 +3,8 @@ package dom.model.user;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import org.dsrg.soenea.domain.DomainObject;
 import org.dsrg.soenea.domain.role.IRole;
 
-import dom.model.group.GroupProxy;
 import dom.model.group.IGroup;
 import dom.model.invite.Invite;
 

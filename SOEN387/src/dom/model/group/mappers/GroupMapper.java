@@ -11,9 +11,11 @@ import java.util.Arrays;
 import org.dsrg.soenea.domain.DomainObject;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.IOutputMapper;
+import org.dsrg.soenea.domain.user.IUser;
 
 import dom.model.group.Group;
 import dom.model.group.tdg.GroupTDG;
+import dom.model.user.UserProxy;
 import dom.model.user.tdg.UserTDG;
 
 
@@ -41,8 +43,6 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 				map.put(g.getId(), g);
 			}
 		}
-		
-		
 		return list_group;
 	}
 	
@@ -59,14 +59,19 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 								   rs.getString(DESC),
 								   rs.getInt(VERSION));
 				
-				if(map.get(result.getId())== null)
-				{					
+				ResultSet rs2 = GroupTDG.getMembers(id);
+				List<UserProxy> members = new ArrayList<UserProxy>();
+				while(rs.next()){
+					members.add(new UserProxy(rs.getLong("user_id")));
+				}
+				//result.setMembers(members);
+		
+				if(map.get(result.getId())== null) {					
 					map.put(result.getId(), result);
 				}				
 			}						
 		}
-		catch(SQLException ex)		
-		{
+		catch(SQLException ex) {
 			System.err.print("SQLException : " + ex.getMessage());
 		}
 		

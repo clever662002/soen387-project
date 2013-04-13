@@ -16,7 +16,9 @@ public class GroupTDG {
 	public static final String TABLE = DbRegistry.getTablePrefix()+BASE_NAME;
 	public static final String TABLE_UG = DbRegistry.getTablePrefix()+BASE_NAME_USER_GROUP;
 	
-	private static String SELECT_BY_ID = "SELECT * FROM " + TABLE + " WHERE group_id = ? ORDER BY group_id";
+	private static String SELECT_BY_ID = "SELECT * FROM " + TABLE + " WHERE group_id = ?";
+	
+	
 	private static String SELECT_BY_NAME = "SELECT * FROM " + TABLE + " WHERE name = ?";
 	private static String SELECT_ALL = "SELECT g.group_id, g.name, g.description, g.version FROM " + TABLE + " AS g ORDER BY group_id;";
 	private static String INSERT = "INSERT INTO " + TABLE + " (name,description) " + " VALUES(?,?)";
@@ -27,6 +29,7 @@ public class GroupTDG {
 	private static String DELETE_MEMBER = "DELETE FROM " + TABLE_UG + " WHERE user_id=?";
 	private static String DELETE_MEMBERS = "DELETE FROM " + TABLE_UG + " WHERE group_id=?";
 	private static String ADD_MEMBER = "INSERT INTO " + TABLE_UG + "(user_id,group_id) VALUES (?,?)";
+	private static String SELECT_MEMBERS = "SELECT user_id FROM " +TABLE_UG+ " WHERE group_id=?";
 	
 	public static ResultSet findAll() throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT_ALL);
@@ -115,10 +118,17 @@ public class GroupTDG {
 	public static int addMember(long userId, long groupId) throws SQLException {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(ADD_MEMBER);
 		ps.setLong(1, userId);
-		ps.setLong(1, groupId);
+		ps.setLong(2, groupId);
 		int count = ps.executeUpdate();
 		ps.close();
 		return count;
+	}
+	
+	public static ResultSet getMembers(long groupId) throws SQLException {
+		System.out.println(SELECT_MEMBERS);
+		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(SELECT_MEMBERS);
+		ps.setLong(1, groupId);
+		return ps.executeQuery();
 	}
 	
 }
