@@ -63,6 +63,8 @@ public class CreateGroupCommand extends Command{
 					helper.setRequestAttribute("error", "That group name is already taken");
 					throw new CommandException("That group name is already taken.");
 				}
+				String notice = sGroupName + " has been created successfully.";
+				helper.setRequestAttribute("notice", notice);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				//helper.setRequestAttribute("error", value)
