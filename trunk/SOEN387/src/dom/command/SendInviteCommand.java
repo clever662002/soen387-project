@@ -24,6 +24,8 @@ public class SendInviteCommand extends Command {
 		int userId = helper.getInt("user_id");
 		int groupId = helper.getInt("group_id");
 
+		System.out.println("sendinvitcommand:userId=" + userId );
+		
 		//TODO check this 
 		User currentUser = (User)helper.getSessionAttribute("currentUser");
 		
