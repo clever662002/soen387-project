@@ -16,8 +16,10 @@ public class RemoveGroupDispatcher extends Dispatcher{
 		// TODO Auto-generated method stub
 		try
 		{
+			System.out.println("RemoveGroupDispatcher");
 			new RemoveGroupCommand(myHelper).process();
-			forward("/WEB-INF/jsp/Home.jsp");
+			//forward("/WEB-INF/jsp/Home.jsp");
+			forward("/WEB-INF/jsp/BrowseGroupTV.jsp");
 		}
 		catch(Exception e)
 		{

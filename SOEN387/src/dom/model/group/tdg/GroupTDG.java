@@ -74,9 +74,7 @@ public class GroupTDG {
 	}
 	
 	public static int delete(Long long1, String name, String description, long l) throws SQLException
-	{
-		System.out.println("Group id" + long1);
-		System.out.println(DbRegistry.getDbConnection().prepareStatement(DELETE));
+	{		
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(DELETE);
 		ps.setLong(1, long1);
 		//ps.setInt(2, version);
