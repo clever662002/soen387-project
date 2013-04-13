@@ -88,7 +88,7 @@ public class FrontController extends DispatcherServlet {
 			
 			String path = request.getRequestURL().toString();
 			myHelper.setRequestAttribute("path", path);
-			myHelper.setRequestAttribute("realPath", getServletContext().getRealPath("."));
+			myHelper.setRequestAttribute("realPath", getServletContext().getRealPath("."));						
 			
 			/*
 			commandName = getCommandName(request);
@@ -105,14 +105,16 @@ public class FrontController extends DispatcherServlet {
 			else
 				commandName = "app.dispatcher." + commandName;
 			
-					
+			System.out.println("frontcontroler:commandName=[" + commandName + "]");
+			
 			user = (User) myHelper.getSessionAttribute("currentUser");
 			
 			if(user == null){
 				user = new GuestUser();
 				request.getSession(true).setAttribute("currentUser", user);
 			}
-						
+			
+			
 			if(!ApplicationAuthorizaton.hasAuthority(commandName,user.getRoles())){
 				throw new Exception("You need to be logged in to access this page.");
 			}
