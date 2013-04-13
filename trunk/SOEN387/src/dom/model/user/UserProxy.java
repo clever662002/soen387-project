@@ -19,7 +19,6 @@ public class UserProxy extends DomainObjectProxy<Long, User> implements IUser{
 	
 	public UserProxy(Long id){
 		super(id);
-		//this.id = id;
 	}
 	
 	public User getUser(){
@@ -28,24 +27,9 @@ public class UserProxy extends DomainObjectProxy<Long, User> implements IUser{
 		}
 		return user;
 	}
-	
-	
-/*
-	@Override
-	public int getId() {
-		return getUser().getId();
-	}
-
-
-	@Override
-	public int getVersion() {
-		return getUser().getVersion();
-	}
-*/
 
 	@Override
 	protected User getFromMapper(Long id) throws DomainObjectCreationException {
-		// TODO Auto-generated method stub
 		try{
 			return UserMapper.find(id);
 		}
@@ -82,6 +66,5 @@ public class UserProxy extends DomainObjectProxy<Long, User> implements IUser{
 	public List<Invite> getInvites() {
 		return getUser().getInvites();
 	}
-
 
 }

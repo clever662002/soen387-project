@@ -7,22 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
-import org.apache.catalina.Role;
 import org.dsrg.soenea.domain.DomainObject;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.IOutputMapper;
 import org.dsrg.soenea.domain.role.IRole;
-import org.dsrg.soenea.domain.role.RoleListProxy;
 import org.dsrg.soenea.domain.role.mapper.RoleInputMapper;
-import org.dsrg.soenea.domain.user.UserProxy;
-import org.dsrg.soenea.domain.user.mapper.UserInputMapper;
-import org.dsrg.soenea.service.tdg.finder.UserFinder;
-import org.dsrg.soenea.uow.UoW;
 
 import dom.model.group.Group;
 import dom.model.group.GroupProxy;
-import dom.model.group.IGroup;
-import dom.model.group.tdg.GroupTDG;
 import dom.model.invite.Invite;
 import dom.model.user.User;
 import dom.model.user.UserFactory;

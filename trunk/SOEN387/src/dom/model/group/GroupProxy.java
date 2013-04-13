@@ -11,12 +11,10 @@ import dom.model.user.IUser;
 
 public class GroupProxy extends DomainObjectProxy<Long,Group>implements IGroup {
 
-	//private long id;
 	private Group group;
 	
 	public GroupProxy(long l){
 		super(l);
-		//this.id = l;
 	}
 	
 	public Group getGroup(){
@@ -26,14 +24,14 @@ public class GroupProxy extends DomainObjectProxy<Long,Group>implements IGroup {
 		return group;
 	}
 
-//	@Override
-//	public String getDescription() {
-//		return getGroup().getDescription();
-//	}
+	@Override
+	public String getDescription() {
+		return getGroup().getDescription();
+	}
 
 	@Override
-	public List<IUser> getUsers() {
-		return getGroup().getUsers();
+	public List<IUser> getMembers() {
+		return getGroup().getMembers();
 	}
 
 	@Override
@@ -44,7 +42,6 @@ public class GroupProxy extends DomainObjectProxy<Long,Group>implements IGroup {
 	@Override
 	public void setVersion(long new_version) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

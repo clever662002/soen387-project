@@ -5,10 +5,7 @@ import java.util.List;
 import dom.model.group.IGroup;
 import dom.model.invite.Invite;
 
-
 public interface IUser {
-	//public int getId();
-	//public int getVersion();
 	public String getFirstName();
 	public String getLastName();
 	public String getUsername();

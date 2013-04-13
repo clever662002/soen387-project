@@ -8,10 +8,8 @@ import dom.model.user.IUser;
 
 
 public interface IGroup extends IDomainObject<Long>{
-//	public Integer getId();
 	public String getName();
 	public void setName(String name);
-//	public String getDescription();
-	public List<IUser> getUsers();
-//	public long getVersion();
+	public String getDescription();
+	public List<IUser> getMembers();
 }
