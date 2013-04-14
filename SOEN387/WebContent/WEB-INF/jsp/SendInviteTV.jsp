@@ -10,7 +10,7 @@
 			<!-- change to permalink
 			<li><a href="front?command=app.dispatcher.SendInviteDispatcher">Send Invite</a></li>
 			-->
-			<li><a href="../send_invite">Send Invite</a></li>
+			<li><a href="<%out.print(strAbsolutePath + "send_invite"); %>">Send Invite</a></li>
 		</ul>	
 	
 		<c:if test="${!empty error}">
