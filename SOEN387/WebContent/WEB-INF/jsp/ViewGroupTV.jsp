@@ -19,9 +19,9 @@
 					<!-- change to permalink
 					<li><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit Group</a></li>
 					<li><a href="front?command=app.dispatcher.RemoveGroupDispatcher&group_id=${group.id}">Remove Group</a>	</li>
-					-->				
-					<li><a href="../edit_group/${group.id}">Edit Group</a></li>
-					<li><a href="../remove_group/${group.id}">Remove Group</a>	</li>
+					-->					
+					<li><a href="<%out.print(strAbsolutePath + "edit_group/");%>${group.id}">Edit Group</a></li>
+					<li><a href="<%out.print(strAbsolutePath + "remove_group/");%>${group.id}">Remove Group</a></li>
 				</c:if>
 			</ul>
 		
