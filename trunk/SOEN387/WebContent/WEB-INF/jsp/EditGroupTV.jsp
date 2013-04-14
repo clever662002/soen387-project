@@ -6,7 +6,6 @@
 <form action="front?command=app.dispatcher.EditGroupDispatcher" method="POST">
 -->
 <form action="../edit_group/${group.id}" method="POST">
-
 	<div id="container">
 		<c:if test="${!empty notice}">
 			<p id="notice"> ${notice} </p>
@@ -44,7 +43,7 @@
 		<!-- change to permalink 
 		<a href="front?command=app.dispatcher.BrowseGroupDispatcher">Back</a>
 		-->
-		<a href="../browse_group">Back</a>
+		<a href="<%out.print(strAbsolutePath + "browse_group"); %>">Back</a>
 	</div>
 </form>
 <%@include file="../include/footer.jsp" %>
