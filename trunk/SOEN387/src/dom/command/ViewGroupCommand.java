@@ -39,8 +39,8 @@ public class ViewGroupCommand extends Command{
 //			helper.setRequestAttribute("group",gr);
 //			helper.setRequestAttribute("groupId", sGroupID);
 			User user= (User)helper.getSessionAttribute("currentUser");
-			GroupProxy myGroup = (GroupProxy)user.getGroup();
-			Long myGroupId = myGroup.getId();
+			//GroupProxy myGroup = (GroupProxy)user.getGroup();
+			//Long myGroupId = myGroup.getId();
 			
 			// change to permalink
 			//long groupId = helper.getLong("group_id");
@@ -50,15 +50,6 @@ public class ViewGroupCommand extends Command{
 			Group group = GroupMapper.find(groupId);
 			//helper.setRequestAttribute("group",group);	
 			helper.setSessionAttribute("group",group);	
-//			if(groupId == myGroupId) {
-//				helper.setRequestAttribute("mygroup","true");
-//				helper.setRequestAttribute("group",group);				
-//			}else {
-//				helper.setRequestAttribute("mygroup","false");
-//				helper.setRequestAttribute("group",group);
-//
-//			}
-//			
 		}
 		catch(Exception e)
 		{
