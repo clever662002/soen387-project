@@ -48,7 +48,10 @@
 					
 				</c:if>
 				<c:if test="${role.id == 3}">
+					<!-- 
 					<li><a href="front?command=app.dispatcher.AddUsersDispatcher">ADMIN</a></li>
+					-->
+					<li><a href="<%out.print(strAbsolutePath + "add_user"); %>">ADMIN</a></li>
 				</c:if>
 			</c:forEach>
 		</c:if>
