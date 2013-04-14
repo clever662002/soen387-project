@@ -12,9 +12,9 @@
 	    </c:choose>
 	    
 	    <ul>
-			<!-- change to permalink
-			<li><a href="front?command=app.dispatcher.CreateGroupFormDispatcher">Create Group</a></li>
-			-->			
+			<c:if test="${!empty currentUser.group.id}">		
+				<li><a href="${thePath}view_group/${currentUser.group.id}">My Group</a></li>
+			</c:if>	
 			<li><a href="${thePath}create_group">Create Group</a></li>
 		</ul>
 	    

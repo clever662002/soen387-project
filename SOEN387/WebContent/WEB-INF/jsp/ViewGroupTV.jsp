@@ -15,11 +15,7 @@
 		<c:if test="${!empty group}">
 		
 			<ul>
-				<c:if test="${group.id == currentUser.group.id}">
-					<!-- change to permalink
-					<li><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit Group</a></li>
-					<li><a href="front?command=app.dispatcher.RemoveGroupDispatcher&group_id=${group.id}">Remove Group</a>	</li>
-					-->					
+				<c:if test="${group.id == currentUser.group.id}">			
 					<li><a href="${thePath}edit_group/${group.id}">Edit Group</a></li>
 					<li><a href="${thePath}remove_group/${group.id}">Remove Group</a></li>
 				</c:if>
@@ -42,10 +38,7 @@
 				</table>
 			</div>
 		</c:if>
-		</br>
-		<!-- change to permalink 
-		<a href="front?command=app.dispatcher.BrowseGroupDispatcher">Back</a>
-		-->		
+		</br>	
 		<a href="${thePath}browse_group">Back</a>
 	</div>
 <%@include file="../include/footer.jsp" %>
