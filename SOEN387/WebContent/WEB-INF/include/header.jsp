@@ -30,18 +30,22 @@
 		<c:if test="${!empty sessionScope[\"currentUser\"]}">
 			<c:forEach items="${sessionScope[\"currentUser\"].roles}" var="role">
 				<c:if test="${role.id == 1}">
+					<!-- 
 					<li><a href="front?command=app.dispatcher.LoginDispatcher">LOGIN</a></li>
+					-->
+					<li><a href="<%out.print(strAbsolutePath + "login"); %>">LOGIN</a></li>
 				</c:if>
 				<c:if test="${role.id == 2}">
 					<!-- 					 
 					<li><a href="front?command=app.dispatcher.BrowseInvitesDispatcher">INVITES</a></li>					 
 					<li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>
+					<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>
 					-->                                         
 					<li><a href="<%out.print(strAbsolutePath + "browse_invite"); %>">INVITES</a></li>
 					<li><a href="<%out.print(strAbsolutePath + "browse_group"); %>">GROUP</a></li>					
-										
+					<li><a href="<%out.print(strAbsolutePath + "logout"); %>">LOGOUT</a></li>					
 					
-					<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>
+					
 				</c:if>
 				<c:if test="${role.id == 3}">
 					<li><a href="front?command=app.dispatcher.AddUsersDispatcher">ADMIN</a></li>
