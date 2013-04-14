@@ -2,23 +2,19 @@ package dom.model.group.mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 
 import org.dsrg.soenea.domain.DomainObject;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.IOutputMapper;
-import org.dsrg.soenea.domain.user.IUser;
 
 import dom.model.group.Group;
 import dom.model.group.tdg.GroupTDG;
 import dom.model.user.UserIdentityMap;
 import dom.model.user.UserProxy;
 import dom.model.user.mappers.UserMapper;
-import dom.model.user.tdg.UserTDG;
 
 
 public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{

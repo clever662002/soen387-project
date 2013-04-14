@@ -2,7 +2,6 @@ package dom.model.user;
 
 import java.util.List;
 
-import org.dsrg.soenea.domain.DomainObject;
 import org.dsrg.soenea.domain.DomainObjectCreationException;
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.proxy.DomainObjectProxy;

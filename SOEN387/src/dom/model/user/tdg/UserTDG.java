@@ -5,15 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Vector;
-
 
 import org.dsrg.soenea.service.UniqueIdFactory;
 import org.dsrg.soenea.service.logging.SQLLogger;
 import org.dsrg.soenea.service.threadLocal.DbRegistry;
-
-import dom.model.user.User;
 
 public class UserTDG {
 	

@@ -1,14 +1,11 @@
 package utils;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.fileupload.FileItem;
 import org.dsrg.soenea.application.servlet.dispatcher.HttpServletHelper;
 import org.dsrg.soenea.domain.helper.Helper;
 

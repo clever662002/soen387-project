@@ -8,7 +8,6 @@ import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 import org.dsrg.soenea.domain.command.CommandException;
 
 import dom.command.CreateGroupCommand;
-import dom.command.SendInviteCommand;
 
 public class CreateGroupDispatcher extends Dispatcher{
 	@Override

@@ -12,8 +12,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
-
 /**
  * Servlet Filter implementation class BuddyAgePermalinkFilter
  */

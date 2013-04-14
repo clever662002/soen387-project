@@ -2,15 +2,12 @@ package dom.command;
 
 import java.sql.SQLException;
 
-
 import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
 import org.dsrg.soenea.domain.helper.Helper;
-import org.dsrg.soenea.domain.user.mapper.UserInputMapper;
 
-import dom.model.user.GuestUser;
 import dom.model.user.mappers.UserMapper;
 
 public class LoginCommand extends Command{

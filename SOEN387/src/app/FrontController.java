@@ -3,9 +3,7 @@ package app;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.dsrg.soenea.application.filter.PermalinkFactory;
-import org.dsrg.soenea.application.filter.PermalinkFilter;
 import org.dsrg.soenea.application.servlet.DispatcherServlet;
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 import org.dsrg.soenea.application.servlet.dispatcher.HttpServletHelper;
@@ -34,8 +30,6 @@ import org.dsrg.soenea.uow.UoW;
 
 import utils.FileUploadUtil;
 import utils.MultipartHttpServletHelper;
-import utils.MultipartRequest;
-
 import dom.model.group.Group;
 import dom.model.group.mappers.GroupMapper;
 import dom.model.role.AdminRole;

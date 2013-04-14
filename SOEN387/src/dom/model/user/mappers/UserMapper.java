@@ -12,7 +12,6 @@ import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.mapper.IOutputMapper;
 import org.dsrg.soenea.domain.role.IRole;
 import org.dsrg.soenea.domain.role.mapper.RoleInputMapper;
-import org.dsrg.soenea.uow.UoW;
 
 import dom.model.group.Group;
 import dom.model.group.GroupProxy;
