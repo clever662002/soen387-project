@@ -16,8 +16,6 @@ public class RemoveGroupDispatcher extends Dispatcher{
 		try
 		{			
 			new RemoveGroupCommand(myHelper).process();			
-			//forward("/WEB-INF/jsp/BrowseGroupTV.jsp");
-			
 			String path = this.myRequest.getContextPath() + this.myRequest.getServletPath() + "/" + "browse_group";			
 			this.myResponse.sendRedirect(path);
 		}
