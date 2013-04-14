@@ -10,9 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.dsrg.soenea.domain.MapperException;
 import org.dsrg.soenea.domain.command.CommandError;
 import org.dsrg.soenea.domain.command.CommandException;
 import org.dsrg.soenea.domain.command.impl.Command;
@@ -20,12 +17,8 @@ import org.dsrg.soenea.domain.helper.Helper;
 import org.dsrg.soenea.domain.role.IRole;
 import org.dsrg.soenea.domain.role.RoleFactory;
 
-import utils.FileUploadUtil;
-
-import dom.model.user.User;
 import dom.model.user.UserFactory;
 import dom.model.user.mappers.UserMapper;
-import dom.model.user.tdg.UserTDG;
 
 public class AddUsersCommand extends Command{
 

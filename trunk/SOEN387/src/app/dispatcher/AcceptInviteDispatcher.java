@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 
 import dom.command.AcceptInviteCommand;
-import dom.command.AddUsersCommand;
-import dom.command.BrowseInvitesCommand;
 
 public class AcceptInviteDispatcher extends Dispatcher {
 

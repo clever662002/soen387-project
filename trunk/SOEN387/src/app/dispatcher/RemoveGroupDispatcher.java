@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 
-import dom.command.BrowseGroupCommand;
 import dom.command.RemoveGroupCommand;
 
 public class RemoveGroupDispatcher extends Dispatcher{

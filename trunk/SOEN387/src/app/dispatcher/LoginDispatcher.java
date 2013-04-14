@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 
 import org.dsrg.soenea.application.servlet.dispatcher.Dispatcher;
 
-import controller.BrowseGroupPC;
-
 import dom.command.LoginCommand;
 import dom.model.user.GuestUser;
 
