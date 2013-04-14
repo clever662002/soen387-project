@@ -15,7 +15,7 @@
 			<!-- change to permalink
 			<li><a href="front?command=app.dispatcher.CreateGroupFormDispatcher">Create Group</a></li>
 			-->			
-			<li><a href="<%out.print(strAbsolutePath + "create_group"); %>">Create Group</a></li>
+			<li><a href="${thePath}create_group">Create Group</a></li>
 		</ul>
 	    
 	    <div id="display">
@@ -35,7 +35,7 @@
 						<!--  
 						<td><a href="front?command=app.dispatcher.ViewGroupDispatcher&group_id=${group.id}">View</a></td>						
 						-->						
-						<td><a href="<%out.print(strAbsolutePath + "view_group/");%>${group.id}">View</a></td>
+						<td><a href="${thePath}view_group/${group.id}">View</a></td>
 						<!-- td><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit</a></td-->
 					</tr>
 				</c:forEach>

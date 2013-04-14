@@ -31,11 +31,6 @@
 							<td><input type="reset" value="RESET" /></td>
 						</tr>
 					</table>
-							
-					<!-- span>USERNAME </span> <input type="text" name="username" /> </br>
-					<span>PASSWORD </span> <input type="password" name="password" /> </br>
-					<input type="submit" value="DO IT" /> <input type="reset" value="RESET" /></br-->
-					
 				</form>
 			</div>
 		</div>

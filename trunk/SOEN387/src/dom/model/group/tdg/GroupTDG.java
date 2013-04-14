@@ -117,6 +117,7 @@ public class GroupTDG {
 		PreparedStatement ps = DbRegistry.getDbConnection().prepareStatement(ADD_MEMBER);
 		ps.setLong(1, userId);
 		ps.setLong(2, groupId);
+		System.out.println(ps);
 		int count = ps.executeUpdate();
 		ps.close();
 		return count;

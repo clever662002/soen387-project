@@ -18,11 +18,9 @@
 	<ul id="navBar">
 	
 	<!--  THIS IS DIRTY, I KNOW !!  -->
-		<!-- set absolute path -->
-		<%						
-		String strAbsolutePath 	= "http://" + request.getServerName() + ":8080" +
-				 				  request.getContextPath() + "/front" + "/" ;		
-		%>
+		
+		<c:set var="thePath" value="http://${pageContext.request.serverName}:8080${pageContext.request.contextPath}/front/"/>
+
 		<c:if test="${empty sessionScope[\"currentUser\"]}">
 			<li><a href="front?command=app.dispatcher.LoginDispatcher">LOGIN</a></li>
 		</c:if>
@@ -33,7 +31,7 @@
 					<!-- 
 					<li><a href="front?command=app.dispatcher.LoginDispatcher">LOGIN</a></li>
 					-->
-					<li><a href="<%out.print(strAbsolutePath + "login"); %>">LOGIN</a></li>
+					<li><a href="${thePath}login">LOGIN</a></li>
 				</c:if>
 				<c:if test="${role.id == 2}">
 					<!-- 					 
@@ -41,9 +39,9 @@
 					<li><a href="front?command=app.dispatcher.BrowseGroupDispatcher">GROUP</a></li>
 					<li><a href="front?command=app.dispatcher.LogoutDispatcher">LOGOUT</a></li>
 					-->                                         
-					<li><a href="<%out.print(strAbsolutePath + "browse_invite"); %>">INVITES</a></li>
-					<li><a href="<%out.print(strAbsolutePath + "browse_group"); %>">GROUP</a></li>					
-					<li><a href="<%out.print(strAbsolutePath + "logout"); %>">LOGOUT</a></li>					
+					<li><a href="${thePath}browse_invite">INVITES</a></li>
+					<li><a href="${thePath}browse_group">GROUP</a></li>					
+					<li><a href="${thePath}logout">LOGOUT</a></li>					
 					
 					
 				</c:if>
@@ -51,7 +49,7 @@
 					<!-- 
 					<li><a href="front?command=app.dispatcher.AddUsersDispatcher">ADMIN</a></li>
 					-->
-					<li><a href="<%out.print(strAbsolutePath + "add_user"); %>">ADMIN</a></li>
+					<li><a href="${thePath}add_user">ADMIN</a></li>
 				</c:if>
 			</c:forEach>
 		</c:if>

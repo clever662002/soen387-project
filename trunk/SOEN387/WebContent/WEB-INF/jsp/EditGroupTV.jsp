@@ -43,7 +43,7 @@
 		<!-- change to permalink 
 		<a href="front?command=app.dispatcher.BrowseGroupDispatcher">Back</a>
 		-->
-		<a href="<%out.print(strAbsolutePath + "browse_group"); %>">Back</a>
+		<a href="${thePath}browse_group">Back</a>
 	</div>
 </form>
 <%@include file="../include/footer.jsp" %>

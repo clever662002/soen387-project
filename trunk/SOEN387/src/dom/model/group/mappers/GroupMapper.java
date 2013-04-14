@@ -15,7 +15,9 @@ import org.dsrg.soenea.domain.user.IUser;
 
 import dom.model.group.Group;
 import dom.model.group.tdg.GroupTDG;
+import dom.model.user.UserIdentityMap;
 import dom.model.user.UserProxy;
+import dom.model.user.mappers.UserMapper;
 import dom.model.user.tdg.UserTDG;
 
 
@@ -252,6 +254,7 @@ public class GroupMapper implements IOutputMapper<Long, DomainObject<Long>>{
 	public static void addMember(long userId, long groupId) throws MapperException {
 		try{
 			int count = GroupTDG.addMember(userId,groupId);
+			UserIdentityMap.put(userId, UserMapper.find(userId)); //dirty
 			if(count == 0) {
 				throw new MapperException("Failed to add member to group id="+ groupId + " and user id=" + userId);
 			}
