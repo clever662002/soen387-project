@@ -41,10 +41,13 @@
 						
 						<!-- change to permalink 
 						<td><a href="front?command=app.dispatcher.AcceptInviteDispatcher&group_id=${invite.group.id}">YES</a></td>
-						<td><a href="front?command=app.dispatcher.DeclineInviteDispatcher&group_id=${invite.group.id}">NO</a></td>
-						-->
-						<td><a href="accept_invite/${invite.group.id}">YES</a></td>												
+						<td><a href="front?command=app.dispatcher.DeclineInviteDispatcher&group_id=${invite.group.id}">NO</a></td>						
+						<td><a href="accept_invite/${invite.group.id}">YES</a></td>																	
 						<td><a href="decline_invite/${invite.group.id}">NO</a></td>
+						-->
+						<td><a href="<%out.print(strAbsolutePath + "accept_invite/");%>${invite.group.id}">YES</a></td>
+						<td><a href="<%out.print(strAbsolutePath + "decline_invite/");%>${invite.group.id}">NO</a></td>
+																	
 						
 					</tr>
 				</c:forEach>
