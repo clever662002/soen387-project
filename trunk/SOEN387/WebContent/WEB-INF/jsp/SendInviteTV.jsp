@@ -55,7 +55,7 @@
 		<!-- change to permalink 
 		<a href="front?command=app.dispatcher.BrowseInvitesDispatcher">Back</a>
 		-->
-		<a href="browse_invite">Back</a>
+		<a href="<%out.print(strAbsolutePath + "browse_invite"); %>">Back</a>		
 	</div>
 	
 <%@include file="../include/footer.jsp" %>
