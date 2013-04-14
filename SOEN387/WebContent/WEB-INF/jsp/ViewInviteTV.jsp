@@ -8,7 +8,7 @@
 			<!-- change to permalink
 			<li><a href="front?command=app.dispatcher.SendInviteDispatcher">Send Invite</a></li>
 			-->			
-			<li><a href="<%out.print(strAbsolutePath + "send_invite"); %>">Send Invite</a></li>			
+			<li><a href="${thePath}send_invite">Send Invite</a></li>			
 		</ul>	
 			
 		<c:if test="${!empty error}">
@@ -45,10 +45,9 @@
 						<td><a href="accept_invite/${invite.group.id}">YES</a></td>																	
 						<td><a href="decline_invite/${invite.group.id}">NO</a></td>
 						-->
-						<td><a href="<%out.print(strAbsolutePath + "accept_invite/");%>${invite.group.id}">YES</a></td>
-						<td><a href="<%out.print(strAbsolutePath + "decline_invite/");%>${invite.group.id}">NO</a></td>
-																	
-						
+						<td><a href="${thePath}accept_invite/${invite.group.id}">YES</a></td>
+						<td><a href="${thePath}decline_invite/${invite.group.id}">NO</a></td>
+
 					</tr>
 				</c:forEach>
 				</table>

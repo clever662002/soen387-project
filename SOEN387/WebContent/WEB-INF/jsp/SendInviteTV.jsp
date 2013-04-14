@@ -10,7 +10,7 @@
 			<!-- change to permalink
 			<li><a href="front?command=app.dispatcher.SendInviteDispatcher">Send Invite</a></li>
 			-->
-			<li><a href="<%out.print(strAbsolutePath + "send_invite"); %>">Send Invite</a></li>
+			<li><a href="${thePath}send_invite">Send Invite</a></li>
 		</ul>	
 	
 		<c:if test="${!empty error}">
@@ -55,7 +55,7 @@
 		<!-- change to permalink 
 		<a href="front?command=app.dispatcher.BrowseInvitesDispatcher">Back</a>
 		-->
-		<a href="<%out.print(strAbsolutePath + "browse_invite"); %>">Back</a>		
+		<a href="${thePath}browse_invite">Back</a>		
 	</div>
 	
 <%@include file="../include/footer.jsp" %>

@@ -46,10 +46,13 @@ public class CreateGroupCommand extends Command{
 				if(GroupMapper.find(sGroupName) == null){
 					//Create the group
 					Group newGroup = GroupMapper.insert(new Group(sGroupName,sGroupDesc));
-					helper.setRequestAttribute("group", newGroup);
+					//helper.setRequestAttribute("group", newGroup);
+					helper.setSessionAttribute("group", newGroup);
 					//Add the user to the group
 					try{
 						GroupMapper.addMember(user.getId(),newGroup.getId());
+						//update the user in the session because he has a group now.
+						helper.setRequestAttribute("currentUser", UserMapper.find(user.getId()));
 					}
 					catch(MapperException ex){
 						throw new CommandException(ex.getMessage());

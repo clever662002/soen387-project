@@ -20,11 +20,10 @@
 					<li><a href="front?command=app.dispatcher.EditGroupDispatcher&group_id=${group.id}">Edit Group</a></li>
 					<li><a href="front?command=app.dispatcher.RemoveGroupDispatcher&group_id=${group.id}">Remove Group</a>	</li>
 					-->					
-					<li><a href="<%out.print(strAbsolutePath + "edit_group/");%>${group.id}">Edit Group</a></li>
-					<li><a href="<%out.print(strAbsolutePath + "remove_group/");%>${group.id}">Remove Group</a></li>
+					<li><a href="${thePath}edit_group/${group.id}">Edit Group</a></li>
+					<li><a href="${thePath}remove_group/${group.id}">Remove Group</a></li>
 				</c:if>
 			</ul>
-		
 		
 			<div id="display">
 				<table>
@@ -47,6 +46,6 @@
 		<!-- change to permalink 
 		<a href="front?command=app.dispatcher.BrowseGroupDispatcher">Back</a>
 		-->		
-		<a href="<%out.print(strAbsolutePath + "browse_group"); %>">Back</a>
+		<a href="${thePath}browse_group">Back</a>
 	</div>
 <%@include file="../include/footer.jsp" %>

@@ -55,21 +55,53 @@ public class GroupFormingPermalinkFilter implements Filter {
 	
 	private String getCommandFromPathInfoAndMaybeSetSomeAttributes(
 			HttpServletRequest request) {
-		System.out.println("\nstart");
+		
 		String path = request.getPathInfo();		
-	    System.out.println("path = " + path);
+		request.setAttribute("current_path", path);
+		
+	    String command = null;
 		if (path == null)
 			return null;
+			
 		
-		request.setAttribute("prev_path", path);
-		
-		String command = null;
+		/*
 		if ("/browse_group".equals(path)) {
 			command = "BrowseGroupDispatcher";
+		}
+		*/
+		if("/browse_group".equals(path)){
+			command = "BrowseGroupDispatcher";
+		}
+		else if("/create_group".equals(path)){
+			command = "CreateGroupDispatcher";
 		}		
+		
+		else if("/browse_invite".equals(path))
+		{
+			command = "BrowseInvitesDispatcher";			
+		}
+		else if("/send_invite".equals(path))
+		{
+			command = "SendInviteDispatcher";			
+		}
+		
+		else if("/login".equals(path))
+		{
+			command = "LoginDispatcher";			
+		}		
+		else if("/logout".equals(path))
+		{
+			command = "LogoutDispatcher";			
+		}
+		
+		else if("/add_user".equals(path))
+		{
+			command = "AddUsersDispatcher";			
+		}
+		
 		else 
 		{
-			Pattern pattern = Pattern.compile("^/(view_group|edit_group)/(\\d+)$");
+			Pattern pattern = Pattern.compile("^/(view_group|edit_group|remove_group|accept_invite|decline_invite)/(\\d+)$");
 			Matcher matcher = pattern.matcher(path);
 			if (matcher.find()) 
 			{
@@ -90,13 +122,34 @@ public class GroupFormingPermalinkFilter implements Filter {
 					
 					id = matcher.group(2);
 					request.setAttribute("group_id", id);
+					
 				}
-				
-				System.out.println("group_id=[" + id + "]");
+				else if(strCommand.equals("remove_group"))
+				{
+					command = "RemoveGroupDispatcher";
+					
+					id = matcher.group(2);
+					request.setAttribute("group_id", id);
+				}
+				else if(strCommand.equals("accept_invite"))
+				{
+					command = "AcceptInviteDispatcher";
+					
+					id = matcher.group(2);
+					request.setAttribute("group_id", id);
+				}
+				else if(strCommand.equals("decline_invite"))
+				{
+					command = "DeclineInviteDispatcher";
+					
+					id = matcher.group(2);
+					request.setAttribute("group_id", id);
+				}
+				System.out.println("filter:group_id=[" + id + "]");
 			}
 		}
 		
-		System.out.println("command = " + command);
+		System.out.println("filer:command=[" + command + "]");
 		return command;
 	}
 

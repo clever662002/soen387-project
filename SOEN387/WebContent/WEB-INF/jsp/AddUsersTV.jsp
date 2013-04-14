@@ -4,7 +4,7 @@
 		
 	<div id="container">
 		<ul>
-			<li><a href="front?command=app.dispatcher.AddUsersDispatcher">ADD USERS</a></li>
+			<li><a href="${thePath}add_user">ADD USERS</a></li>
 		</ul>
 
 		<div id="addUserContainer">
