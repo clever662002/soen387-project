@@ -7,8 +7,7 @@
 		<ul>	
 			<!-- change to permalink
 			<li><a href="front?command=app.dispatcher.SendInviteDispatcher">Send Invite</a></li>
-			-->
-			<% out.println("[" + strAbsolutePath + "send_invite" + "]"); %>
+			-->			
 			<li><a href="<%out.print(strAbsolutePath + "send_invite"); %>">Send Invite</a></li>			
 		</ul>	
 			
