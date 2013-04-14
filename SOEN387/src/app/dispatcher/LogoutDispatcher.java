@@ -17,7 +17,12 @@ public class LogoutDispatcher extends Dispatcher {
 			myRequest.getSession().invalidate();
 			//TODO change for guest user
 			myHelper.setSessionAttribute("currentUser", new GuestUser());
-			forward("/WEB-INF/jsp/LogInTV.jsp");
+			
+			// change to permalink
+			//forward("/WEB-INF/jsp/LogInTV.jsp");
+			String path = this.myRequest.getContextPath() + this.myRequest.getServletPath();			
+			this.myResponse.sendRedirect(path);
+			
 		}
 		catch(Exception e){
 			forward("/WEB-INF/jsp/LogInTV.jsp");
