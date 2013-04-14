@@ -15,13 +15,15 @@ public class CreateGroupDispatcher extends Dispatcher{
 	{
 		try {
 			new CreateGroupCommand(myHelper).process();
-			//forward("/WEB-INF/jsp/ViewGroupTV.jsp");
+			forward("/WEB-INF/jsp/ViewGroupTV.jsp");
 			
-			String path = this.myRequest.getContextPath() + this.myRequest.getServletPath() + "/" + "view_group";			
-			this.myResponse.sendRedirect(path);
+			//String path = this.myRequest.getContextPath() + this.myRequest.getServletPath() + "/" + "view_group";			
+			//this.myResponse.sendRedirect(path);
 		}
 		catch(CommandException ex){
 			forward("/WEB-INF/jsp/CreateGroupTV.jsp");
+			//String path = this.myRequest.getContextPath() + this.myRequest.getServletPath() + "/" + "create_group";			
+			//this.myResponse.sendRedirect(path);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
